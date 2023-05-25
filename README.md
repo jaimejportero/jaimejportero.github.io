@@ -1,3 +1,12 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Presentación de Git - Jaime Jimenez Portero</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
 <h1>Jaime Jimenez Portero - Desarrollador de Software</h1>
 ¡Bienvenido/a a mi página de Git personalizada! Aquí encontrarás información sobre mí y mi experiencia como desarrollador de software.
 
@@ -9,4 +18,6 @@ Si estás interesado/a en colaborar en un proyecto emocionante o simplemente qui
 
 <a href="https://www.linkedin.com/in/jaime-jimenez-portero-06792a232">LinkedIn</a>
 <p>Correo electronico: jaimejportero@gmail.com</p>
-<p>¡Espero tener noticias tuyas pronto!
+  <p>¡Espero tener noticias tuyas pronto!</p>
+  </body>
+  </html>
