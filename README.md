@@ -13,7 +13,7 @@
  <h2>Contacto</h2>
 <p>Si estás interesado/a en colaborar en un proyecto emocionante o simplemente quieres decir hola, no dudes en contactarme. Puedes encontrarme en las siguientes redes sociales:</p>
 
-<a href="https://www.linkedin.com/in/jaime-jimenez-portero-06792a232">LinkedIn</a>
+<p><a href="https://www.linkedin.com/in/jaime-jimenez-portero-06792a232">LinkedIn</a></p>
 <p>Correo electronico: jaimejportero@gmail.com</p>
   <p>¡Espero tener noticias tuyas pronto!</p>
   </body>
