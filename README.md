@@ -16,11 +16,14 @@
   <li>He trabajado con diferentes Frameworks: Angular, Laravel, Slim y Spring Framework entre otros</li>
   <li>También he trabajado en contenerización con Docker y en la explotación de datos Business Intelligence o BI</li>
 </ul>
- <h2>Contacto</h2>
-<p>Si estás interesado/a en colaborar en un proyecto emocionante o simplemente quieres decir hola, no dudes en contactarme. Puedes encontrarme en las siguientes redes sociales:</p>
+  <h2>Contacto</h2>
+    <p>Si estás interesado/a en colaborar en un proyecto emocionante o simplemente quieres decir hola, no dudes en contactarme. Puedes encontrarme en las siguientes redes sociales:</p>
 
-<p><a href="https://www.linkedin.com/in/jaime-jimenez-portero-06792a232">LinkedIn</a></p>
-<p>Correo electronico: jaimejportero@gmail.com</p>
-  <p>¡Espero tener noticias tuyas pronto!</p>
+    <p><a href="https://www.linkedin.com/in/jaime-jimenez-portero-06792a232">LinkedIn</a></p>
+    <p>Correo electrónico: jaimejportero@gmail.com</p>
+
+    <img class="profile-image" src="foto.jpg" alt="Mi Foto">
+
+    <p>¡Espero tener noticias tuyas pronto!</p>
   </body>
   </html>
