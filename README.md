@@ -12,7 +12,7 @@
 <p>¡Hola! Mi nombre es Jaime Jimenez Portero y soy un apasionado desarrollador de software. Tengo una sólida formación en el desarrollo de aplicaciones web y móviles. Me encanta explorar nuevas tecnologías y resolver desafíos en el mundo del desarrollo de software.</p>
  <p>He trabajado en prácticas en el desarrollo de los grados superiores que he realizado, usando uso de múltiples tecnologías:</p>
    <ul>
-  <li>Lenguajes de programación: Python, PHP , Java , HTML Y CSS y Spring(SpringBoot)</li>
+  <li>Lenguajes de programación: Python, PHP , Java , HTML Y CSS y Spring (SpringBoot)</li>
   <li>He trabajado con diferentes Frameworks: Angular, Laravel, Slim y Spring Framework entre otros</li>
   <li>También he trabajado en contenerización con Docker y en la explotación de datos Business Intelligence o BI</li>
 </ul>
