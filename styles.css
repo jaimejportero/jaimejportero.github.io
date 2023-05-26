@@ -38,7 +38,6 @@ a {
 
 /* Estilos de la imagen de perfil */
 .profile-image {
-  float: right;
   width: 200px;
   margin-left: 20px;
   border-radius: 50%;
