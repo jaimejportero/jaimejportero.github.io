@@ -29,10 +29,10 @@ a {
 
 /* Estilos de la imagen de perfil */
 .profile-image {
-  width: 200px;
+  width: 100px;
   margin-left: 20px;
   border-radius: 50%;
-  height: 200px;
+  height: 100px;
 }
 
 /* Estilos del enlace de LinkedIn */
