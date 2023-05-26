@@ -6,7 +6,7 @@
 </head>
 <body>
 <h1>Jaime Jimenez Portero - Desarrollador de Software</h1>
-¡Bienvenido/a a mi página de Git personalizada! Aquí encontrarás información sobre mí y mi experiencia como desarrollador de software.
+¡Bienvenido/a a mi página de de presentación! Aquí encontrarás información sobre mí y mi experiencia como desarrollador de software.
 
 <h2>Acerca de mí</h2>
 <p>¡Hola! Mi nombre es Jaime Jimenez Portero y soy un apasionado desarrollador de software. Tengo una sólida formación en el desarrollo de aplicaciones web y móviles. Me encanta explorar nuevas tecnologías y resolver desafíos en el mundo del desarrollo de software.</p>
