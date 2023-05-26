@@ -4,6 +4,14 @@ body {
   padding: 20px;
   background-color: #f1f1f1;
   color: #333;
+  display: flex;
+  justify-content: center; /* Centrar horizontalmente */
+  align-items: center; /* Centrar verticalmente */
+  min-height: 100vh; /* Asegurar altura mínima de la página */
+}
+
+.container {
+  max-width: 600px; /* Ancho máximo del contenido */
 }
 
 h1 {
@@ -29,10 +37,10 @@ a {
 
 /* Estilos de la imagen de perfil */
 .profile-image {
-  width: 100px;
+  float: right;
+  width: 200px;
   margin-left: 20px;
   border-radius: 50%;
-  height: 100px;
 }
 
 /* Estilos del enlace de LinkedIn */
