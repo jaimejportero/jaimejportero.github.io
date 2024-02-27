@@ -3,6 +3,11 @@ h1{
     font-family:'Times New Roman', Times, serif;
     color: red;
 }
+h3{
+    text-align: center;
+    font-family:'Times New Roman', Times, serif;
+    color: red;
+}
 .container {
     text-align: center;
 }
@@ -19,6 +24,7 @@ h1{
 }
 
 .fill {
+    transform: translateY(-50%);
     display: inline-block; /* Hace que el div con la clase fill tenga inline-block */
     background-color: red;
     width: 0%;
@@ -28,7 +34,6 @@ h1{
 }
 
 .progress-bar-container {
-    width: 400px;
     margin: 0 auto;
 }
 
