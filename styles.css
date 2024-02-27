@@ -17,7 +17,13 @@ h1{
     transition: all 0.2s ease;
     /* Agregamos una transición para el efecto de latido */
 }
-
+.arrow {
+    transform-origin: left center; /* Establece el punto de transformación a la izquierda */
+    width: 20px;
+    height: 20px;
+    background-color: #ff4d4d; /* Color de la flecha */
+    clip-path: polygon(0% 50%, 100% 0%, 100% 100%); /* Crea una flecha */
+  }
 .fill {
     display: inline-block; /* Hace que el div con la clase fill tenga inline-block */
     background-color: red;
