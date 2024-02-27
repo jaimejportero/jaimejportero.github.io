@@ -19,9 +19,7 @@
       </ul>
     </div>
   </nav>
-  <div class="moneda" id="moneda">
     <img id="salta" src="fotos/cara.jpg" width="75" height="75" />
-  </div>
   <h2 id="resultado"></h2>
 
   <script>
@@ -36,6 +34,7 @@
 
         // Generar un número aleatorio (0 o 1) para simular cara o cruz
         const esCara = Math.random() < 0.5;
+        console.log(esCara);
         const resultado = esCara ? 'Cara' : 'Cruz';
 
         // Cambiar la imagen de la moneda según el resultado
