@@ -1,3 +1,8 @@
+h1{
+    text-align: center;
+    font-family:'Times New Roman', Times, serif;
+    color: red;
+}
 .container {
     text-align: center;
 }
@@ -38,6 +43,6 @@
 .carousel-item img {
     width: 200px;
     /* Cambiamos el tamaño de las imágenes */
-    height: 200px;
+    height: 500px;
     /* Cambiamos el tamaño de las imágenes */
 }
