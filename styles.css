@@ -115,11 +115,9 @@ h2 {
 }
 
 .moneda {
-    width: 150px;
-    height: 150px;
     background-size: contain;
     background-repeat: no-repeat;
-    margin: 100px auto;
+    margin: 0 auto;
     animation: lanzamiento 1s ease-out forwards; /* Esta línea activa la animación cuando la página se carga */
     cursor: pointer; /* Cambia el cursor a una mano al pasar sobre la moneda */
 }
