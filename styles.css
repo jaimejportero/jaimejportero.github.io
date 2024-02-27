@@ -44,7 +44,7 @@ h2 {
 }
 
 .progress-bar-container {
-    width: 400px;
+    width: 200px;
     margin: 0 auto;
     /* height: 15px; */
 }
@@ -105,7 +105,7 @@ h2 {
     font-weight: bold;
 }
 .valor{
-    font-size: 15px;
+    font-size: 25px;
     color: green;
     margin-left: 5px;
 }
