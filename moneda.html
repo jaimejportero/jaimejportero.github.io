@@ -20,14 +20,14 @@
     </div>
   </nav>
   <div class="moneda" id="moneda">
-    <img src="fotos/cara.jpg" width="100" height="100" />
+    <img id="salta" src="fotos/cara.jpg" width="50" height="50" />
   </div>
   <h2 id="resultado"></h2>
 
   <script>
     document.getElementById('moneda').addEventListener('click', function () {
       // Remover la clase de animación si ya está presente
-      const monedaElement = document.getElementById('moneda');
+      const monedaElement = document.getElementById('salta');
       monedaElement.classList.remove('lanzamiento');
   
       // Ejecutar un pequeño retraso antes de agregar la clase de nuevo
