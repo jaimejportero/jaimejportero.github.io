@@ -101,10 +101,11 @@ h2 {
     /* Subrayar en hover */
 }
 .dato{
-    font-size: 15;
+    font-size: 25px;
     font-weight: bold;
 }
 .valor{
-    font-size: 10;
+    font-size: 15px;
     color: green;
+    margin-left: 5px;
 }
