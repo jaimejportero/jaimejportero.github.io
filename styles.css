@@ -1,16 +1,19 @@
-h1{
+h1 {
     text-align: center;
-    font-family:'Times New Roman', Times, serif;
+    font-family: 'Times New Roman', Times, serif;
     color: red;
 }
-h3{
+
+h3 {
     text-align: center;
-    font-family:'Times New Roman', Times, serif;
+    font-family: 'Times New Roman', Times, serif;
     color: red;
 }
+
 .container {
     text-align: center;
 }
+
 .heart {
     width: 100px;
     height: 100px;
@@ -24,12 +27,14 @@ h3{
 }
 
 .fill {
-    display: inline-block; /* Hace que el div con la clase fill tenga inline-block */
+    display: inline-block;
+    /* Hace que el div con la clase fill tenga inline-block */
     background-color: red;
     width: 0%;
     height: 15px;
     transition: width 1s ease;
-    vertical-align: middle; /* Alinea verticalmente el texto con el div */
+    vertical-align: middle;
+    /* Alinea verticalmente el texto con el div */
     /* Agregamos una transición para la animación de la barra de progreso */
 }
 
@@ -41,9 +46,9 @@ h3{
 
 #percentage {
     vertical-align: middle;
-    font-size: 20px; 
+    font-size: 20px;
     font-weight: bold;
-    margin-left: 15px; 
+    margin-left: 15px;
 }
 
 .carousel-item img {
@@ -51,4 +56,33 @@ h3{
     /* Cambiamos el tamaño de las imágenes */
     height: 600px;
     /* Cambiamos el tamaño de las imágenes */
+}
+
+.navbar {
+    background-color: #333;
+    /* Color de fondo del navbar */
+    color: #fff;
+    /* Color del texto */
+}
+
+.nav-links {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.nav-links li {
+    display: inline;
+    margin-right: 20px;
+    /* Espacio entre elementos del navbar */
+}
+
+.nav-links li a {
+    color: #fff;
+    text-decoration: none;
+}
+
+.nav-links li a:hover {
+    text-decoration: underline;
+    /* Subrayar en hover */
 }
