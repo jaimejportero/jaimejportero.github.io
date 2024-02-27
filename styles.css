@@ -1,18 +1,14 @@
-h1 {
+h1{
     text-align: center;
-    font-family: 'Times New Roman', Times, serif;
+    font-family:'Times New Roman', Times, serif;
     color: red;
 }
-
 .container {
     text-align: center;
 }
-
 body {
-    background-color: grey;
-    /* Color de fondo de la página */
+    background-color: green; /* Color de fondo de la página */
 }
-
 .heart {
     width: 100px;
     height: 100px;
@@ -28,29 +24,22 @@ body {
 .fill {
     background-color: red;
     width: 0%;
-    height: 15px;
-    /* Altura de la barra de progreso */
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
     transition: width 1s ease;
+    /* Agregamos una transición para la animación de la barra de progreso */
 }
 
 .progress-bar-container {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    /* Distribuir los elementos horizontalmente */
-}
-
-.progress-info {
-    display: flex;
-    align-items: center;
-    /* Alinear los elementos verticalmente */
+    width: 200px;
+    margin: 0 auto;
 }
 
 #percentage {
     font-size: 20px;
     font-weight: bold;
-    margin-left: 10px;
-    /* Espacio entre la barra de progreso y el porcentaje */
 }
 
 .carousel-item img {
