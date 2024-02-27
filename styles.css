@@ -11,3 +11,35 @@ h1{
 body{
     background-color: grey;
 }
+.container {
+    text-align: center;
+  }
+  
+  .heart {
+    width: 100px;
+    height: 100px;
+    background-image: url('fotos/heart.png'); /* Reemplaza 'heart.png' con la ruta a tu imagen de corazón */
+    background-size: cover;
+    position: relative;
+    margin: 20px auto;
+  }
+  
+  .fill {
+    background-color: red;
+    width: 0%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+  }
+  
+  .progress-bar-container {
+    width: 200px;
+    margin: 0 auto;
+  }
+  
+  #percentage {
+    font-size: 20px;
+    font-weight: bold;
+  }
+  
