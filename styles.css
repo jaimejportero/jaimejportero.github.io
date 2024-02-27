@@ -35,7 +35,7 @@ h3{
 }
 
 .progress-bar-container {
-    width: 200;
+    width: 200px;
     margin: 0 auto;
 }
 
@@ -49,6 +49,6 @@ h3{
 .carousel-item img {
     width: 200px;
     /* Cambiamos el tamaño de las imágenes */
-    height: 500px;
+    height: 700px;
     /* Cambiamos el tamaño de las imágenes */
 }
