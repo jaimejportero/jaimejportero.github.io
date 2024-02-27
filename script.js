@@ -3,14 +3,15 @@ document.getElementById('generateBtn').addEventListener('click', function () {
     const randomNumber = Math.floor(Math.random() * 100) + 1;
 
     // Actualizar el porcentaje gradualmente
-    let currentPercentage = -10;
+    let currentPercentage = 0;
+    let barra = -10;
     const interval = setInterval(function () {
-        currentPercentage++;
+        barra++;
         const percentage = document.getElementById('percentage');
         percentage.textContent = currentPercentage + '%';
         const fill = document.getElementById('fill');
-        fill.style.width = currentPercentage + '%';
-        if (currentPercentage >= randomNumber) {
+        fill.style.width = barra + '%';
+        if (barra >= randomNumber) {
             clearInterval(interval);
         }
     }, 10);
