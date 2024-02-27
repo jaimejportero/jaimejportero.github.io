@@ -27,30 +27,38 @@
 </style>
 </head>
 <body>
-<nav class="navbar">
-    <div class="container">
-      <ul class="nav-links">
-        <li><a href="index.html">Inicio</a></li>
-        <li><a href="corazon.html">Corazon</a></li>
-        <li><a href="tiempo.html">Tiempo</a></li>
-        <li><a href="#">¿Quién paga?</a></li>
-      </ul>
-    </div>
-  </nav>
+    <nav class="navbar">
+        <div class="container">
+          <ul class="nav-links">
+            <li><a href="index.html">Inicio</a></li>
+            <li><a href="corazon.html">Corazon</a></li>
+            <li><a href="tiempo.html">Tiempo</a></li>
+            <li><a href="#">¿Quién paga?</a></li>
+          </ul>
+        </div>
+      </nav>
 <div class="moneda" id="moneda"></div>
 <h2 id="resultado"></h2>
 
 <script>
   function lanzarMoneda() {
-    // Generar un número aleatorio (0 o 1) para simular cara o cruz
-    const esCara = Math.random() < 0.5;
-    const resultado = esCara ? 'Cara' : 'Cruz';
-    
-    // Asignar la imagen correspondiente al resultado
     const monedaElement = document.getElementById('moneda');
-    monedaElement.style.backgroundImage = `url('${esCara ? 'cara.png' : 'cruz.png'}')`;
+    let esCara = true; // Inicialmente mostramos la cara
 
-    document.getElementById('resultado').textContent = 'Resultado: ' + resultado;
+    const interval = setInterval(() => {
+      // Cambiamos la imagen de la moneda
+      monedaElement.style.backgroundImage = `url('${esCara ? 'cara.jpg' : 'cruz.jfif'}')`;
+
+      // Cambiamos la cara de la moneda
+      esCara = !esCara;
+    }, 100); // Cambia la imagen cada 100 milisegundos
+
+    setTimeout(() => {
+      clearInterval(interval);
+      // Mostramos el resultado final
+      const resultado = esCara ? 'Cara' : 'Cruz';
+      document.getElementById('resultado').textContent = 'Resultado: ' + resultado;
+    }, 1000); // Detenemos el intervalo después de 1 segundo
   }
 
   // Lanza la moneda cuando se hace clic en ella
