@@ -7,6 +7,7 @@ document.getElementById('generateBtn').addEventListener('click', function () {
     let barra = -10;
     const interval = setInterval(function () {
         currentPercentage++;
+        barra++;
         const percentage = document.getElementById('percentage');
         percentage.textContent = currentPercentage + '%';
         const fill = document.getElementById('fill');
