@@ -2,13 +2,18 @@ document.getElementById('generateBtn').addEventListener('click', function () {
     // Generar número aleatorio del 1 al 100
     const randomNumber = Math.floor(Math.random() * 100) + 1;
 
-    // Actualizar el porcentaje
-    const percentage = document.getElementById('percentage');
-    percentage.textContent = randomNumber + '%';
-
-    // Actualizar la barra de progreso
-    const fill = document.getElementById('fill');
-    fill.style.width = randomNumber + '%';
+    // Actualizar el porcentaje gradualmente
+    let currentPercentage = 0;
+    const interval = setInterval(function () {
+        currentPercentage++;
+        const percentage = document.getElementById('percentage');
+        percentage.textContent = currentPercentage + '%';
+        const fill = document.getElementById('fill');
+        fill.style.width = currentPercentage + '%';
+        if (currentPercentage >= randomNumber) {
+            clearInterval(interval);
+        }
+    }, 10);
 
     // Realizar el efecto de latido del corazón
     const heart = document.getElementById('heart');

@@ -6,7 +6,9 @@ h1{
 .container {
     text-align: center;
 }
-
+body {
+    background-color: grey; /* Color de fondo de la página */
+}
 .heart {
     width: 100px;
     height: 100px;
@@ -22,18 +24,16 @@ h1{
 .fill {
     background-color: red;
     width: 0%;
-    height: 100%;
-    position: absolute;
-    top: 0;
-    left: 0;
-    transition: width 1s ease;
-    /* Agregamos una transición para la animación de la barra de progreso */
-}
+    height: 15px; /* Altura de la barra de progreso */
+    position: relative;
+    transition: width 1s ease; /* Agregamos una transición para la animación de la barra de progreso */
+  }
 
-.progress-bar-container {
-    width: 200px;
-    margin: 0 auto;
-}
+  .progress-bar-container {
+    display: flex;
+    align-items: center; /* Alinear elementos verticalmente */
+    margin-bottom: 20px; /* Espacio entre la barra de progreso y el botón */
+  }
 
 #percentage {
     font-size: 20px;
