@@ -120,9 +120,8 @@ h2 {
     background-size: contain;
     background-repeat: no-repeat;
     margin: 100px auto;
-    animation: lanzamiento 1s ease-out forwards;
-    cursor: pointer;
-    /* Cambia el cursor a una mano al pasar sobre la moneda */
+    animation: lanzamiento 1s ease-out forwards; /* Esta línea activa la animación cuando la página se carga */
+    cursor: pointer; /* Cambia el cursor a una mano al pasar sobre la moneda */
 }
 
 @keyframes lanzamiento {

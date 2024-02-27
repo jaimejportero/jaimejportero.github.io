@@ -1,50 +1,42 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link rel="stylesheet" href="styles.css">
-<title>Lanzamiento de Moneda</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="styles.css">
+  <title>Lanzamiento de Moneda</title>
 </head>
+
 <body>
-    <nav class="navbar">
-        <div class="container">
-          <ul class="nav-links">
-            <li><a href="index.html">Inicio</a></li>
-            <li><a href="corazon.html">Corazon</a></li>
-            <li><a href="tiempo.html">Tiempo</a></li>
-            <li><a href="#">¿Quién paga?</a></li>
-          </ul>
-        </div>
-      </nav>
-<div class="moneda" id="moneda">
-  <img src="fotos/cara.jpg" width="50" height="50"/>
-</div>
-<h2 id="resultado"></h2>
+  <nav class="navbar">
+    <div class="container">
+      <ul class="nav-links">
+        <li><a href="index.html">Inicio</a></li>
+        <li><a href="corazon.html">Corazon</a></li>
+        <li><a href="tiempo.html">Tiempo</a></li>
+        <li><a href="#">¿Quién paga?</a></li>
+      </ul>
+    </div>
+  </nav>
+  <div class="moneda" id="moneda">
+    <img src="fotos/cara.jpg" width="50" height="50" />
+  </div>
+  <h2 id="resultado"></h2>
 
-<script>
-  function lanzarMoneda() {
-    const monedaElement = document.getElementById('moneda');
-    let esCara = true; // Inicialmente mostramos la cara
-
-    const interval = setInterval(() => {
-      // Cambiamos la imagen de la moneda
-      monedaElement.style.backgroundImage = `url('${esCara ? 'cara.jpg' : 'cruz.jfif'}')`;
-
-      // Cambiamos la cara de la moneda
-      esCara = !esCara;
-    }, 100); // Cambia la imagen cada 100 milisegundos
-
-    setTimeout(() => {
-      clearInterval(interval);
-      // Mostramos el resultado final
+  <script>
+    document.getElementById('moneda').addEventListener('click', function () {
+      // Generar un número aleatorio (0 o 1) para simular cara o cruz
+      const esCara = Math.random() < 0.5;
       const resultado = esCara ? 'Cara' : 'Cruz';
-      document.getElementById('resultado').textContent = 'Resultado: ' + resultado;
-    }, 1000); // Detenemos el intervalo después de 1 segundo
-  }
 
-  // Lanza la moneda cuando se hace clic en ella
-  document.getElementById('moneda').addEventListener('click', lanzarMoneda);
-</script>
+      // Cambiar la imagen de la moneda según el resultado
+      const imgMoneda = document.querySelector('.moneda img');
+      imgMoneda.src = esCara ? 'fotos/cara.jpg' : 'fotos/cruz.jfif';
+
+      document.getElementById('resultado').textContent = 'Resultado: ' + resultado;
+    });
+  </script>
 </body>
+
 </html>
