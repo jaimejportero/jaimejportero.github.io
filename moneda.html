@@ -26,18 +26,27 @@
 
   <script>
     document.getElementById('moneda').addEventListener('click', function () {
-      // Generar un número aleatorio (0 o 1) para simular cara o cruz
-      this.classList.add('moneda'); // Agrega la clase 'moneda' al elemento al hacer clic
-      const esCara = Math.random() < 0.5;
-      const resultado = esCara ? 'Cara' : 'Cruz';
-
-      // Cambiar la imagen de la moneda según el resultado
-      const imgMoneda = document.querySelector('.moneda img');
-      imgMoneda.src = esCara ? 'fotos/cara.jpg' : 'fotos/cruz.jfif';
-
-      document.getElementById('resultado').textContent = 'Resultado: ' + resultado;
+      // Remover la clase de animación si ya está presente
+      const monedaElement = document.getElementById('moneda');
+      monedaElement.classList.remove('lanzamiento');
+  
+      // Ejecutar un pequeño retraso antes de agregar la clase de nuevo
+      setTimeout(() => {
+        monedaElement.classList.add('lanzamiento');
+  
+        // Generar un número aleatorio (0 o 1) para simular cara o cruz
+        const esCara = Math.random() < 0.5;
+        const resultado = esCara ? 'Cara' : 'Cruz';
+  
+        // Cambiar la imagen de la moneda según el resultado
+        const imgMoneda = document.querySelector('.moneda img');
+        imgMoneda.src = esCara ? 'fotos/cara.jpg' : 'fotos/cruz.jpg';
+  
+        document.getElementById('resultado').textContent = 'Resultado: ' + resultado;
+      }, 50); // Esperar 50 milisegundos antes de volver a aplicar la animación
     });
   </script>
+  
 </body>
 
 </html>
