@@ -40,7 +40,7 @@ h3{
 }
 
 #percentage {
-    /* vertical-align: middle; Alinea verticalmente el texto con el div */
+    vertical-align: middle;
     font-size: 20px; 
     font-weight: bold;
     margin-left: 15px; 
