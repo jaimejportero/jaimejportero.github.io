@@ -11,7 +11,7 @@ document.getElementById('generateBtn').addEventListener('click', function () {
         percentage.textContent = currentPercentage + '%';
         const fill = document.getElementById('fill');
         fill.style.width = barra + '%';
-        if (barra >= randomNumber) {
+        if (currentPercentage >= randomNumber) {
             clearInterval(interval);
         }
     }, 10);
