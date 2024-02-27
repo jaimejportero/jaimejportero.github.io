@@ -1,0 +1,13 @@
+/* Estilo para todas las imágenes del carrusel */
+.carousel-item img {
+    width: 100%; /* Hacer que todas las imágenes ocupen el ancho completo del contenedor */
+    height: auto; /* Mantener la proporción original de la imagen */
+}
+h1{
+    text-align: center;
+    font-family:'Times New Roman', Times, serif;
+    color: red;
+}
+body{
+    background-color: grey;
+}
