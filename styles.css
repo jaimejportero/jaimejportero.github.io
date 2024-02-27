@@ -6,12 +6,6 @@ h1{
 .container {
     text-align: center;
 }
-body {
-    background-color: green; /* Color de fondo de la página */
-}
-.fondo{
-    background-color: green;
-}
 .heart {
     width: 100px;
     height: 100px;
