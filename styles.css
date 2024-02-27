@@ -110,39 +110,3 @@ h2 {
     color: green;
     margin-left: 5px;
 }
-@media screen and (max-width: 600px) {
-    h1, h2, h3 {
-      font-size: 20px; /* Reduce el tamaño de la fuente en pantallas pequeñas */
-    }
-  
-    .container {
-      padding: 0 10px; /* Añade un poco de espacio a los lados del contenedor en pantallas pequeñas */
-    }
-  
-    .carousel-item img {
-      width: 100%; /* Ajusta el ancho de las imágenes al 100% en pantallas pequeñas */
-      height: auto; /* Ajusta la altura automáticamente en pantallas pequeñas */
-    }
-  
-    .navbar {
-      text-align: center; /* Centra los elementos del navbar en pantallas pequeñas */
-    }
-  
-    .nav-links li {
-      display: block; /* Cambia a bloque para que los elementos se muestren uno debajo del otro en pantallas pequeñas */
-      margin-right: 0; /* Elimina el margen derecho en pantallas pequeñas */
-      margin-bottom: 10px; /* Agrega espacio entre elementos del navbar en pantallas pequeñas */
-    }
-  }
-  
-  /* Estilos para tamaños de pantalla medianos y grandes */
-  @media screen and (min-width: 601px) {
-    .navbar {
-      display: flex; /* Cambia a un diseño flexible para que los elementos se distribuyan horizontalmente */
-      justify-content: center; /* Centra los elementos horizontalmente */
-    }
-  
-    .nav-links li {
-      margin-right: 20px; /* Agrega margen derecho entre elementos del navbar en pantallas medianas y grandes */
-    }
-  }
