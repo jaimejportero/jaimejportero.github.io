@@ -20,7 +20,7 @@
     </div>
   </nav>
   <div class="moneda" id="moneda">
-    <img id="salta" src="fotos/cara.jpg"/>
+    <img id="salta" src="fotos/cara.jpg" width="75" height="75" />
   </div>
   <h2 id="resultado"></h2>
 
@@ -29,24 +29,27 @@
       // Remover la clase de animación si ya está presente
       const monedaElement = document.getElementById('salta');
       monedaElement.classList.remove('moneda');
-  
+
       // Ejecutar un pequeño retraso antes de agregar la clase de nuevo
       setTimeout(() => {
         monedaElement.classList.add('moneda');
-  
+
         // Generar un número aleatorio (0 o 1) para simular cara o cruz
         const esCara = Math.random() < 0.5;
         const resultado = esCara ? 'Cara' : 'Cruz';
-  
+
         // Cambiar la imagen de la moneda según el resultado
         const imgMoneda = document.querySelector('.moneda img');
         imgMoneda.src = esCara ? 'fotos/cara.jpg' : 'fotos/cruz.jpg';
-  
-        document.getElementById('resultado').textContent = 'Resultado: ' + resultado;
+
+        monedaElement.addEventListener('animationend', function () {
+          // Este código se ejecutará cuando termine la animación de la moneda
+          document.getElementById('resultado').textContent = 'Resultado: ' + resultado;
+        });
       }, 50); // Esperar 50 milisegundos antes de volver a aplicar la animación
     });
   </script>
-  
+
 </body>
 
 </html>
