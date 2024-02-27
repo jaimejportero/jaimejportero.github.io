@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="styles.css">
+<title>Lanzamiento de Moneda</title>
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    text-align: center;
+  }
+  .moneda {
+    width: 100px;
+    height: 100px;
+    background-size: contain;
+    background-repeat: no-repeat;
+    margin: 100px auto;
+    animation: lanzamiento 1s ease-out forwards;
+    cursor: pointer; /* Cambia el cursor a una mano al pasar sobre la moneda */
+  }
+  @keyframes lanzamiento {
+    0% { transform: translateY(0) rotateX(0); }
+    50% { transform: translateY(-200px) rotateX(360deg); }
+    100% { transform: translateY(0) rotateX(0); }
+  }
+</style>
+</head>
+<body>
+<nav class="navbar">
+    <div class="container">
+      <ul class="nav-links">
+        <li><a href="index.html">Inicio</a></li>
+        <li><a href="corazon.html">Corazon</a></li>
+        <li><a href="tiempo.html">Tiempo</a></li>
+        <li><a href="#">¿Quién paga?</a></li>
+      </ul>
+    </div>
+  </nav>
+<div class="moneda" id="moneda"></div>
+<h2 id="resultado"></h2>
+
+<script>
+  function lanzarMoneda() {
+    // Generar un número aleatorio (0 o 1) para simular cara o cruz
+    const esCara = Math.random() < 0.5;
+    const resultado = esCara ? 'Cara' : 'Cruz';
+    
+    // Asignar la imagen correspondiente al resultado
+    const monedaElement = document.getElementById('moneda');
+    monedaElement.style.backgroundImage = `url('${esCara ? 'cara.png' : 'cruz.png'}')`;
+
+    document.getElementById('resultado').textContent = 'Resultado: ' + resultado;
+  }
+
+  // Lanza la moneda cuando se hace clic en ella
+  document.getElementById('moneda').addEventListener('click', lanzarMoneda);
+</script>
+</body>
+</html>
