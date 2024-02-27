@@ -25,7 +25,7 @@ document.getElementById('generateBtn').addEventListener('click', function () {
     }, 200); // Esperar 200 milisegundos antes de volver al tamaño original
 });
 // Fecha de inicio: 5 de noviembre de 2002
-const fechaInicio = new Date('2002-11-05');
+const fechaInicio = new Date('2022-11-05');
 // Fecha actual del sistema
 const fechaActual = new Date();
 
