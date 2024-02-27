@@ -1,4 +1,4 @@
-const fechaInicio = new Date('2022-11-05');
+const fechaInicio = new Date('2023-11-05');
 // Fecha actual del sistema
 const fechaActual = new Date();
 console.log(fechaActual);
@@ -18,6 +18,6 @@ const añosTotales = diasTotales / 365.25; // Año bisiesto cada 4 años
 document.getElementById('años').textContent = Math.floor(añosTotales);
 document.getElementById('meses').textContent = Math.floor(mesesTotales);
 document.getElementById('días').textContent = Math.floor(diasTotales);
-document.getElementById('horas').textContent = Math.floor(horasTotales % 24);
-document.getElementById('minutos').textContent = Math.floor(minutosTotales % 60);
-document.getElementById('segundos').textContent = Math.floor(segundosTotales % 60);
+document.getElementById('horas').textContent = Math.floor(horasTotales);
+document.getElementById('minutos').textContent = Math.floor(minutosTotales);
+document.getElementById('segundos').textContent = Math.floor(segundosTotales);
