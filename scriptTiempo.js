@@ -23,5 +23,8 @@ function actualizarTiempo() {
     document.getElementById('segundos').textContent = Math.floor(segundosTotales);
 }
 
-// Actualiza el tiempo cada segundo
+// Llama a actualizarTiempo() inmediatamente para mostrar los valores al cargar la página
+actualizarTiempo();
+
+// Actualiza el tiempo cada segundo después de la carga inicial
 setInterval(actualizarTiempo, 1000);
