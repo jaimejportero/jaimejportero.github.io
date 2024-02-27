@@ -1,0 +1,31 @@
+body {
+    display: flex;
+    justify-content: center; /* Centra horizontalmente */
+    align-items: center; /* Centra verticalmente */
+    height: 100vh; /* Ocupa el 100% del alto de la ventana */
+    margin: 0; /* Elimina los márgenes predeterminados del cuerpo */
+  }
+  
+  .moneda-container {
+    display: flex;
+  }
+  
+  .moneda {
+    background-size: contain;
+    background-repeat: no-repeat;
+    animation: lanzamiento 1s ease-out forwards;
+    cursor: pointer;
+  }
+  
+  @keyframes lanzamiento {
+    0% {
+      transform: translateY(0) rotateX(0);
+    }
+    50% {
+      transform: translateY(-200px) rotateX(360deg);
+    }
+    100% {
+      transform: translateY(0) rotateX(0);
+    }
+  }
+  
