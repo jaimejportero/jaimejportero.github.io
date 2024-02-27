@@ -24,7 +24,6 @@ h3{
 }
 
 .fill {
-    transform: translateY(-50%);
     display: inline-block; /* Hace que el div con la clase fill tenga inline-block */
     background-color: red;
     width: 0%;
