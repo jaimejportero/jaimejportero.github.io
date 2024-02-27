@@ -25,6 +25,7 @@ body {
 }
 
 .fill {
+    display: inline-block; /* Hace que el div con la clase fill tenga inline-block */
     background-color: red;
     width: 0%;
     height: 15px;
