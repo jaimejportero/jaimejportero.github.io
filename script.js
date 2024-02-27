@@ -3,7 +3,7 @@ document.getElementById('generateBtn').addEventListener('click', function () {
     const randomNumber = Math.floor(Math.random() * 100) + 1;
 
     // Actualizar el porcentaje gradualmente
-    let currentPercentage = 0;
+    let currentPercentage = -10;
     const interval = setInterval(function () {
         currentPercentage++;
         const percentage = document.getElementById('percentage');
