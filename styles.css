@@ -46,6 +46,7 @@ h2 {
 
 .progress-bar-container {
     width: 200px;
+    margin: 0 auto;
     /* height: 15px; */
 }
 
