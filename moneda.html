@@ -27,6 +27,7 @@
   <script>
     document.getElementById('moneda').addEventListener('click', function () {
       // Generar un número aleatorio (0 o 1) para simular cara o cruz
+      this.classList.add('moneda'); // Agrega la clase 'moneda' al elemento al hacer clic
       const esCara = Math.random() < 0.5;
       const resultado = esCara ? 'Cara' : 'Cruz';
 
