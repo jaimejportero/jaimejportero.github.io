@@ -1,9 +1,10 @@
 const fechaInicio = new Date('2022-11-05');
 // Fecha actual del sistema
 const fechaActual = new Date();
-
+console.log(fechaActual);
 // Calcula la diferencia en milisegundos
 const diferencia = fechaActual - fechaInicio;
+console.log(diferencia);
 
 // Convierte la diferencia de milisegundos a años, meses, días, horas, minutos y segundos
 const segundosTotales = diferencia / 1000;
