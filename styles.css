@@ -115,6 +115,8 @@ h2 {
 }
 
 .moneda {
+    width: 150px;
+    height: 150px;
     background-size: contain;
     background-repeat: no-repeat;
     margin: 100px auto;
