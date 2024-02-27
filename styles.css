@@ -100,3 +100,11 @@ h2 {
     text-decoration: underline;
     /* Subrayar en hover */
 }
+.dato{
+    font-size: 15;
+    font-weight: bold;
+}
+.valor{
+    font-size: 10;
+    color: green;
+}
