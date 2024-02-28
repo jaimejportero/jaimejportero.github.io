@@ -137,3 +137,14 @@ h2 {
         transform: translateY(0) rotateX(0);
     }
 }
+  .tablero {
+    border-collapse: collapse;
+    margin: auto;
+  }
+  
+  .celda {
+    width: 100px;
+    height: 100px;
+    border: 2px solid black;
+  }
+  
