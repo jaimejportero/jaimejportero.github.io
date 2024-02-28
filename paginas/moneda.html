@@ -24,7 +24,7 @@
   </nav>
   <div class="container">
     <div class="moneda" id="moneda">
-      <img id="salta" src="fotos/cara.jpg" width="50" height="50" />
+      <img id="salta" src="../fotos/cara.jpg" width="50" height="50" />
     </div>
   </div>
   <br><br>
@@ -47,7 +47,7 @@
 
         // Cambiar la imagen de la moneda según el resultado
         const imgMoneda = document.querySelector('.moneda img');
-        imgMoneda.src = esCara ? 'fotos/cara.jpg' : 'fotos/cruz.jpg';
+        imgMoneda.src = esCara ? '../fotos/cara.jpg' : '../fotos/cruz.jpg';
 
         monedaElement.addEventListener('animationend', function () {
           // Este código se ejecutará cuando termine la animación de la moneda
