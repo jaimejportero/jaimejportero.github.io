@@ -85,31 +85,6 @@ class Snake {
     }
 }
 
-let touchStartX = 0;
-let touchStartY = 0;
-
-document.addEventListener('touchstart', function(e) {
-    touchStartX = e.touches[0].clientX;
-    touchStartY = e.touches[0].clientY;
-});
-
-document.addEventListener('touchend', function(e) {
-    const touchEndX = e.changedTouches[0].clientX;
-    const touchEndY = e.changedTouches[0].clientY;
-    
-    const dx = touchEndX - touchStartX;
-    const dy = touchEndY - touchStartY;
-    
-    let direction = '';
-    if (Math.abs(dx) > Math.abs(dy)) {
-        direction = dx > 0 ? 'Right' : 'Left';
-    } else {
-        direction = dy > 0 ? 'Down' : 'Up';
-    }
-    
-    snake.changeDirection(direction);
-});
-
 class Fruit {
     constructor() {
         this.x;

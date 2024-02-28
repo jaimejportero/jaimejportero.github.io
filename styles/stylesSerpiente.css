@@ -1,8 +1,21 @@
 .container {
     text-align: center;
 }
+
 canvas {
-    border: 1px solid #000;
+    border: 1px solid black;
+}
+
+.controls {
+    text-align: center;
+}
+
+.control-btn {
+    margin: 5px;
+    padding: 10px;
+    background-color: lightgray;
+    border: 1px solid black;
+    cursor: pointer;
 }
 
 .navbar {

@@ -27,7 +27,13 @@ let fruit;
     }, 250);
 }());
 
-window.addEventListener('keydown', (event) => {
-    const direction = event.key.replace('Arrow', '');
+window.addEventListener('keydown', evt => {
+    const direction = evt.key.replace('Arrow', '');
     snake.changeDirection(direction);
 });
+
+// Event listeners for touch controls
+document.getElementById('upBtn').addEventListener('click', () => snake.changeDirection('Up'));
+document.getElementById('downBtn').addEventListener('click', () => snake.changeDirection('Down'));
+document.getElementById('leftBtn').addEventListener('click', () => snake.changeDirection('Left'));
+document.getElementById('rightBtn').addEventListener('click', () => snake.changeDirection('Right'));
