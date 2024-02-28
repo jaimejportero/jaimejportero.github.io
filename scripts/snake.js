@@ -97,8 +97,7 @@ class Fruit {
     }
 
     draw() {
-        const frutaImg = new Image();
-        frutaImg.src = '../fotos/fresa.jfif';        
-        ctx.drawImage(frutaImg, fruta.x, fruta.y, scale, scale);
+        ctx.fillStyle = "#FF0000";
+        ctx.fillRect(this.x, this.y, scale, scale);
     }
 }
