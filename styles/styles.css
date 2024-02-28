@@ -22,7 +22,7 @@ h2 {
 .heart {
     width: 100px;
     height: 100px;
-    background-image: url('fotos/heart.png');
+    background-image: url('../fotos/heart.png');
     /* Reemplaza 'corazon.png' con la ruta a tu imagen de corazón */
     background-size: cover;
     position: relative;
