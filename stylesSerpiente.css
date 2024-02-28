@@ -11,3 +11,41 @@ body {
 canvas {
     border: 1px solid #000;
 }
+
+.navbar {
+    text-align: center;
+    /* Centra los elementos del navbar */
+    border-bottom: 1px solid #333;
+    /* Línea divisoria entre el navbar y el contenido */
+    margin-bottom: 20px;
+    /* Espacio entre el navbar y el contenido */
+}
+
+.nav-links {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.nav-links li {
+    display: inline-block;
+    /* Cambia a inline-block para agregar espacio entre elementos */
+    margin-right: 20px;
+    /* Espacio entre elementos del navbar */
+}
+
+.nav-links li:last-child {
+    margin-right: 0;
+    /* Elimina el margen derecho del último elemento para evitar espacio extra */
+}
+
+.nav-links li a {
+    color: #333;
+    /* Color del texto */
+    text-decoration: none;
+}
+
+.nav-links li a:hover {
+    text-decoration: underline;
+    /* Subrayar en hover */
+}

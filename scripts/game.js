@@ -1,10 +1,12 @@
-const canvas = document.getElementById("gameCanvas");
-const ctx = canvas.getContext("2d");
+const canvas = document.getElementById('gameCanvas');
+const ctx = canvas.getContext('2d');
+
 const scale = 20;
 const rows = canvas.height / scale;
 const columns = canvas.width / scale;
 
 let snake;
+let fruit;
 
 (function setup() {
     snake = new Snake();
@@ -22,11 +24,10 @@ let snake;
         }
 
         snake.checkCollision();
-        document.querySelector('.score').innerText = snake.total;
     }, 250);
 }());
 
-window.addEventListener('keydown', e => {
-    const direction = e.key.replace('Arrow', '');
+window.addEventListener('keydown', (event) => {
+    const direction = event.key.replace('Arrow', '');
     snake.changeDirection(direction);
 });
