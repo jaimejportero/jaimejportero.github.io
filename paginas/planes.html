@@ -155,7 +155,7 @@
             const phoneNumber = document.querySelector('.button.active').value;
             const plan = document.querySelector('input[name="plan"]:checked').value;
             const date = document.getElementById('date').value;
-            const message = encodeURIComponent(`¡Hola desde mi página web! Quería invitarte a ${plan} el día ${date}.`);
+            const message = encodeURIComponent(`Quería invitarte a ${plan} el día ${date}.`);
             const whatsappLink = `https://wa.me/${phoneNumber}?text=${message}`;
             window.open(whatsappLink, '_blank');
         });
