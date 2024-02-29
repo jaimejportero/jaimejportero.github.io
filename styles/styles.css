@@ -59,12 +59,17 @@ h2 {
 }
 
 .carousel-item img {
-    width: 200px;
+    width: 400px;
     /* Cambiamos el tamaño de las imágenes */
-    height: 600px;
+    height: auto;
     /* Cambiamos el tamaño de las imágenes */
 }
-
+@media only screen and (max-width: 600px) {
+    .carousel-item img {
+    width: 150px; /* Tamaño más pequeño para dispositivos móviles */
+    height: auto;
+    }
+  }
 .navbar {
     text-align: center;
     /* Centra los elementos del navbar */
