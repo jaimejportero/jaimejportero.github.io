@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <title>Enviar mplan</title>
+    <style>
+        .container {
+            text-align: center;
+            margin-top: 50px;
+        }
+
+        .navbar {
+            text-align: center;
+            /* Centra los elementos del navbar */
+            border-bottom: 1px solid #333;
+            /* Línea divisoria entre el navbar y el contenido */
+            margin-bottom: 20px;
+            /* Espacio entre el navbar y el contenido */
+        }
+
+        .nav-links {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .nav-links li {
+            display: inline-block;
+            /* Cambia a inline-block para agregar espacio entre elementos */
+            margin-right: 20px;
+            /* Espacio entre elementos del navbar */
+        }
+
+        .nav-links li:last-child {
+            margin-right: 0;
+            /* Elimina el margen derecho del último elemento para evitar espacio extra */
+        }
+
+        .nav-links li a {
+            color: #333;
+            /* Color del texto */
+            text-decoration: none;
+        }
+
+        .nav-links li a:hover {
+            text-decoration: underline;
+            /* Subrayar en hover */
+        }
+
+        .button-container {
+            display: inline-block;
+        }
+
+        .button {
+            padding: 10px 20px;
+            margin: 0 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .button.active {
+            background-color: green;
+            color: white;
+        }
+
+        .plans-container {
+            margin-top: 20px;
+            text-align: left;
+        }
+    </style>
+</head>
+
+<body>
+    <nav class="navbar">
+        <div class="container">
+            <ul class="nav-links">
+                <li><a href="../index.html">Inicio</a></li>
+                <li><a href="corazon.html">Corazon</a></li>
+                <li><a href="tiempo.html">Tiempo</a></li>
+                <li><a href="moneda.html">¿Quién paga?</a></li>
+                <li><a href="tresralla.html">3 en ralla</a></li>
+                <li><a href="serpiente.html">Snake</a></li>
+                <li><a href="#">Planes</a></li>
+            </ul>
+        </div>
+    </nav>
+    <div class="container">
+        <div class="button-container">
+            <button class="button" id="button1" value="+34678216642">Iniciar</button>
+            <button class="button" id="button2" value="+34644374150">Jaime</button>
+        </div>
+        <div class="plans-container">
+            <form id="plansForm">
+                <label><input type="radio" name="plan" value="Plan 1"> Plan 1</label><br>
+                <label><input type="radio" name="plan" value="Plan 2"> Plan 2</label><br>
+                <label><input type="radio" name="plan" value="Plan 3"> Plan 3</label><br>
+            </form>
+        </div>
+        <div>
+            <label for="date">Selecciona una fecha:</label><br>
+            <input type="date" id="date" name="date"><br>
+        </div>
+        <button id="sendButton">Enviar</button>
+    </div>
+
+    <script>
+        // Event listener para los botones
+        document.getElementById('button1').addEventListener('click', function () {
+            toggleActiveButton('button1');
+        });
+        document.getElementById('button2').addEventListener('click', function () {
+            toggleActiveButton('button2');
+        });
+
+        // Función para activar/desactivar el botón pulsado
+        function toggleActiveButton(buttonId) {
+            const buttons = document.querySelectorAll('.button');
+            buttons.forEach(button => {
+                button.classList.remove('active');
+            });
+            document.getElementById(buttonId).classList.add('active');
+        }
+
+        // Event listener para el botón de enviar mensaje
+        document.getElementById('sendButton').addEventListener('click', function () {
+            const phoneNumber = document.querySelector('.button.active').value;
+            const plan = document.querySelector('input[name="plan"]:checked').value;
+            const date = document.getElementById('date').value;
+            const message = encodeURIComponent(`¡Hola desde mi página web! Quería invitarte a hacer "${plan}" el día ${date}.`);
+            const whatsappLink = `https://wa.me/${phoneNumber}?text=${message}`;
+            window.open(whatsappLink, '_blank');
+        });
+    </script>
+
+</body>
+
+</html>
