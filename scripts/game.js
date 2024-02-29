@@ -24,15 +24,9 @@ let obstacle;
         if (snake.eat(fruit)) {
             fruit.pickLocation();
         }
-        
-        if (snake.checkCollisionWithObstacle(obstacle)) {
-            // Reiniciar el juego
-            snake = new Snake();
-            fruit = new Fruit();
-            obstacle = new Obstacle();
-        }
 
         snake.checkCollision();
+        snake.checkCollisionWithObstacle(obstacle);
     }, 250);
 }());
 
