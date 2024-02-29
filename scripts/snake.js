@@ -1,3 +1,4 @@
+let score=0;
 class Snake {
     constructor() {
         this.x = 0;
@@ -69,6 +70,8 @@ class Snake {
 
     eat(fruit) {
         if (this.x === fruit.x && this.y === fruit.y) {
+            score+=50; // Incrementa la puntuación
+            updateScore(); // Actualiza la puntuación en el HTML
             this.total++;
             return true;
         }
@@ -94,12 +97,16 @@ class Fruit {
     pickLocation() {
         this.x = Math.floor(Math.random() * columns) * scale;
         this.y = Math.floor(Math.random() * rows) * scale;
-
     }
 
     draw() {
         ctx.fillStyle = "#FF0000";
         ctx.fillRect(this.x, this.y, scale, scale);
-
     }
+}
+
+// Función para actualizar la puntuación
+function updateScore() {
+    const scoreElement = document.getElementById('score');
+    scoreElement.textContent = `Puntuación: ${score}`;
 }
