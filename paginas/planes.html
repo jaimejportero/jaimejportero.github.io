@@ -7,11 +7,6 @@
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <title>Enviar plan</title>
     <style>
-        .container {
-            text-align: center;
-            /* margin-top: 50px; */
-        }
-
         .navbar {
             text-align: center;
             /* Centra los elementos del navbar */
@@ -50,26 +45,41 @@
             /* Subrayar en hover */
         }
 
-        .button-container {
-            display: inline-block;
+        .container {
+            text-align: center;
         }
 
         .button {
+            background-color: #25D366;
+            /* Color verde de WhatsApp */
+            color: white;
             padding: 10px 20px;
-            margin: 0 10px;
             border: none;
             border-radius: 5px;
+            margin-right: 10px;
             cursor: pointer;
         }
 
-        .button.active {
-            background-color: green;
-            color: white;
+        .button:hover {
+            background-color: #128C7E;
+            /* Color verde oscuro al pasar el ratón */
+        }
+
+        .active {
+            background-color: #128C7E;
+            /* Color verde oscuro para el botón activo */
         }
 
         .plans-container {
             margin-top: 20px;
+            /* Espacio superior para separar del botón */
             text-align: left;
+            /* Alineación de la lista de planes */
+        }
+
+        #sendButton {
+            margin-top: 20px;
+            /* Espacio superior para separar de la lista de planes */
         }
     </style>
 </head>
