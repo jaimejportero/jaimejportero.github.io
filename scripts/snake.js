@@ -84,7 +84,10 @@ class Snake {
         }
     }
     checkCollisionWithObstacle(obstacle) {
-        return this.x === obstacle.x && this.y === obstacle.y;
+        if(this.x === obstacle.x && this.y === obstacle.y){
+            this.total = 0;
+            this.tail = [];
+        }
     }
 }
 
