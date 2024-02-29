@@ -7,12 +7,10 @@ const columns = canvas.width / scale;
 
 let snake;
 let fruit;
-let obstacle;
 
 (function setup() {
     snake = new Snake();
     fruit = new Fruit();
-    obstacle = new Obstacle();
     fruit.pickLocation();
 
     window.setInterval(() => {
@@ -26,7 +24,6 @@ let obstacle;
         }
 
         snake.checkCollision();
-        snake.checkCollisionWithObstacle(obstacle);
     }, 250);
 }());
 

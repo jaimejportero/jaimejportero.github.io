@@ -83,12 +83,6 @@ class Snake {
             }
         }
     }
-    checkCollisionWithObstacle(obstacle) {
-        if(this.x === obstacle.x && this.y === obstacle.y){
-            this.total = 0;
-            this.tail = [];
-        }
-    }
 }
 
 class Fruit {
@@ -101,30 +95,11 @@ class Fruit {
         this.x = Math.floor(Math.random() * columns) * scale;
         this.y = Math.floor(Math.random() * rows) * scale;
 
-        this.obstacle = new Obstacle();
     }
 
     draw() {
         ctx.fillStyle = "#FF0000";
         ctx.fillRect(this.x, this.y, scale, scale);
 
-        this.obstacle.draw();
-    }
-}
-class Obstacle {
-    constructor() {
-        this.x;
-        this.y;
-        this.pickLocation();
-    }
-
-    pickLocation() {
-        this.x = Math.floor(Math.random() * columns) * scale;
-        this.y = Math.floor(Math.random() * rows) * scale;
-    }
-
-    draw() {
-        ctx.fillStyle = "#000000"; // Color negro
-        ctx.fillRect(this.x, this.y, scale, scale);
     }
 }
