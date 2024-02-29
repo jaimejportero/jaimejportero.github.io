@@ -7,10 +7,12 @@ const columns = canvas.width / scale;
 
 let snake;
 let fruit;
+let obstacle;
 
 (function setup() {
     snake = new Snake();
     fruit = new Fruit();
+    obstacle = new Obstacle();
     fruit.pickLocation();
 
     window.setInterval(() => {
@@ -21,6 +23,13 @@ let fruit;
 
         if (snake.eat(fruit)) {
             fruit.pickLocation();
+        }
+        
+        if (snake.checkCollisionWithObstacle(obstacle)) {
+            // Reiniciar el juego
+            snake = new Snake();
+            fruit = new Fruit();
+            obstacle = new Obstacle();
         }
 
         snake.checkCollision();
