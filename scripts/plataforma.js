@@ -2,14 +2,13 @@ const holes = document.querySelectorAll('.hole');
 let interval = 1000; // Intervalo inicial de 1000ms
 let score = 0;
 let timeoutId; // Variable para almacenar el identificador del tiempo de espera
-
+var hole;
 function getRandomHole() {
   const index = Math.floor(Math.random() * holes.length);
   return holes[index];
 }
-
 function showMole() {
-  const hole = getRandomHole();
+  hole = getRandomHole();
   hole.classList.add('mole');
 
   timeoutId = setTimeout(() => {
@@ -20,6 +19,7 @@ function showMole() {
 }
 
 function resetGame() {
+  hole.classList.remove('mole');
   clearInterval(timeoutId); // Limpiar el intervalo de tiempo
   interval = 1000; // Restaurar el intervalo inicial
   score = 0; // Restaurar el puntaje
