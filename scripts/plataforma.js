@@ -1,30 +1,27 @@
 const holes = document.querySelectorAll('.hole');
 let interval = 1000; // Intervalo inicial de 1000ms
 let score = 0;
-let timeoutId; // Variable para almacenar el identificador del tiempo de espera
 var hole;
+let hitCorrectHole = false; // Variable para verificar si el jugador ha tocado un agujero correctamente
+
 function getRandomHole() {
   const index = Math.floor(Math.random() * holes.length);
   return holes[index];
 }
+
 function showMole() {
   hole = getRandomHole();
   hole.classList.add('mole');
 
-  timeoutId = setTimeout(() => {
+  setTimeout(() => {
+    if (!hitCorrectHole) { // Si el jugador no ha tocado un agujero correctamente
+      resetGame(); // Reiniciar el juego
+    }
     hole.classList.remove('mole');
     interval *= 0.95; // Disminuir el intervalo en un 5% cada vez
-    timeoutId = setTimeout(showMole, interval); // Cambiar el intervalo de aparición del topo
+    setTimeout(showMole, interval); // Cambiar el intervalo de aparición del topo
+    hitCorrectHole = false; // Restablecer la variable hitCorrectHole
   }, interval); // Usar el intervalo actual
-}
-
-function resetGame() {
-  hole.classList.remove('mole');
-  clearInterval(timeoutId); // Limpiar el intervalo de tiempo
-  interval = 1000; // Restaurar el intervalo inicial
-  score = 0; // Restaurar el puntaje
-  updateScore(); // Actualizar la puntuación en el HTML
-  showMole();
 }
 
 holes.forEach(hole => {
@@ -33,8 +30,7 @@ holes.forEach(hole => {
       hole.classList.remove('mole');
       score += 50; // Incrementa la puntuación
       updateScore(); // Actualiza la puntuación en el HTML
-    } else {
-      resetGame(); // Reiniciar el juego si se golpea el agujero equivocado
+      hitCorrectHole = true; // Marcar que el jugador ha tocado un agujero correctamente
     }
   });
 });
@@ -44,5 +40,10 @@ function updateScore() {
   scoreElement.textContent = `Puntuación: ${score}`;
 }
 
+function resetGame() {
+  score = 0; // Reiniciar el marcador
+  interval = 1000; // Reiniciar el intervalo
+  updateScore(); // Actualizar el marcador en el HTML
+}
+
 showMole(); // Comenzar a mostrar topos
-document.getElementById('reiniciar').addEventListener('click', resetGame);
