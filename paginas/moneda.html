@@ -43,13 +43,14 @@
 
         let intervalId; // Variable para almacenar el ID del intervalo
 
-        const esCara = Math.random() < 0.5;
-        const resultado = esCara ? 'Cara' : 'Cruz';     
 
+        var esCara = 0
+        var resultado = ''
         // Función para cambiar la moneda cada cierto intervalo de tiempo
         function cambiarMoneda() {
           // Generar un número aleatorio (0 o 1) para simular cara o cruz
-
+          esCara = Math.random() < 0.5;
+          resultado = esCara ? 'Cara' : 'Cruz';
           // Cambiar la imagen de la moneda según el resultado
           const imgMoneda = document.querySelector('.moneda img');
           imgMoneda.src = esCara ? '../fotos/cara.jpg' : '../fotos/cruz.jpg';
