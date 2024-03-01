@@ -41,9 +41,9 @@ function update() {
   // Check collision with platforms
   platforms.forEach(platform => {
     if (ball.y + ball.speedY > platform.y &&
-        ball.y + ball.speedY < platform.y + platform.height &&
-        ball.x > platform.x &&
-        ball.x < platform.x + platform.width) {
+      ball.y + ball.speedY < platform.y + platform.height &&
+      ball.x > platform.x &&
+      ball.x < platform.x + platform.width) {
       ball.speedY = -ball.speedY; // Reverse the vertical speed
       removePlatformsBelow(platform);
       generateNewPlatforms();
@@ -68,11 +68,52 @@ function draw() {
   drawPlatforms();
 }
 
+function updatePlatforms(platforms) {
+  for (let i = 0; i < platforms.length; i++) {
+    platforms[i].y += platformSpeed; // Mueve las plataformas hacia abajo
+    if (platforms[i].y > canvas.height) {
+      // Elimina las plataformas que salen de la pantalla
+      platforms.splice(i, 1);
+      // Agrega una nueva plataforma en la parte superior del canvas
+      platforms.unshift(new Platform(/* parámetros de la nueva plataforma */));
+    }
+  }
+}
+
+function checkCollision(ball, platform) {
+  if (ball.y + ball.radius >= platform.y && ball.y - ball.radius <= platform.y + platform.height &&
+    ball.x >= platform.x && ball.x <= platform.x + platform.width) {
+    ball.speedY = -ball.speedY; // Cambia la dirección vertical de la pelota
+  }
+}
+
 function gameLoop() {
-  update();
-  draw();
+  // Borrar el lienzo
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+  // Actualizar y dibujar la pelota
+  ball.update();
+  ball.draw();
+
+  // Actualizar y dibujar las plataformas
+  updatePlatforms(platforms);
+  drawPlatforms(platforms);
+
+  // Verificar colisiones entre la pelota y las plataformas
+  for (let i = 0; i < platforms.length; i++) {
+    checkCollision(ball, platforms[i]);
+  }
+
+  // Llamar a la función para mover la pelota (si se controla con teclado)
+  moveBallWithKeyboard();
+
+  // Llamar a la función para mover el canvas hacia abajo cuando la pelota colisiona con una plataforma
+  updatePlatforms(platforms);
+
+  // Volver a ejecutar el bucle de juego
   requestAnimationFrame(gameLoop);
 }
+
 
 function removePlatformsBelow(platform) {
   platforms = platforms.filter(p => p.y < platform.y);
@@ -89,7 +130,7 @@ function generateNewPlatforms() {
   };
   platforms.push(newPlatform);
 }
-document.addEventListener('keydown', function(event) {
+document.addEventListener('keydown', function (event) {
   if (event.key === 'ArrowLeft') {
     ball.speedX = -5; // Mueve la pelota hacia la izquierda
   } else if (event.key === 'ArrowRight') {
@@ -101,7 +142,7 @@ document.addEventListener('keydown', function(event) {
   }
 });
 
-document.addEventListener('keyup', function(event) {
+document.addEventListener('keyup', function (event) {
   if (event.key === 'ArrowLeft' || event.key === 'ArrowRight') {
     ball.speedX = 0; // Detiene el movimiento horizontal cuando se suelta la tecla
   } else if (event.key === 'ArrowUp' || event.key === 'ArrowDown') {
