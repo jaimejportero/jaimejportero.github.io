@@ -24,6 +24,7 @@ function resetGame() {
   interval = 1000; // Restaurar el intervalo inicial
   score = 0; // Restaurar el puntaje
   updateScore(); // Actualizar la puntuación en el HTML
+  showMole();
 }
 
 holes.forEach(hole => {
