@@ -5,12 +5,11 @@
   }
   
   .hole {
-    width: 80px; /* Ajusta el tamaño de cada hoyo según tu preferencia */
-    height: 80px; /* Ajusta el tamaño de cada hoyo según tu preferencia */
     background-color: brown;
-    margin: 10px;
     border-radius: 50%;
     cursor: pointer;
+    margin-bottom: 10px;
+    padding-top: 100%; /* Mantén el aspecto cuadrado del hoyo */
   }
   
   .mole {
