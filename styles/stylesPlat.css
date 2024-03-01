@@ -1,9 +1,4 @@
-.container {
-    display: flex;
-    flex-wrap: wrap; /* Permite que los hoyos se envuelvan a la siguiente línea */
-    justify-content: center; /* Centra los hoyos horizontalmente */
-  }
-  
+ 
   .hole {
     background-color: brown;
     border-radius: 50%;
