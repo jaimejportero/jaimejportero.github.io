@@ -89,5 +89,24 @@ function generateNewPlatforms() {
   };
   platforms.push(newPlatform);
 }
+document.addEventListener('keydown', function(event) {
+  if (event.key === 'ArrowLeft') {
+    ball.speedX = -5; // Mueve la pelota hacia la izquierda
+  } else if (event.key === 'ArrowRight') {
+    ball.speedX = 5; // Mueve la pelota hacia la derecha
+  } else if (event.key === 'ArrowUp') {
+    ball.speedY = -5; // Mueve la pelota hacia arriba
+  } else if (event.key === 'ArrowDown') {
+    ball.speedY = 5; // Mueve la pelota hacia abajo
+  }
+});
+
+document.addEventListener('keyup', function(event) {
+  if (event.key === 'ArrowLeft' || event.key === 'ArrowRight') {
+    ball.speedX = 0; // Detiene el movimiento horizontal cuando se suelta la tecla
+  } else if (event.key === 'ArrowUp' || event.key === 'ArrowDown') {
+    ball.speedY = 0; // Detiene el movimiento vertical cuando se suelta la tecla
+  }
+});
 
 gameLoop();
