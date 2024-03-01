@@ -1,51 +1,57 @@
- 
-  .hole {
-    background-color: brown;
-    border-radius: 50%;
-    cursor: pointer;
-    margin-bottom: 10px;
-    padding-top: 100%; /* Mantén el aspecto cuadrado del hoyo */
-  }
-  
-  .mole {
-    background-color: gray;
-  }
-  
+.hole {
+  width: 50px;
+  /* Ancho deseado */
+  height: 50px;
+  /* Alto deseado */
+  background-color: #ccc;
+  /* Color de fondo */
+  margin: 5px;
+  /* Margen entre los agujeros */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 20px;
+}
+
+.mole {
+  background-color: gray;
+}
+
 
 .navbar {
-    text-align: center;
-    /* Centra los elementos del navbar */
-    border-bottom: 1px solid #333;
-    /* Línea divisoria entre el navbar y el contenido */
-    margin-bottom: 20px;
-    /* Espacio entre el navbar y el contenido */
+  text-align: center;
+  /* Centra los elementos del navbar */
+  border-bottom: 1px solid #333;
+  /* Línea divisoria entre el navbar y el contenido */
+  margin-bottom: 20px;
+  /* Espacio entre el navbar y el contenido */
 }
 
 .nav-links {
-    list-style: none;
-    padding: 0;
-    margin: 0;
+  list-style: none;
+  padding: 0;
+  margin: 0;
 }
 
 .nav-links li {
-    display: inline-block;
-    /* Cambia a inline-block para agregar espacio entre elementos */
-    margin-right: 20px;
-    /* Espacio entre elementos del navbar */
+  display: inline-block;
+  /* Cambia a inline-block para agregar espacio entre elementos */
+  margin-right: 20px;
+  /* Espacio entre elementos del navbar */
 }
 
 .nav-links li:last-child {
-    margin-right: 0;
-    /* Elimina el margen derecho del último elemento para evitar espacio extra */
+  margin-right: 0;
+  /* Elimina el margen derecho del último elemento para evitar espacio extra */
 }
 
 .nav-links li a {
-    color: #333;
-    /* Color del texto */
-    text-decoration: none;
+  color: #333;
+  /* Color del texto */
+  text-decoration: none;
 }
 
 .nav-links li a:hover {
-    text-decoration: underline;
-    /* Subrayar en hover */
+  text-decoration: underline;
+  /* Subrayar en hover */
 }
