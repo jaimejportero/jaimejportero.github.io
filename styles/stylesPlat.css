@@ -1,19 +1,22 @@
 .container {
     display: flex;
-}
-
-.hole {
-    width: 100px;
-    height: 100px;
+    flex-wrap: wrap; /* Permite que los hoyos se envuelvan a la siguiente línea */
+    justify-content: center; /* Centra los hoyos horizontalmente */
+  }
+  
+  .hole {
+    width: 80px; /* Ajusta el tamaño de cada hoyo según tu preferencia */
+    height: 80px; /* Ajusta el tamaño de cada hoyo según tu preferencia */
     background-color: brown;
     margin: 10px;
     border-radius: 50%;
     cursor: pointer;
-}
-
-.mole {
+  }
+  
+  .mole {
     background-color: gray;
-}
+  }
+  
 
 .navbar {
     text-align: center;
