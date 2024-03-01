@@ -45,3 +45,4 @@ function updateScore() {
 }
 
 showMole(); // Comenzar a mostrar topos
+document.getElementById('reiniciar').addEventListener('click', resetGame);
