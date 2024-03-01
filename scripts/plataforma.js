@@ -92,9 +92,9 @@ function gameLoop() {
   ctx.clearRect(0, 0, canvas.width, canvas.height);
 
   // Actualizar y dibujar la pelota
-  ball.update();
-  ball.draw();
-
+  drawBall();
+  drawPlatforms();
+  
   // Actualizar y dibujar las plataformas
   updatePlatforms(platforms);
   drawPlatforms(platforms);
