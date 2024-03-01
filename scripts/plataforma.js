@@ -92,27 +92,22 @@ function gameLoop() {
   ctx.clearRect(0, 0, canvas.width, canvas.height);
 
   // Actualizar y dibujar la pelota
+  update();
   drawBall();
-  drawPlatforms();
   
   // Actualizar y dibujar las plataformas
+  drawPlatforms();
   updatePlatforms(platforms);
-  drawPlatforms(platforms);
 
   // Verificar colisiones entre la pelota y las plataformas
   for (let i = 0; i < platforms.length; i++) {
     checkCollision(ball, platforms[i]);
   }
 
-  // Llamar a la función para mover la pelota (si se controla con teclado)
-  moveBallWithKeyboard();
-
-  // Llamar a la función para mover el canvas hacia abajo cuando la pelota colisiona con una plataforma
-  updatePlatforms(platforms);
-
   // Volver a ejecutar el bucle de juego
   requestAnimationFrame(gameLoop);
 }
+
 
 
 function removePlatformsBelow(platform) {
