@@ -1,7 +1,7 @@
 .hole {
-  width: 100px;
+  width: 50px;
   /* Ancho deseado */
-  height: 100px;
+  height: 50px;
   /* Alto deseado */
   background-color: #ccc;
   /* Color de fondo */
