@@ -20,7 +20,6 @@ function showMole() {
     hole.classList.remove('mole');
     interval *= 0.95; // Disminuir el intervalo en un 5% cada vez
     setTimeout(showMole, interval); // Cambiar el intervalo de aparición del topo
-    hitCorrectHole = false; // Restablecer la variable hitCorrectHole
   }, interval); // Usar el intervalo actual
 }
 
