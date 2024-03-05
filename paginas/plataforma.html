@@ -1,98 +1,71 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Whac-A-Mole</title>
-  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
-  <link rel="stylesheet" href="../styles/stylesPlat.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mapa Interactivo con Filtrado</title>
+<style>
+#map {
+  height: 400px;
+  width: 100%;
+}
+</style>
 </head>
-
 <body>
-  <nav class="navbar">
-    <div class="container">
-      <ul class="nav-links">
-        <li><a href="../index.html">Inicio</a></li>
-        <li><a href="corazon.html">Corazon</a></li>
-        <li><a href="tiempo.html">Tiempo</a></li>
-        <li><a href="moneda.html">¿Quién paga?</a></li>
-        <li><a href="tresralla.html">3 en ralla</a></li>
-        <li><a href="serpiente.html">Snake</a></li>
-        <li><a href="planes.html">Planes</a></li>
-        <li><a href="#">Plataformas</a></li>
-      </ul>
-    </div>
-  </nav>
 
-  <div class="container text-center"> <!-- Agregamos la clase text-center para centrar horizontalmente -->
-    <div id="score" style="text-align: center;font-size: 25px;">Puntuación: 0</div>
-    <div class="row">
-      <div class="col-3">
-        <div class="hole" id="hole1"></div>
-      </div>
-      <div class="col-3">
-        <div class="hole" id="hole2"></div>
-      </div>
-      <div class="col-3">
-        <div class="hole" id="hole3"></div>
-      </div>
-      <div class="col-3">
-        <div class="hole" id="hole4"></div>
-      </div>
-    </div>
+<h1>Mapa Interactivo con Filtrado</h1>
+<select id="filter">
+  <option value="all">Todos</option>
+  <option value="restaurant">Restaurantes</option>
+  <option value="store">Tiendas</option>
+  <option value="park">Parques</option>
+</select>
+<div id="map"></div>
 
-    <div class="row">
-      <div class="col-3">
-        <div class="hole" id="hole5"></div>
-      </div>
-      <div class="col-3">
-        <div class="hole" id="hole6"></div>
-      </div>
-      <div class="col-3">
-        <div class="hole" id="hole7"></div>
-      </div>
-      <div class="col-3">
-        <div class="hole" id="hole8"></div>
-      </div>
-    </div>
+<script>
+// Datos de ubicaciones con latitud, longitud y tipo
+var locations = [
+  { lat: 40.4171, lng: -3.7038, type: 'restaurant' },
+  { lat: 40.4154, lng: -3.7074, type: 'restaurant' },
+  { lat: 40.4180, lng: -3.7061, type: 'store' },
+  { lat: 40.4191, lng: -3.7016, type: 'store' },
+  { lat: 40.4203, lng: -3.6982, type: 'park' },
+  { lat: 40.4195, lng: -3.7037, type: 'park' }
+];
 
-    <div class="row">
-      <div class="col-3">
-        <div class="hole" id="hole9"></div>
-      </div>
-      <div class="col-3">
-        <div class="hole" id="hole10"></div>
-      </div>
-      <div class="col-3">
-        <div class="hole" id="hole11"></div>
-      </div>
-      <div class="col-3">
-        <div class="hole" id="hole12"></div>
-      </div>
-    </div>
+// Inicializar el mapa
+function initMap() {
+  var map = new google.maps.Map(document.getElementById('map'), {
+    center: { lat: 40.4181, lng: -3.7028 },
+    zoom: 15
+  });
 
-    <div class="row">
-      <div class="col-3">
-        <div class="hole" id="hole13"></div>
-      </div>
-      <div class="col-3">
-        <div class="hole" id="hole14"></div>
-      </div>
-      <div class="col-3">
-        <div class="hole" id="hole15"></div>
-      </div>
-      <div class="col-3">
-        <div class="hole" id="hole16"></div>
-      </div>
-    </div>
-    <button type="submit" id="reiniciar" style="text-align: center; align-items: center; padding: 15px; border-radius: 5px; font-size: 20px; background-color: skyblue; margin: 0 auto;">Reiniciar</button>
-  </div>
+  // Filtrar ubicaciones y mostrar marcadores en el mapa
+  document.getElementById('filter').addEventListener('change', function() {
+    var selectedType = this.value;
+    var filteredLocations = locations.filter(function(location) {
+      return selectedType === 'all' || location.type === selectedType;
+    });
 
-  <script src="../scripts/plataforma.js"></script>
-  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
-  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    // Eliminar marcadores existentes del mapa
+    markers.forEach(function(marker) {
+      marker.setMap(null);
+    });
+    markers = [];
+
+    // Mostrar marcadores filtrados en el mapa
+    filteredLocations.forEach(function(location) {
+      var marker = new google.maps.Marker({
+        position: { lat: location.lat, lng: location.lng },
+        map: map
+      });
+      markers.push(marker);
+    });
+  });
+
+  var markers = [];
+}
+</script>
+<script src="https://maps.googleapis.com/maps/api/js?key=TU_API_KEY&callback=initMap" async defer></script>
 </body>
-
 </html>
