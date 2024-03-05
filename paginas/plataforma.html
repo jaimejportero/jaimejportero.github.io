@@ -31,22 +31,38 @@
     </div>
   </nav>
 
-  <h1>Mapa Interactivo con Leaflet.js</h1>
-  <div id="map"></div>
+  <h1>Mapa Interactivo de Asturias con Leaflet.js</h1>
+<div id="map"></div>
 
-  <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
-  <script>
-    var map = L.map('map').setView([51.505, -0.09], 13);
+<form id="search-form">
+  <label for="search-input">Buscar lugar:</label>
+  <input type="text" id="search-input" placeholder="Introduce un lugar...">
+  <button type="submit">Buscar</button>
+</form>
 
-    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-      attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-    }).addTo(map);
+<script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+<script>
+  var map = L.map('map').setView([43.3614, -5.8593], 8); // Asturias como centro del mapa
 
-    L.marker([51.5, -0.09]).addTo(map)
-      .bindPopup('Un marcador de ejemplo.')
-      .openPopup();
-  </script>
+  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+  }).addTo(map);
+
+  // Función para manejar la búsqueda de lugares
+  function searchPlace(event) {
+    event.preventDefault();
+    var searchQuery = document.getElementById('search-input').value;
+    if (searchQuery) {
+      // Ejemplo: puedes usar servicios de geocodificación como Nominatim para buscar el lugar
+      // Aquí solo mostramos un mensaje en la consola
+      console.log('Búsqueda de lugar:', searchQuery);
+    } else {
+      console.log('Por favor, ingresa un lugar para buscar.');
+    }
+  }
+
+  document.getElementById('search-form').addEventListener('submit', searchPlace);
+</script>
 
 </body>
-
 </html>
