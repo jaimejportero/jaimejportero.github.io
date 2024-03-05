@@ -1,68 +1,23 @@
 <!DOCTYPE html>
-<html lang="en">
+<!--
+ @license
+ Copyright 2019 Google LLC. All Rights Reserved.
+ SPDX-License-Identifier: Apache-2.0
+-->
+<!-- [START maps_map_simple] -->
+<html>
+  <head>
+    <title>Simple Map</title>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
 
-<head>
-  <meta charset="UTF-8">
-  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Mapa Interactivo con Leaflet.js</title>
-  <link rel="stylesheet" href="../styles/styles.css">
-  <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
-  <style>
-    #map {
-      height: 400px;
-    }
-  </style>
-</head>
+    <link rel="stylesheet" type="text/css" href="./style.css" />
+    <script type="module" src="./index.js"></script>
+  </head>
+  <body>
+    <div id="map"></div>
 
-<body>
-  <nav class="navbar">
-    <div class="container">
-      <ul class="nav-links">
-        <li><a href="../index.html">Inicio</a></li>
-        <li><a href="corazon.html">Corazon</a></li>
-        <li><a href="tiempo.html">Tiempo</a></li>
-        <li><a href="moneda.html">¿Quién paga?</a></li>
-        <li><a href="tresralla.html">3 en ralla</a></li>
-        <li><a href="serpiente.html">Snake</a></li>
-        <li><a href="planes.html">Planes</a></li>
-        <li><a href="#">Mapa</a></li>
-      </ul>
-    </div>
-  </nav>
-
-  <h1>Mapa Interactivo de Asturias con Leaflet.js</h1>
-<div id="map"></div>
-
-<form id="search-form">
-  <label for="search-input">Buscar lugar:</label>
-  <input type="text" id="search-input" placeholder="Introduce un lugar...">
-  <button type="submit">Buscar</button>
-</form>
-
-<script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
-<script>
-  var map = L.map('map').setView([43.3614, -5.8593], 8); // Asturias como centro del mapa
-
-  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-  }).addTo(map);
-
-  // Función para manejar la búsqueda de lugares
-  function searchPlace(event) {
-    event.preventDefault();
-    var searchQuery = document.getElementById('search-input').value;
-    if (searchQuery) {
-      // Ejemplo: puedes usar servicios de geocodificación como Nominatim para buscar el lugar
-      // Aquí solo mostramos un mensaje en la consola
-      console.log('Búsqueda de lugar:', searchQuery);
-    } else {
-      console.log('Por favor, ingresa un lugar para buscar.');
-    }
-  }
-
-  document.getElementById('search-form').addEventListener('submit', searchPlace);
-</script>
-
-</body>
+    <!-- prettier-ignore -->
+    <script>(g=>{var h,a,k,p="The Google Maps JavaScript API",c="google",l="importLibrary",q="__ib__",m=document,b=window;b=b[c]||(b[c]={});var d=b.maps||(b.maps={}),r=new Set,e=new URLSearchParams,u=()=>h||(h=new Promise(async(f,n)=>{await (a=m.createElement("script"));e.set("libraries",[...r]+"");for(k in g)e.set(k.replace(/[A-Z]/g,t=>"_"+t[0].toLowerCase()),g[k]);e.set("callback",c+".maps."+q);a.src=`https://maps.${c}apis.com/maps/api/js?`+e;d[q]=f;a.onerror=()=>h=n(Error(p+" could not load."));a.nonce=m.querySelector("script[nonce]")?.nonce||"";m.head.append(a)}));d[l]?console.warn(p+" only loads once. Ignoring:",g):d[l]=(f,...n)=>r.add(f)&&u().then(()=>d[l](f,...n))})
+        ({key: "AIzaSyB41DRUbKWJHPxaFjMAwdrzWzbVKartNGg", v: "weekly"});</script>
+  </body>
 </html>
