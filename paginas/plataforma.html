@@ -10,8 +10,9 @@
   <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
   <style>
     #map {
-      height: 400px;
-    }
+    width: 100%;
+    height: 600px;
+  }
   </style>
 </head>
 
@@ -32,54 +33,23 @@
   </nav>
 
 
-  <h1>Mapa Interactivo de Avilés, Asturias con Búsqueda de Lugares</h1>
-  <div id="map"></div>
+  <h1>Mapa Interactivo con OpenLayers</h1>
+  <div id="map" class="map"></div>
   
-  <form id="search-form">
-    <label for="search-input">Buscar lugar:</label>
-    <input type="text" id="search-input" placeholder="Introduce un lugar...">
-    <button type="submit">Buscar</button>
-  </form>
-  
-  <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+  <script src="https://openlayers.org/en/v4.6.5/build/ol.js"></script>
   <script>
-    var map = L.map('map').setView([43.5569, -5.9248], 12); // Avilés como centro del mapa
-  
-    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-      attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-    }).addTo(map);
-  
-    // Función para manejar la búsqueda de lugares
-    function searchPlace(event) {
-      event.preventDefault();
-      var searchQuery = document.getElementById('search-input').value;
-      if (searchQuery) {
-        // Realizar solicitud a la API de Nominatim
-        fetch('https://nominatim.openstreetmap.org/search?format=json&q=' + encodeURIComponent(searchQuery))
-          .then(response => response.json())
-          .then(data => {
-            if (data && data.length > 0) {
-              // Obtener la primera ubicación encontrada
-              var location = data[0];
-              // Centrar el mapa en la ubicación encontrada
-              map.setView([location.lat, location.lon], 14);
-              // Añadir marcador en la ubicación encontrada
-              L.marker([location.lat, location.lon]).addTo(map)
-                .bindPopup(location.display_name)
-                .openPopup();
-            } else {
-              console.log('No se encontraron resultados para la búsqueda:', searchQuery);
-            }
-          })
-          .catch(error => {
-            console.error('Error al buscar lugar:', error);
-          });
-      } else {
-        console.log('Por favor, ingresa un lugar para buscar.');
-      }
-    }
-  
-    document.getElementById('search-form').addEventListener('submit', searchPlace);
+    var map = new ol.Map({
+      target: 'map',
+      layers: [
+        new ol.layer.Tile({
+          source: new ol.source.OSM()
+        })
+      ],
+      view: new ol.View({
+        center: ol.proj.fromLonLat([-5.9248, 43.5569]), // Coordenadas de Avilés, Asturias
+        zoom: 12
+      })
+    });
   </script>
   
   </body>
