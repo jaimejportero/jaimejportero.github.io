@@ -1,18 +1,20 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-<meta charset="UTF-8">
-<link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Mapa Interactivo con Filtrado</title>
-<link rel="stylesheet" href="../styles/styles.css">
-<style>
-#map {
-  height: 400px;
-  width: 100%;
-}
-</style>
+  <meta charset="UTF-8">
+  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mapa Interactivo con Leaflet.js</title>
+  <link rel="stylesheet" href="../styles/styles.css">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+  <style>
+    #map {
+      height: 400px;
+    }
+  </style>
 </head>
+
 <body>
   <nav class="navbar">
     <div class="container">
@@ -28,59 +30,23 @@
       </ul>
     </div>
   </nav>
-<h1>Mapa Interactivo con Filtrado</h1>
-<select id="filter">
-  <option value="all">Todos</option>
-  <option value="restaurant">Restaurantes</option>
-  <option value="store">Tiendas</option>
-  <option value="park">Parques</option>
-</select>
-<div id="map"></div>
 
-<script>
-// Datos de ubicaciones con latitud, longitud y tipo
-var locations = [
-  { lat: 40.4171, lng: -3.7038, type: 'restaurant' },
-  { lat: 40.4154, lng: -3.7074, type: 'restaurant' },
-  { lat: 40.4180, lng: -3.7061, type: 'store' },
-  { lat: 40.4191, lng: -3.7016, type: 'store' },
-  { lat: 40.4203, lng: -3.6982, type: 'park' },
-  { lat: 40.4195, lng: -3.7037, type: 'park' }
-];
+  <h1>Mapa Interactivo con Leaflet.js</h1>
+  <div id="map"></div>
 
-// Inicializar el mapa
-function initMap() {
-  var map = new google.maps.Map(document.getElementById('map'), {
-    center: { lat: 40.4181, lng: -3.7028 },
-    zoom: 15
-  });
+  <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+  <script>
+    var map = L.map('map').setView([51.505, -0.09], 13);
 
-  // Filtrar ubicaciones y mostrar marcadores en el mapa
-  document.getElementById('filter').addEventListener('change', function() {
-    var selectedType = this.value;
-    var filteredLocations = locations.filter(function(location) {
-      return selectedType === 'all' || location.type === selectedType;
-    });
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+    }).addTo(map);
 
-    // Eliminar marcadores existentes del mapa
-    markers.forEach(function(marker) {
-      marker.setMap(null);
-    });
-    markers = [];
+    L.marker([51.5, -0.09]).addTo(map)
+      .bindPopup('Un marcador de ejemplo.')
+      .openPopup();
+  </script>
 
-    // Mostrar marcadores filtrados en el mapa
-    filteredLocations.forEach(function(location) {
-      var marker = new google.maps.Marker({
-        position: { lat: location.lat, lng: location.lng },
-        map: map
-      });
-      markers.push(marker);
-    });
-  });
-
-  var markers = [];
-}
-</script>
-<script src="https://maps.googleapis.com/maps/api/js?key=TU_API_KEY&callback=initMap" async defer></script>
 </body>
+
 </html>
