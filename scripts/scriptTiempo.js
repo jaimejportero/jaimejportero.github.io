@@ -1,5 +1,5 @@
 function actualizarTiempo() {
-    const fechaInicio = new Date('2023-11-05');
+    const fechaInicio = new Date('2024-25-06');
     // Fecha actual del sistema
     const fechaActual = new Date();
 
