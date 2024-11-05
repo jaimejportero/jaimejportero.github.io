@@ -48,47 +48,58 @@
         }
 
         /* Estilo del corazón que late */
+        .heart-container {
+            margin-top: 20px;
+            display: flex;
+            justify-content: center;
+        }
+
         .heart {
             width: 100px;
-            height: 90px;
-            margin-top: 20px;
+            height: 100px;
             background-color: #d66ba0;
-            transform: rotate(-45deg);
+            position: relative;
+            transform: rotate(45deg);
             animation: heartbeat 1s infinite;
             cursor: pointer;
         }
+
         .heart::before,
         .heart::after {
             content: "";
-            position: absolute;
             width: 100px;
             height: 100px;
             background-color: #d66ba0;
             border-radius: 50%;
+            position: absolute;
         }
+
         .heart::before {
             top: -50px;
             left: 0;
         }
+
         .heart::after {
-            left: 50px;
             top: 0;
+            left: -50px;
         }
 
         /* Animación de latido */
         @keyframes heartbeat {
             0%, 100% {
-                transform: scale(1) rotate(-45deg);
+                transform: scale(1) rotate(45deg);
             }
             50% {
-                transform: scale(1.2) rotate(-45deg);
+                transform: scale(1.2) rotate(45deg);
             }
         }
     </style>
 </head>
 <body>
-    <!-- Corazón que late -->
-    <div class="heart" id="heart"></div>
+    <!-- Corazón que late en la parte superior -->
+    <div class="heart-container">
+        <div class="heart" id="heart"></div>
+    </div>
 
     <h1>Para ti, mi amor ❤️</h1>
     <p>Espero que esta pequeña página te saque una sonrisa y te haga sentir un poquito más cerca. Aunque estés lejos, quiero que sepas que pienso en ti siempre.</p>
