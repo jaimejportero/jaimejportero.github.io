@@ -109,9 +109,9 @@
     }
 
     #word-container {
-      margin: 20px;
       font-size: 24px;
       display: flex;
+      margin: 20px;
       justify-content: center;
       gap: 10px;
       font-family: monospace;
@@ -134,6 +134,7 @@
       grid-template-columns: repeat(10, 1fr);
       gap: 5px;
       max-width: 300px;
+      margin-right: 50px;
     }
 
     .key {
@@ -163,7 +164,8 @@
       padding: 30px;
       border-radius: 10px;
       box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-      display: none; /* La pantalla final está oculta inicialmente */
+      display: none;
+      /* La pantalla final está oculta inicialmente */
     }
 
     #final img {
@@ -218,7 +220,7 @@
     <div id="word-container"></div>
     <div id="keyboard"></div>
   </div>
-  
+
   <div id="final">
     <h2>¡Felicidades, has completado todos los juegos! 🎉</h2>
     <img src="fotos/foto1.jpeg" alt="Imagen romántica" />
@@ -304,14 +306,40 @@
         }
       }, 1000);
     }
- 
 
+    function changeImage() {
+      const randomIndex = Math.floor(Math.random() * 3); // Genera un número entre 0 y 2
+      let imageUrl;
+
+      switch (randomIndex) {
+        case 0:
+          imageUrl = 'fotos/foto1.jpeg';
+          break;
+        case 1:
+          imageUrl = 'fotos/foto2.jpeg';
+          break;
+        case 2:
+          imageUrl = 'fotos/foto3.jpeg';
+          break;
+      }
+
+      const imageElement = document.querySelector('#final img'); // Asegúrate de tener un elemento <img> en #final
+      imageElement.src = imageUrl; // Cambia la fuente de la imagen
+    }
     // Juego 2: Rompecabezas
     // Juego 2: Rompecabezas
     function startGame2() {
       const ctx = puzzleCanvas.getContext('2d');
+
+      function getRandomImage() {
+        const images = ['fotos/foto1.jpeg', 'fotos/foto2.jpeg', 'fotos/foto3.jpeg'];
+        const randomIndex = Math.floor(Math.random() * images.length);
+        return images[randomIndex];
+      }
+
+      // Crear un objeto de imagen
       const img = new Image();
-      img.src = 'fotos/foto2.jpeg'; // Cambia a la URL de tu imagen
+      img.src = getRandomImage(); // Cambiar la imagen aleatoriamente
 
       const pieceSize = 80;
       const rows = 4;
@@ -482,6 +510,7 @@
       if (lives === 0) {
         alert('Perdiste!');
         showScreen(game1); // Reinicia el juego 1 si se acaba la vida
+        startGame1();
       }
     }
     function restartGame() {
