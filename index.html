@@ -1,527 +1,228 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Juegos para Ti ❤️</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
-      margin: 0;
-      background-color: #f0f8ff;
-      overflow: hidden;
-    }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulario de Sorpresa de Viaje</title>
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background: linear-gradient(to bottom, #ff9a9e, #fad0c4);
+        }
 
-    #welcome-screen,
-    #game1,
-    #game2,
-    #game3,
-    #final {
-      display: none;
-      text-align: center;
-    }
+        .container {
+            background: white;
+            padding: 20px;
+            border-radius: 20px;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+            max-width: 400px;
+            width: 100%;
+            transition: transform 0.3s;
+        }
 
-    #welcome-screen.active,
-    #game1.active,
-    #game2.active,
-    #game3.active,
-    #final.active {
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
-      width: 100%;
-    }
+        .container:hover {
+            transform: scale(1.02);
+        }
 
-    h1 {
-      color: #ff6b6b;
-      margin-bottom: 20px;
-    }
+        h1 {
+            font-size: 2em;
+            margin-bottom: 1em;
+            text-align: center;
+            color: #333;
+        }
 
-    button {
-      padding: 10px 20px;
-      background-color: #ff6b6b;
-      color: #fff;
-      border: none;
-      border-radius: 5px;
-      font-size: 16px;
-      cursor: pointer;
-      transition: background-color 0.3s;
-    }
+        .question {
+            margin-bottom: 1.5em;
+        }
 
-    button:hover {
-      background-color: #d94545;
-    }
+        .options {
+            display: flex;
+            flex-direction: column;
+            gap: 0.8em;
+        }
 
-    #game1-container,
-    #game2-container {
-      display: grid;
-      grid-template-columns: repeat(4, 80px);
-      gap: 10px;
-      margin: 20px;
-    }
+        .options button {
+            padding: 12px;
+            border: none;
+            border-radius: 12px;
+            background-color: #ff6f61;
+            color: white;
+            cursor: pointer;
+            font-size: 1em;
+            transition: background-color 0.3s, transform 0.2s;
+        }
 
-    .cell {
-      width: 80px;
-      height: 80px;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      background-color: #fff;
-      border: 2px solid #ddd;
-      border-radius: 8px;
-      cursor: pointer;
-      font-size: 24px;
-      transition: background-color 0.3s;
-    }
+        .options button:hover {
+            background-color: #e55c4d;
+            transform: translateY(-3px);
+        }
 
-    .cell.incorrect {
-      background-color: #ff6b6b;
-      color: #fff;
-    }
+        .textarea {
+            margin-top: 10px;
+        }
 
-    .cell.correct {
-      background-color: #4caf50;
-      color: #fff;
-      font-size: 30px;
-    }
+        .textarea textarea {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 12px;
+            resize: none;
+            font-size: 1em;
+            transition: border-color 0.3s;
+        }
 
-    #countdown {
-      font-size: 48px;
-      color: #4caf50;
-      margin-top: 20px;
-    }
+        .textarea textarea:focus {
+            border-color: #ff6f61;
+            outline: none;
+        }
 
-    canvas {
-      border: 2px solid #000;
-      cursor: pointer;
-    }
+        .submit {
+            margin-top: 20px;
+            text-align: center;
+        }
 
-    .selected {
-      outline: 4px solid #ff6b6b;
-    }
+        .submit button {
+            padding: 12px 25px;
+            border: none;
+            border-radius: 12px;
+            background-color: #4caf50;
+            color: white;
+            font-size: 1em;
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.2s;
+        }
 
-    #word-container {
-      font-size: 24px;
-      display: flex;
-      margin: 20px;
-      justify-content: center;
-      gap: 10px;
-      font-family: monospace;
-    }
+        .submit button:hover {
+            background-color: #45a049;
+            transform: translateY(-3px);
+        }
 
-    .letter {
-      border-bottom: 2px solid #000;
-      padding: 5px;
-      min-width: 20px;
-      text-align: center;
-      color: black;
-    }
-
-    .space {
-      border: none;
-    }
-
-    #keyboard {
-      display: grid;
-      grid-template-columns: repeat(10, 1fr);
-      gap: 5px;
-      max-width: 300px;
-      margin-right: 50px;
-    }
-
-    .key {
-      padding: 10px;
-      background-color: #f0f8ff;
-      border: 1px solid #ddd;
-      text-align: center;
-      cursor: pointer;
-      border-radius: 5px;
-      transition: background-color 0.3s;
-      color: black;
-    }
-
-    .key:hover {
-      background-color: #ff6b6b;
-      color: #fff;
-    }
-
-    #hearts {
-      margin-bottom: 20px;
-      font-size: 24px;
-      color: #ff6b6b;
-    }
-
-    #final {
-      background-color: #fff3e3;
-      padding: 30px;
-      border-radius: 10px;
-      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-      display: none;
-      /* La pantalla final está oculta inicialmente */
-    }
-
-    #final img {
-      max-width: 40%;
-      height: auto;
-      margin: 20px 0;
-      border-radius: 10px;
-    }
-
-    #final h2 {
-      color: #4caf50;
-      font-size: 28px;
-    }
-
-    #final p {
-      color: #555;
-      font-size: 20px;
-      margin-bottom: 20px;
-    }
-
-    .heart {
-      color: #ff6b6b;
-      font-size: 30px;
-    }
-  </style>
-
+        p {
+            color: #555;
+        }
+    </style>
 </head>
 
 <body>
-  <!-- Pantalla de Bienvenida -->
-  <div id="welcome-screen" class="active">
-    <h1>Tengo preparada una serie de juegos para ti ❤️</h1>
-    <button id="start-button">Empezar</button>
-  </div>
+    <div class="container">
+        <h1>Sorpresa de Viaje</h1>
+        <div id="form">
+            <!-- Preguntas dinámicas -->
+        </div>
+        <div class="submit" style="display:none;">
+            <button id="submit">Enviar Respuestas</button>
+        </div>
+    </div>
 
-  <!-- Juego 1: Encuentra el corazón -->
-  <div id="game1">
-    <h1>Encuentra el Corazón ❤️</h1>
-    <div id="game1-container"></div>
-    <div id="countdown" style="display: none;">3</div>
-  </div>
+    <script>
 
-  <!-- Juego 2: Rompecabezas -->
-  <div id="game2">
-    <h1>Arma la foto 📸</h1>
-    <canvas id="puzzle-canvas" width="320" height="320"></canvas>
-  </div>
+        const questions = [
+            {
+                text: "¿Prefieres destinos dentro de España o fuera?",
+                options: ["Dentro de España", "Fuera de España"],
+            },
+            {
+                text: "¿Qué tipo de clima prefieres?",
+                options: ["Caluroso", "Frío", "Tropical"],
+            },
+            {
+                text: "¿Qué actividades te gustan?",
+                options: ["Relax", "Aventura", "Cultura", "Gastronomía"],
+            },
+            {
+                text: "¿Cuál es tu disponibilidad?",
+                options: ["Semana Santa", "Fines de semana", "Cuando acabas las clases"],
+            },
+            {
+                text: "¿Qué destinos dentro de España prefieres?",
+                options: ["Playas del Mediterráneo", "Ciudades históricas", "Pueblos con encanto", "Montañas"],
+            },
+            {
+                text: "¿Qué destinos fuera de España prefieres?",
+                options: ["Europa", "Asia", "América", "África"],
+            },
+            {
+                text: "Si eliges Europa, ¿cuál de estos destinos prefieres?",
+                options: ["Londres", "París", "Roma", "Berlín", "Ámsterdam"],
+            },
+            {
+                text: "¿Qué actividades te interesan?",
+                options: ["Escapada a la montaña", "Balneario", "Noche de relax", "Hotel todo incluido"],
+            },
+        ];
 
-  <div id="game3">
-    <h1>Adivina la Frase 🕵️‍♀️</h1>
-    <div id="hearts">❤️❤️❤️</div>
-    <div id="word-container"></div>
-    <div id="keyboard"></div>
-  </div>
+        const formContainer = document.getElementById("form");
+        const submitContainer = document.querySelector(".submit");
+        const responses = [];
 
-  <div id="final">
-    <h2>¡Felicidades, has completado todos los juegos! 🎉</h2>
-    <img src="fotos/foto1.jpeg" alt="Imagen romántica" />
-    <p>Te quiero mucho, más de lo que las palabras pueden expresar. ❤️</p>
-    <p>Gracias por hacerme tan feliz, mi vida es mejor contigo. 💖</p>
-    <button onclick="restartGame()">Volver a jugar</button>
-  </div>
-  <script>
-    const welcomeScreen = document.getElementById('welcome-screen');
-    const game1 = document.getElementById('game1');
-    const game2 = document.getElementById('game2');
-    const game3 = document.getElementById('game3');
-    const finalScreen = document.getElementById('final');
-    const startButton = document.getElementById('start-button');
-    const countdown = document.getElementById('countdown');
-    const game1Container = document.getElementById('game1-container');
-    const puzzleCanvas = document.getElementById('puzzle-canvas');
-    const heartsContainer = document.getElementById('hearts');
-    const wordContainer = document.getElementById('word-container');
-    const keyboardContainer = document.getElementById('keyboard');
+        let currentQuestion = 0;
 
-    const phrases = [
-      "HUELE LAS MIERDAS",
-      "HUELE FU",
-      "TE AMO",
-      "RATA"
-    ];
-    let currentPhrase = '';
-    let displayedWord = [];
-    let lives = 3;
+        function renderQuestion() {
+            formContainer.innerHTML = "";
 
-    // Función para mostrar una pantalla
-    function showScreen(screen) {
-      document.querySelectorAll('div').forEach(div => div.classList.remove('active'));
-      screen.classList.add('active');
-    }
+            if (currentQuestion < questions.length) {
+                const question = questions[currentQuestion];
+                const questionDiv = document.createElement("div");
+                questionDiv.className = "question";
+                questionDiv.innerHTML = `<p>${question.text}</p>`;
 
-    // Juego 1: Encuentra el corazón
-    function startGame1() {
-      const gridSize = 4;
-      const totalCells = gridSize * gridSize;
-      const heartCell = Math.floor(Math.random() * totalCells);
-      let gameOver = false;
+                const optionsDiv = document.createElement("div");
+                optionsDiv.className = "options";
 
-      game1Container.innerHTML = '';
-      for (let i = 0; i < totalCells; i++) {
-        const cell = document.createElement('div');
-        cell.classList.add('cell');
-        cell.dataset.index = i;
+                question.options.forEach(option => {
+                    const button = document.createElement("button");
+                    button.textContent = option;
+                    button.onclick = () => {
+                        responses.push({ question: question.text, answer: option });
+                        nextQuestion();
+                    };
+                    optionsDiv.appendChild(button);
+                });
 
-        cell.addEventListener('click', () => {
-          if (gameOver) return;
+                const textAreaDiv = document.createElement("div");
 
-          if (parseInt(cell.dataset.index) === heartCell) {
-            cell.classList.add('correct');
-            cell.textContent = '❤️';
-            gameOver = true;
-            startCountdown();
-          } else {
-            cell.classList.add('incorrect');
-            cell.textContent = '⭐';
-            cell.removeEventListener('click', () => { }); // Desactiva clic
-          }
-        });
 
-        game1Container.appendChild(cell);
-      }
-    }
-
-    // Cuenta regresiva
-    function startCountdown() {
-      countdown.style.display = 'block';
-      let timeLeft = 2;
-
-      const interval = setInterval(() => {
-        countdown.textContent = timeLeft;
-        timeLeft--;
-
-        if (timeLeft < 0) {
-          clearInterval(interval);
-          showScreen(game2);
-          startGame2();
-        }
-      }, 1000);
-    }
-
-    function changeImage() {
-      const randomIndex = Math.floor(Math.random() * 3); // Genera un número entre 0 y 2
-      let imageUrl;
-
-      switch (randomIndex) {
-        case 0:
-          imageUrl = 'fotos/foto1.jpeg';
-          break;
-        case 1:
-          imageUrl = 'fotos/foto2.jpeg';
-          break;
-        case 2:
-          imageUrl = 'fotos/foto3.jpeg';
-          break;
-      }
-
-      const imageElement = document.querySelector('#final img'); // Asegúrate de tener un elemento <img> en #final
-      imageElement.src = imageUrl; // Cambia la fuente de la imagen
-    }
-    // Juego 2: Rompecabezas
-    // Juego 2: Rompecabezas
-    function startGame2() {
-      const ctx = puzzleCanvas.getContext('2d');
-
-      function getRandomImage() {
-        const images = ['fotos/foto1.jpeg', 'fotos/foto2.jpeg', 'fotos/foto3.jpeg'];
-        const randomIndex = Math.floor(Math.random() * images.length);
-        return images[randomIndex];
-      }
-
-      // Crear un objeto de imagen
-      const img = new Image();
-      img.src = getRandomImage(); // Cambiar la imagen aleatoriamente
-
-      const pieceSize = 80;
-      const rows = 4;
-      const cols = 4;
-      const pieces = [];
-      let selectedPiece = null;
-
-      img.onload = () => {
-        const scale = Math.min(puzzleCanvas.width / img.width, puzzleCanvas.height / img.height);
-        const scaledWidth = img.width * scale;
-        const scaledHeight = img.height * scale;
-
-        const offsetX = (puzzleCanvas.width - scaledWidth) / 2;
-        const offsetY = (puzzleCanvas.height - scaledHeight) / 2;
-
-        // Crear las piezas
-        for (let y = 0; y < rows; y++) {
-          for (let x = 0; x < cols; x++) {
-            pieces.push({
-              x: x,
-              y: y,
-              originalX: x,
-              originalY: y,
-            });
-          }
-        }
-
-        // Desordenar las piezas
-        shuffle(pieces);
-
-        // Dibujar el rompecabezas
-        drawPuzzle();
-
-        // Función para mezclar las piezas aleatoriamente
-        function shuffle(array) {
-          // Mezclar las piezas en el array
-          for (let i = array.length - 1; i > 0; i--) {
-            const j = Math.floor(Math.random() * (i + 1));
-            [array[i], array[j]] = [array[j], array[i]];
-          }
-
-          // Actualizar las posiciones de las piezas (x, y) según el nuevo orden
-          array.forEach((piece, index) => {
-            piece.x = index % cols; // Columna basada en el índice
-            piece.y = Math.floor(index / cols); // Fila basada en el índice
-          });
-        }
-
-        // Función para dibujar el rompecabezas
-        function drawPuzzle() {
-          ctx.clearRect(0, 0, puzzleCanvas.width, puzzleCanvas.height);
-
-          pieces.forEach((piece, index) => {
-            const imgX = piece.originalX * (img.width / cols); // Proporción de la imagen original
-            const imgY = piece.originalY * (img.height / rows);
-
-            const canvasX = piece.x * pieceSize; // Posición en el canvas
-            const canvasY = piece.y * pieceSize;
-
-            ctx.drawImage(
-              img,
-              imgX, // Coordenada de origen en la imagen original
-              imgY,
-              img.width / cols, // Ancho de la pieza en la imagen original
-              img.height / rows,
-              canvasX, // Coordenada en el canvas
-              canvasY,
-              pieceSize, // Ancho de la pieza en el canvas
-              pieceSize
-            );
-
-            // Dibuja un contorno si la pieza está seleccionada
-            if (selectedPiece === index) {
-              console.log("2");
-              ctx.strokeStyle = '#ff6b6b';
-              ctx.lineWidth = 4;
-              ctx.strokeRect(canvasX, canvasY, pieceSize, pieceSize);
-            }
-          });
-        }
-
-        // Manejar clic para seleccionar e intercambiar piezas
-        puzzleCanvas.addEventListener('click', (e) => {
-          const rect = puzzleCanvas.getBoundingClientRect();
-          const clickX = e.clientX - rect.left;
-          const clickY = e.clientY - rect.top;
-
-          const clickedCol = Math.floor(clickX / pieceSize);
-          const clickedRow = Math.floor(clickY / pieceSize);
-
-          const clickedIndex = pieces.findIndex(
-            (p) => p.x === clickedCol && p.y === clickedRow
-          );
-
-          if (clickedIndex !== -1) {
-            if (selectedPiece === null) {
-              selectedPiece = clickedIndex;
+                formContainer.appendChild(questionDiv);
+                formContainer.appendChild(optionsDiv);
             } else {
-
-              // Intercambiar piezas
-              [pieces[selectedPiece].x, pieces[clickedIndex].x] = [pieces[clickedIndex].x, pieces[selectedPiece].x];
-              [pieces[selectedPiece].y, pieces[clickedIndex].y] = [pieces[clickedIndex].y, pieces[selectedPiece].y];
-              selectedPiece = null;
-
-              // Redibujar el puzzle
-              drawPuzzle();
-
-              // Verificar si está completo
-              if (pieces.every((p) => p.x === p.originalX && p.y === p.originalY)) {
-                setTimeout(() => {
-                  showScreen(game3);
-                  startGame3();
-                }
-                  , 1000);
-
-              }
+                formContainer.innerHTML = `<p>¡Gracias por responder! Haz clic en enviar para completar.</p>`;
+                submitContainer.style.display = "block";
             }
-          }
-        });
-
-      };
-    }
-    function startGame3() {
-      const phrase = phrases[Math.floor(Math.random() * phrases.length)];
-      currentPhrase = phrase;
-      displayedWord = phrase.split('').map(char => char === ' ' ? ' ' : '_');
-
-      wordContainer.innerHTML = '';
-      displayedWord.forEach(letter => {
-        const span = document.createElement('span');
-        span.textContent = letter;
-        span.classList.add('letter');
-        wordContainer.appendChild(span);
-      });
-
-      const keys = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('');
-      keyboardContainer.innerHTML = '';
-      keys.forEach(key => {
-        const button = document.createElement('button');
-        button.textContent = key;
-        button.classList.add('key');
-        button.addEventListener('click', () => handleKeyPress(key));
-        keyboardContainer.appendChild(button);
-      });
-
-      heartsContainer.textContent = '❤️'.repeat(lives);
-    }
-
-    function handleKeyPress(key) {
-      if (currentPhrase.includes(key)) {
-        for (let i = 0; i < currentPhrase.length; i++) {
-          if (currentPhrase[i] === key) {
-            displayedWord[i] = key;
-            wordContainer.children[i].textContent = key;
-          }
         }
-      } else {
-        lives--;
-        heartsContainer.textContent = '❤️'.repeat(lives);
-      }
 
-      if (!displayedWord.includes('_')) {
-        setTimeout(() => alert('¡Felicidades! Adivinaste la frase 🎉'), 2000);
+        function nextQuestion() {
+            currentQuestion++;
+            renderQuestion();
+        }
 
-        showScreen(finalScreen);  // Muestra la pantalla final después de ganar
-      }
+        emailjs.init("qfrGy8HuMPNyznOb4"); // Sustituye "YOUR_USER_ID" con tu ID de EmailJS
 
-      if (lives === 0) {
-        alert('Perdiste!');
-        showScreen(game1); // Reinicia el juego 1 si se acaba la vida
-        startGame1();
-      }
-    }
-    function restartGame() {
-      showScreen(welcomeScreen);
-    }
-    // Inicia la aplicación
-    startButton.addEventListener('click', () => {
-      showScreen(game1);
-      startGame1();
-    });
-  </script>
+        document.getElementById("submit").onclick = () => {
+            const messageContent = responses.map(r => `${r.question} ===== ${r.answer}`).join('\n');
+
+            emailjs
+                .send("service_mdj3fqd", "template_5l6dkl6", {
+                    message: messageContent,
+                })
+                .then(() => {
+                    alert("Respuestas enviadas con éxito.");
+                })
+                .catch((error) => {
+                    console.error("Error al enviar el correo:", error);
+                    alert("Hubo un error al enviar las respuestas.");
+                });
+        };
+
+        renderQuestion();
+    </script>
 </body>
 
 </html>
