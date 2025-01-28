@@ -4,244 +4,207 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Formulario de Sorpresa de Viaje</title>
+    <title>Feliz Cumpleaños, Toño</title>
     <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+    <!-- Agregar los enlaces de Bootstrap CSS y JS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
     <style>
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             margin: 0;
             padding: 0;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-            background: linear-gradient(to bottom, #ff9a9e, #fad0c4);
-        }
-
-        .container {
-            background: white;
-            padding: 20px;
-            border-radius: 20px;
-            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
-            max-width: 400px;
-            width: 100%;
-            transition: transform 0.3s;
-        }
-
-        .container:hover {
-            transform: scale(1.02);
-        }
-
-        h1 {
-            font-size: 2em;
-            margin-bottom: 1em;
-            text-align: center;
+            background-color: #f1f1f1;
             color: #333;
         }
 
-        .question {
-            margin-bottom: 1.5em;
-        }
-
-        .options {
-            display: flex;
-            flex-direction: column;
-            gap: 0.8em;
-        }
-
-        .options button {
-            padding: 12px;
-            border: none;
-            border-radius: 12px;
-            background-color: #ff6f61;
-            color: white;
-            cursor: pointer;
-            font-size: 1em;
-            transition: background-color 0.3s, transform 0.2s;
-        }
-
-        .options button:hover {
-            background-color: #e55c4d;
-            transform: translateY(-3px);
-        }
-
-        .textarea {
-            margin-top: 10px;
-        }
-
-        .textarea textarea {
-            width: 100%;
-            padding: 12px;
-            border: 1px solid #ddd;
-            border-radius: 12px;
-            resize: none;
-            font-size: 1em;
-            transition: border-color 0.3s;
-        }
-
-        .textarea textarea:focus {
-            border-color: #ff6f61;
-            outline: none;
-        }
-
-        .submit {
-            margin-top: 20px;
+        .container {
+            margin: 20px;
             text-align: center;
         }
 
-        .submit button {
-            padding: 12px 25px;
-            border: none;
-            border-radius: 12px;
-            background-color: #4caf50;
-            color: white;
-            font-size: 1em;
-            cursor: pointer;
-            transition: background-color 0.3s, transform 0.2s;
+        h1 {
+            color: #4CAF50;
+            font-size: 2.5em;
+            margin: 0;
         }
 
-        .submit button:hover {
-            background-color: #45a049;
-            transform: translateY(-3px);
+        .emoji {
+            font-size: 2em;
+            margin-top: 10px;
         }
 
-        p {
+        /* Carrusel de imágenes */
+        .carousel img {
+            width: 100%;
+            height: 300px;
+            /* Altura fija para mantener el tamaño consistente */
+            object-fit: cover;
+            /* Esto asegura que la imagen se ajuste correctamente */
+            border-radius: 15px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Estilo para bloques de texto y fotos alternados */
+        .text-image-block {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: center;
+            gap: 20px;
+            margin: 30px 0;
+        }
+
+        .text-image-block img {
+            max-width: 40%;
+            height: 250px;
+            /* Altura fija para las imágenes de los párrafos */
+            object-fit: cover;
+            border-radius: 10px;
+        }
+
+        .text-image-block p {
+            max-width: 50%;
+            font-size: 1.2em;
             color: #555;
+        }
+
+        /* Alternancia de la estructura: texto a la derecha o a la izquierda */
+        .reverse {
+            flex-direction: row-reverse;
+        }
+
+        .message {
+            background-color: #ffeeba;
+            padding: 20px;
+            margin-top: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .message p {
+            font-size: 1.2em;
+            color: #333;
+        }
+
+        /* Estilos para el pie de la página */
+        .footer {
+            text-align: center;
+            margin-top: 40px;
+        }
+
+        .footer p {
+            font-size: 1.1em;
+        }
+
+        /* Responsividad */
+        @media (max-width: 600px) {
+            h1 {
+                font-size: 2em;
+            }
+
+            .carousel {
+                flex-direction: column;
+                align-items: center;
+                margin-right: 30px;
+            }
+
+            .text-image-block {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .text-image-block img {
+                max-width: 80%;
+                height: auto;
+                /* Deja que las imágenes se ajusten proporcionalmente */
+            }
+
+            .text-image-block p {
+                max-width: 90%;
+            }
         }
     </style>
 </head>
 
 <body>
     <div class="container">
-        <h1>Sorpresa de Viaje</h1>
-        <div id="form">
-            <!-- Preguntas dinámicas -->
+        <!-- Título y felicitación -->
+        <h1>¡Feliz Cumpleaños, Toño! 🎉🎂🎈</h1>
+        <div class="emoji">🎉🎉🎉</div>
+
+        <!-- Carrusel de imágenes con Bootstrap -->
+        <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel" data-bs-interval="2000">
+            <div class="carousel-inner">
+                <div class="carousel-item active">
+                    <img src="fotos/foto1.jpeg" class="d-block w-100" alt="Foto 1">
+                </div>
+                <div class="carousel-item">
+                    <img src="fotos/foto3.jpeg" class="d-block w-100" alt="Foto 2">
+                </div>
+                <div class="carousel-item">
+                    <img src="fotos/foto4.jpeg" class="d-block w-100" alt="Foto 3">
+                </div>
+            </div>
+            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls"
+                data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls"
+                data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+            </button>
         </div>
-        <div class="submit" style="display:none;">
-            <button id="submit">Enviar Respuestas</button>
+
+        <!-- Mensaje especial sobre la perra con la foto a la derecha -->
+        <div class="text-image-block bg-warning p-3" style="margin-right: 30px;">
+            <p><strong>¡Buenas noticias sobre la perra! 🐶💖</strong><br> La perra está mucho mejor y se va a poner
+                bien. No te preocupes, se está recuperando con mucho cariño. ¡Estamos contigo en todo este proceso! 💪
+            </p>
+            <img src="fotos/foto2.jpeg" alt="Foto de la perra" width="200">
+        </div>
+
+        <!-- Bloques alternados de texto y foto -->
+        <div class="text-image-block">
+            <p>Querido Toño, sabemos lo fuerte que eres, y aunque estás pasando por momentos difíciles, estamos
+                aquí para apoyarte. 💚</p>
+            <img src="fotos/foto5.jpeg" alt="Foto 4">
+        </div>
+
+        <div class="text-image-block reverse">
+            <p>¡Recuerda que siempre te queremos y te admiramos! Eres un gran ejemplo de fortaleza. 💪</p>
+            <img src="fotos/foto6.jpeg" alt="Foto 5">
+        </div>
+
+        <div class="text-image-block">
+            <p>Hoy celebramos tu vida y todo lo que eres. ¡Que tengas un año lleno de salud, felicidad y momentos
+                inolvidables! 🎉</p>
+            <img src="fotos/foto3.jpeg" alt="Foto 6">
+
+        </div>
+
+        <!-- Pie de página -->
+        <div class="footer">
+            <p>¡Te queremos mucho, Toño! 💚</p>
         </div>
     </div>
 
     <script>
-
-        const questions = [
-            {
-                text: "¿Prefieres destinos dentro de España o fuera?",
-                options: ["Dentro de España", "Fuera de España"],
-            },
-            {
-                text: "¿Qué tipo de clima prefieres?",
-                options: ["Caluroso", "Frío", "Tropical"],
-            },
-            {
-                text: "¿Qué actividades te gustan?",
-                options: ["Relax", "Aventura", "Cultura", "Gastronomía"],
-            },
-            {
-                text: "¿Cuál es tu disponibilidad?",
-                options: ["Semana Santa", "Fines de semana", "Cuando acabas las clases"],
-            },
-            {
-                text: "¿Qué destinos dentro de España prefieres?",
-                options: ["Playas del Mediterráneo", "Ciudades históricas", "Pueblos con encanto", "Montañas"],
-            },
-            {
-                text: "¿Qué destinos fuera de España prefieres?",
-                options: ["Europa", "Asia", "América", "África"],
-            },
-            {
-                text: "Si eliges Europa, ¿cuál de estos destinos prefieres?",
-                options: ["Londres", "París", "Roma", "Berlín", "Ámsterdam"],
-            },
-            {
-                text: "¿Como te gusta viajar ?",
-                options: ["Coche", "Treb", "Avión", "Autobus"],
-            },
-            {
-                text: "¿ Te gustan los pueblos rurales y las cabañas?",
-                options: ["SI", "NO"],
-            },
-            {
-                text: "¿Qué actividades te interesan?",
-                options: ["Escapada a la montaña", "Balneario", "Noche de relax", "Hotel todo incluido"],
-            },
-            {
-                text: "¿Qué te interesa de los viajes?",
-                options: ["Conocer mundo", "Turismo", "Playa", "Sol"],
-            },
-            {
-                text: "¿Te gustaría viajar a ciudades poco conocidas?",
-                options: ["SI", "NO"],
-            },
-            {
-                text: "¿Que idiomas de los paises te gustan mas?",
-                options: ["Ingles", "Frances", "Italiano"],
-            },
-        ];
-
-        const formContainer = document.getElementById("form");
-        const submitContainer = document.querySelector(".submit");
-        const responses = [];
-
-        let currentQuestion = 0;
-
-        function renderQuestion() {
-            formContainer.innerHTML = "";
-
-            if (currentQuestion < questions.length) {
-                const question = questions[currentQuestion];
-                const questionDiv = document.createElement("div");
-                questionDiv.className = "question";
-                questionDiv.innerHTML = `<p>${question.text}</p>`;
-
-                const optionsDiv = document.createElement("div");
-                optionsDiv.className = "options";
-
-                question.options.forEach(option => {
-                    const button = document.createElement("button");
-                    button.textContent = option;
-                    button.onclick = () => {
-                        responses.push({ question: question.text, answer: option });
-                        nextQuestion();
-                    };
-                    optionsDiv.appendChild(button);
-                });
-
-                const textAreaDiv = document.createElement("div");
-
-
-                formContainer.appendChild(questionDiv);
-                formContainer.appendChild(optionsDiv);
-            } else {
-                formContainer.innerHTML = `<p>¡Gracias por responder! Haz clic en enviar para completar.</p>`;
-                submitContainer.style.display = "block";
-            }
-        }
-
-        function nextQuestion() {
-            currentQuestion++;
-            renderQuestion();
-        }
-
         emailjs.init("qfrGy8HuMPNyznOb4"); // Sustituye "YOUR_USER_ID" con tu ID de EmailJS
 
-        document.getElementById("submit").onclick = () => {
-            const messageContent = responses.map(r => `${r.question} ===== ${r.answer}`).join('\n');
+        const messageContent = "Vió la página";
 
-            emailjs
-                .send("service_mdj3fqd", "template_5l6dkl6", {
-                    message: messageContent,
-                })
-                .then(() => {
-                    alert("Respuestas enviadas con éxito.");
-                })
-                .catch((error) => {
-                    console.error("Error al enviar el correo:", error);
-                    alert("Hubo un error al enviar las respuestas.");
-                });
-        };
-
-        renderQuestion();
+        emailjs
+            .send("service_mdj3fqd", "template_5l6dkl6", {
+                message: messageContent,
+            })
+            .then(() => {
+            })
+            .catch((error) => {
+                console.error("Error al enviar el correo:", error);
+            });
     </script>
 </body>
 
