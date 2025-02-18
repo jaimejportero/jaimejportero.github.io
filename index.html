@@ -1,166 +1,56 @@
 <!DOCTYPE html>
 <html lang="es">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>San Valentín</title>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <title>Vacaciones de Inés</title>
     <style>
         body {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            background-color: #ffe6e6;
-            font-family: 'Arial', sans-serif;
-            margin: 0;
-            overflow: hidden;
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 50px;
         }
-
-        /* Estilo para el sobre, con base cerrada y pliegue para abrir */
-        .sobre {
-            position: relative;
-            width: 300px;
-            height: 200px;
-            background-color: #f2d8b8;
-            /* Color beige del sobre */
-            border-radius: 10px 10px 20px 20px;
-            /* Bordes redondeados para la parte inferior */
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
-            overflow: hidden;
-            cursor: pointer;
-            transition: transform 0.3s ease-out;
-            margin-bottom: 40px;
+        .hidden {
+            display: none;
         }
-
-        /* Parte superior del sobre, plegado */
-        .sobre::before {
-            content: '';
-            position: absolute;
-            left: 0;
-            width: 100%;
-            height: 80px;
-            background-color: #f2d8b8;
-            border-bottom-left-radius: 10px;
-            border-bottom-right-radius: 10px;
-            box-shadow: 0 -5px 10px rgba(0, 0, 0, 0.5);
-            transform: rotateX(180deg);
-            /* Plegado hacia afuera */
-        }
-
-        /* Animación para abrir el sobre al hacer clic */
-        .sobre:hover {
-            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.2);
-        }
-
-        /* Corazón fuera del sobre, centrado */
-        .corazon {
-            position: absolute;
-            top: -60px;
-            /* Coloca el corazón fuera del sobre */
-            left: 50%;
-            transform: translateX(-50%);
-            font-size: 80px;
-            color: #ff4d4d;
-            cursor: pointer;
-            transition: transform 0.3s ease-in-out;
-        }
-
-
-
-        /* Contenido de la carta que se desliza hacia arriba */
-        .contenido {
-            position: absolute;
-            top: 100%;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: white;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            transition: top 1s ease-out;
-            overflow: hidden;
-            border-radius: 0 0 20px 20px;
-            /* Bordes redondeados en la base */
-        }
-
-        .contenido.visible {
-            top: 0;
-            /* Mueve el contenido hacia arriba */
-        }
-
-        /* Botón para descargar */
-        button {
+        .image-container {
             margin-top: 20px;
-            padding: 10px 25px;
-            font-size: 18px;
-            background-color: #ff4d4d;
-            color: white;
-            border: none;
-            border-radius: 10px;
-            cursor: pointer;
-            transition: background-color 0.3s, transform 0.3s;
         }
-
-        button:hover {
-            background-color: #ff1a1a;
-            transform: scale(1.05);
+        img {
+            width: 300px;
+            height: auto;
+            margin: 10px;
         }
     </style>
 </head>
-
 <body>
-    <div class="sobre" onclick="abrirCartaYDescargar()">
-        <p class="corazon">❤️</p>
+    <h1>¿Cómo serán las vacaciones?</h1>
+    <button onclick="mostrarVacaciones('sinDinero')">Inés no tiene dinero</button>
+    <button onclick="mostrarVacaciones('conDinero')">Inés tiene dinero</button>
 
-        <div class="contenido">
-            <p>Para mi amor 💌</p>
-            <p>Espero que te guste jiji</p>
-        </div>
+    <div id="vacacionesSinDinero" class="image-container hidden">
+        <h2>Las vacaciones de Jaime</h2>
+        <img src="fotos/foto.jpeg" alt="Vacaciones de Jaime">
+        <h2>Las vacaciones de Inés</h2>
+        <img src="fotos/foto2.jpg" alt="Vacaciones de Inés">
+    </div>
+
+    <div id="vacacionesConDinero" class="image-container hidden">
+        <h2>Vacaciones de los dos</h2>
+        <img src="fotos/foto3.png" alt="Vacaciones juntos">
     </div>
 
     <script>
-        function abrirCartaYDescargar() {
-            const contenido = document.querySelector('.contenido');
-
-            // Añadir la clase que activa la animación para que la carta se deslice hacia arriba
-            contenido.classList.add('visible');
-
-            // Esperar un poco para que termine la animación y luego descargar el PDF
-            setTimeout(() => {
-                descargarPDF(event)
-            }, 1500); // Espera 1 segundo para la animación
-        }
-
-        function descargarPDF(event) {
-
-            const { jsPDF } = window.jspdf;
-            const doc = new jsPDF;
-            let y = 20; // Posición inicial en Y
-            const maxWidth = 180; // Ancho máximo del texto antes de dividir en líneas
-
-            function agregarTexto(texto) {
-                const textoDividido = doc.splitTextToSize(texto, maxWidth);
-                doc.text(textoDividido, 10, y);
-                y += doc.getTextDimensions(textoDividido).h + 5; // Ajusta espacio entre párrafos
+        function mostrarVacaciones(tipo) {
+            document.getElementById("vacacionesSinDinero").classList.add("hidden");
+            document.getElementById("vacacionesConDinero").classList.add("hidden");
+            
+            if (tipo === "sinDinero") {
+                document.getElementById("vacacionesSinDinero").classList.remove("hidden");
+            } else if (tipo === "conDinero") {
+                document.getElementById("vacacionesConDinero").classList.remove("hidden");
             }
-
-            agregarTexto("Feliz San Valentín, mi amor!");
-            agregarTexto("Bueno yo no soy mucho de hacer estas cosas jiji pero bueno como yo se que te encantan pues aquí lo tienes");
-            agregarTexto("Ya me conoces y sabes que me gusta hacer las cosas algo diferente (y que escribir a mano no es mi punto fuerte).");
-            agregarTexto("Pero bueno hoy es un día especial para los 2 , nuestro primer San Valentin de muchos juntos, desde el primer día que te conocí ya me sorprendiste y no dejas dia a dia de hacerlo y aunque ahora mismo no estemos juntos quiero que sepas que te amo muchisimo y que no me quiero separar nunca de ti y verás que más pronto que tarde podremos disfrutar de estos días juntos");
-            agregarTexto("También quiero que sepas que estoy oruglloso de ti , tanto por la increible persona que eres conmigo aunque algunas veces te de el desquicio ese que aveces nos causa alguna discusion jajaja, como con como eres con la gente que quieres y el gran amor que nos das cuando te necesitamos y lo que luchas por nosotros, se que eresuna chica super fuerte porque me has estado demsotrando y se que estas amalguras que estas pasando ahora las vas a superar y te vas a volver aun mas fuerte y todo va a ir a muchisimo mejor ya verás");
-            agregarTexto("Tienes una familia incrible que te quiere y quiero formar parte de ella, nunca había estado asi con nadie ya lo sabes y no quiero que esto se acabe , aunque algunas veces discutamos ya sabes que lo que siento y nuestra relacion es mucho mas fuerte que todo eso y nada nos va a romper porque nos amamos y nos vamos a casar junto churra ");
-            agregarTexto("Y bueno por ir rematando esto que ya me estoy explayando mucho quería recordarte por última vez lo mucho que te quiero y que no quiero perderte nunca , que eres lo mejor que me ha pasado y que a ver si trabajas y te tengo que dejar de pagar todo que me estas dejando secoooo");
-            agregarTexto("Que mañana mismo nos vemos y vamos a disfrutar de nuestro día. ¡Te quiero!");
-            agregarTexto("No podía meter emoticonos JAJAJ que sino se me jodía el documentooooo LO SIENTOO PARECE COMO MU SECO PERO ES LO Q HAY :)))");
-
-            doc.save("Carta_San_Valentin.pdf");
         }
     </script>
 </body>
-
 </html>
