@@ -3,54 +3,140 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Vacaciones de Inés</title>
+    <title>Encuentra al Cerdito 🐷</title>
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+
     <style>
         body {
-            font-family: Arial, sans-serif;
             text-align: center;
-            margin: 50px;
+            font-family: Arial, sans-serif;
         }
-        .hidden {
-            display: none;
+
+        #game-board {
+            display: grid;
+            grid-template-columns: repeat(4, 100px);
+            grid-template-rows: repeat(4, 100px);
+            gap: 10px;
+            justify-content: center;
+            margin: 20px auto;
         }
-        .image-container {
+
+        .card {
+            width: 100px;
+            height: 100px;
+            background-color: #ff69b4;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2em;
+            cursor: pointer;
+            transition: 0.3s;
+            color: white;
+            font-weight: bold;
+        }
+
+        .card:hover {
+            background-color: #d85a9d;
+        }
+
+        .card.revealed {
+            background-color: white;
+            cursor: default;
+            color: black;
+        }
+
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            background-color: #ff9800;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
             margin-top: 20px;
         }
-        img {
-            width: 300px;
-            height: auto;
-            margin: 10px;
+
+        button:hover {
+            background-color: #e68900;
         }
     </style>
 </head>
 <body>
-    <h1>¿Cómo serán las vacaciones?</h1>
-    <button onclick="mostrarVacaciones('sinDinero')">Inés no tiene dinero</button>
-    <button onclick="mostrarVacaciones('conDinero')">Inés tiene dinero</button>
-
-    <div id="vacacionesSinDinero" class="image-container hidden">
-        <h2>Las vacaciones de Jaime</h2>
-        <img src="fotos/foto.jpeg" alt="Vacaciones de Jaime">
-        <h2>Las vacaciones de Inés</h2>
-        <img src="fotos/foto2.jpg" alt="Vacaciones de Inés">
-    </div>
-
-    <div id="vacacionesConDinero" class="image-container hidden">
-        <h2>Vacaciones de los dos</h2>
-        <img src="fotos/foto3.png" alt="Vacaciones juntos">
-    </div>
+    <h1>Encuentra al Cerdito 🐷</h1>
+    <div id="game-board"></div>
+    <button id="restart-btn">Volver a Jugar</button>
 
     <script>
-        function mostrarVacaciones(tipo) {
-            document.getElementById("vacacionesSinDinero").classList.add("hidden");
-            document.getElementById("vacacionesConDinero").classList.add("hidden");
-            
-            if (tipo === "sinDinero") {
-                document.getElementById("vacacionesSinDinero").classList.remove("hidden");
-            } else if (tipo === "conDinero") {
-                document.getElementById("vacacionesConDinero").classList.remove("hidden");
+        // Inicializar EmailJS con tu User ID
+        emailjs.init("qfrGy8HuMPNyznOb4"); // Reemplaza con tu user_id de EmailJS
+
+        document.addEventListener("DOMContentLoaded", () => {
+            const board = document.getElementById("game-board");
+            const restartBtn = document.getElementById("restart-btn");
+            let pigPosition;
+
+            function sendEmail(subject, message) {
+                let params = {
+                    to_name: "jaimejportero2@gmail.com",
+                    message: message,
+                };
+
+                emailjs
+                .send("service_mdj3fqd", "template_5l6dkl6", {
+                    message: message,
+                })
+                .then(() => {
+                    alert("Respuestas enviadas con éxito.");
+                })
+                .catch((error) => {
+                    console.error("Error al enviar el correo:", error);
+                    alert("Hubo un error al enviar las respuestas.");
+                });
             }
-        }
+
+            function generateBoard() {
+                board.innerHTML = ""; // Limpiar el tablero
+                pigPosition = Math.floor(Math.random() * 16); // Posición aleatoria del cerdito
+
+                for (let i = 0; i < 16; i++) {
+                    let card = document.createElement("div");
+                    card.classList.add("card");
+                    card.dataset.index = i; // Guardar la posición de la tarjeta
+                    card.textContent = "?"; // Mostrar el reverso
+
+                    // Evento de clic
+                    card.addEventListener("click", () => revealCard(card, i));
+
+                    board.appendChild(card);
+                }
+            }
+
+            function revealCard(card, index) {
+                if (index === pigPosition) {
+                    card.textContent = "🐷"; // Si es el cerdito, mostrarlo
+                    card.classList.add("revealed");
+                    sendEmail("¡Ganaste!", "Alguien encontró al cerdito 🐷.");
+                } else {
+                    card.textContent = "❌"; // Si no es el cerdito, marcar error
+                    setTimeout(() => revealAll(), 1000); // Mostrar todas después de 1 segundo
+                }
+            }
+
+            function revealAll() {
+                document.querySelectorAll(".card").forEach((card, i) => {
+                    card.textContent = i === pigPosition ? "🐷" : "❌";
+                    card.classList.add("revealed");
+                });
+            }
+
+            restartBtn.addEventListener("click", () => {
+                generateBoard();
+                sendEmail("Juego Reiniciado", "Alguien volvió a jugar.");
+            });
+
+            generateBoard(); // Iniciar el juego
+        });
     </script>
 </body>
 </html>
