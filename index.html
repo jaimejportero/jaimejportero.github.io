@@ -3,137 +3,135 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Encuentra al Cerdito 🐷</title>
+    <title>Elige tu Comida 🍴</title>
     <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
 
     <style>
         body {
+            margin: 0;
+            padding: 0;
             text-align: center;
             font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
         }
 
-        #game-board {
-            display: grid;
-            grid-template-columns: repeat(4, 100px);
-            grid-template-rows: repeat(4, 100px);
-            gap: 10px;
+        h1 {
+            color: #333;
+            font-size: 6vw; /* Tamaño relativo para móviles */
+            margin: 5vw 0;
+        }
+
+        #food-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 5vw;
             justify-content: center;
-            margin: 20px auto;
+            padding: 5vw;
+            width: 90%;
         }
 
-        .card {
-            width: 100px;
-            height: 100px;
-            background-color: #ff69b4;
-            border-radius: 10px;
+        .food-btn {
+            width: 40vw; /* Tamaño relativo para móviles */
+            height: 40vw;
+            max-width: 200px; /* Límite para pantallas grandes */
+            max-height: 200px;
+            border: none;
+            border-radius: 15px;
+            cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.2s;
+            background-color: #fff;
+            color: black;
+            font-weight: bold;
+            font-size: 5vw; /* Texto relativo */
+            text-align: center;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 2em;
-            cursor: pointer;
-            transition: 0.3s;
-            color: white;
-            font-weight: bold;
+            touch-action: manipulation; /* Mejora la respuesta táctil */
+            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
         }
 
-        .card:hover {
-            background-color: #d85a9d;
+        .food-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
         }
 
-        .card.revealed {
-            background-color: white;
-            cursor: default;
-            color: black;
-        }
+        /* Colores y emoticonos para cada botón */
+        #hamburger { background-color: #ff6347; }
+        #pizza { background-color: #ffa500; }
+        #italian { background-color: #32cd32; }
+        #pasta { background-color: #ffd700; }
+        #sushi { background-color: #1e90ff; }
+        #steak { background-color: #8b4513; }
+        #fish { background-color: #20b2aa; }
 
-        button {
-            padding: 10px 20px;
-            font-size: 16px;
-            background-color: #ff9800;
-            color: white;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            margin-top: 20px;
-        }
-
-        button:hover {
-            background-color: #e68900;
+        /* Estilos de texto para los iconos */
+        .food-btn span {
+            font-size: 3rem; /* Ajustamos el tamaño del emoticono */
         }
     </style>
 </head>
 <body>
-    <h1>Encuentra al Cerdito 🐷</h1>
-    <div id="game-board"></div>
-    <button id="restart-btn">Volver a Jugar</button>
+    <h1>Elige tu Comida Favorita 🍴</h1>
+    <div id="food-buttons"></div>
 
     <script>
         // Inicializar EmailJS con tu User ID
         emailjs.init("qfrGy8HuMPNyznOb4"); // Reemplaza con tu user_id de EmailJS
 
-        document.addEventListener("DOMContentLoaded", () => {
-            const board = document.getElementById("game-board");
-            const restartBtn = document.getElementById("restart-btn");
-            let pigPosition;
+        // Array de comidas (fácil de expandir)
+        const foods = [
+            { id: "hamburger", name: "Hamburguesa", icon: "🍔" },
+            { id: "pizza", name: "Pizza", icon: "🍕" },
+            { id: "italian", name: "Comida Italiana", icon: "🍝" },
+            { id: "sushi", name: "Sushi", icon: "🍣" },
+            { id: "steak", name: "Filete", icon: "🥩" },
+            { id: "fish", name: "Pescado", icon: "🐟" }
+        ];
 
-            function sendEmail(subject, message) {
-                let params = {
-                    to_name: "jaimejportero2@gmail.com",
-                    message: message,
-                };
+        // Función para generar los botones dinámicamente
+        function createFoodButtons() {
+            const container = document.getElementById("food-buttons");
+            container.innerHTML = ""; // Limpiar el contenedor
 
-                emailjs
-                .send("service_mdj3fqd", "template_5l6dkl6", {
-                    message: message,
+            foods.forEach(food => {
+                const button = document.createElement("button");
+                button.className = "food-btn";
+                button.id = food.id;
+                button.innerHTML = `<span>${food.icon}</span><br>`;
+                button.addEventListener("click", () => sendEmail(food.name));
+                container.appendChild(button);
+            });
+        }
+
+        // Función para enviar el correo
+        function sendEmail(foodChoice) {
+            let params = {
+                to_email: "jaimejportero2@gmail.com", // Dirección de destino
+                food_choice: foodChoice, // Comida seleccionada
+            };
+
+            emailjs
+            .send("service_mdj3fqd", "template_5l6dkl6", {
+                to_email: params.to_email,
+                    message: `¡Alguien ha elegido ${params.food_choice}!`,
                 })
                 .then(() => {
+                    alert(`¡Correo enviado! Has elegido ${foodChoice}.`);
                 })
                 .catch((error) => {
                     console.error("Error al enviar el correo:", error);
+                    alert("Hubo un error al enviar el correo. Revisa la consola para más detalles.");
                 });
-            }
+        }
 
-            function generateBoard() {
-                board.innerHTML = ""; // Limpiar el tablero
-                pigPosition = Math.floor(Math.random() * 16); // Posición aleatoria del cerdito
-
-                for (let i = 0; i < 16; i++) {
-                    let card = document.createElement("div");
-                    card.classList.add("card");
-                    card.dataset.index = i; // Guardar la posición de la tarjeta
-                    card.textContent = "?"; // Mostrar el reverso
-
-                    // Evento de clic
-                    card.addEventListener("click", () => revealCard(card, i));
-
-                    board.appendChild(card);
-                }
-            }
-
-            function revealCard(card, index) {
-                if (index === pigPosition) {
-                    card.textContent = "🐷"; // Si es el cerdito, mostrarlo
-                    card.classList.add("revealed");
-                    sendEmail("¡Ganaste!", "Alguien encontró al cerdito 🐷.");
-                } else {
-                    card.textContent = "❌"; // Si no es el cerdito, marcar error
-                    setTimeout(() => revealAll(), 500); // Mostrar todas después de 1 segundo
-                }
-            }
-
-            function revealAll() {
-                document.querySelectorAll(".card").forEach((card, i) => {
-                    card.textContent = i === pigPosition ? "🐷" : "❌";
-                    card.classList.add("revealed");
-                });
-            }
-
-            restartBtn.addEventListener("click", () => {
-                generateBoard();
-                sendEmail("Juego Reiniciado", "Alguien volvió a jugar.");
-            });
-
-            generateBoard(); // Iniciar el juego
+        // Inicializar la página
+        document.addEventListener("DOMContentLoaded", () => {
+            createFoodButtons();
         });
     </script>
 </body>
