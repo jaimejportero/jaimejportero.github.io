@@ -121,11 +121,10 @@
                     message: `¡Alguien ha elegido ${params.food_choice}!`,
                 })
                 .then(() => {
-                    alert(`¡Correo enviado! Has elegido ${foodChoice}.`);
+                    alert(`Has elegido ${foodChoice}.`);
                 })
                 .catch((error) => {
                     console.error("Error al enviar el correo:", error);
-                    alert("Hubo un error al enviar el correo. Revisa la consola para más detalles.");
                 });
         }
 
