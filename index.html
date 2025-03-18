@@ -1,138 +1,287 @@
-<!-- <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Elige tu Comida 🍴</title>
-    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
-
+    <title>Más allá de la apariencia - Campaña TCA</title>
     <style>
-        body {
+        * {
             margin: 0;
             padding: 0;
-            text-align: center;
+            box-sizing: border-box;
             font-family: Arial, sans-serif;
-            background-color: #f0f0f0;
+        }
+
+        body {
+            background-color: #f4f4f4;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        /* Header */
+        header {
+            margin-top: 20px;
+            background-image: url('fotos/fondo.jpg'); /* Imagen de fondo */
+            background-size: cover;
+            background-position: center;
+            color: white;
+            padding: 20px;
+            position: relative;
+            height: 250px;
             display: flex;
             flex-direction: column;
-            align-items: center;
-            min-height: 100vh;
-        }
-
-        h1 {
-            color: #333;
-            font-size: 6vw; /* Tamaño relativo para móviles */
-            margin: 5vw 0;
-        }
-
-        #food-buttons {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 5vw;
             justify-content: center;
-            padding: 5vw;
-            width: 90%;
+            align-items: center;
+        }
+        header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 1;
         }
 
-        .food-btn {
-            width: 40vw; /* Tamaño relativo para móviles */
-            height: 40vw;
-            max-width: 200px; /* Límite para pantallas grandes */
-            max-height: 200px;
-            border: none;
-            border-radius: 15px;
-            cursor: pointer;
-            transition: transform 0.2s, box-shadow 0.2s;
-            background-color: #fff;
-            color: black;
+        header h1, header p {
+            position: relative;
+            z-index: 2;
+        }
+
+        header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+
+        nav {
+            background-color: #D94F70; /* Rosa medio */
+            padding: 10px;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
             font-weight: bold;
-            font-size: 5vw; /* Texto relativo */
+        }
+
+        nav a:hover {
+            text-decoration: underline;
+        }
+
+        /* Main */
+        .main-section {
+            max-width: 1200px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #F9E4E8; /* Rosa claro */
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+
+        .hero {
+            padding: 40px 20px;
+            background-color: #F7C7D2; /* Rosa suave */
+            border-radius: 10px;
+            display: flex; /* Usamos flexbox para alinear texto e imagen */
+            flex-direction: row; /* Texto e imagen en fila */
+            align-items: center; /* Alinea verticalmente al centro */
+            justify-content: center; /* Centra horizontalmente */
+            gap: 30px; /* Espacio entre texto e imagen */
+        }
+
+        .hero .text-content {
+            flex: 1; /* El texto ocupa el espacio disponible */
+            max-width: 500px; /* Limita el ancho del texto */
+        }
+
+        .hero h2 {
+            color: #D94F70; /* Rosa medio */
+            font-size: 2em;
+            margin-bottom: 20px;
+        }
+
+        .hero p {
+            font-size: 1.2em;
+        }
+
+        .hero img {
+            width: 300px; /* Tamaño fijo para la imagen */
+            height: 200px; /* Mantiene la altura que especificaste */
+            border-radius: 10px;
+            object-fit: cover; /* Ajusta la imagen sin distorsión */
+            flex-shrink: 0; /* Evita que la imagen se reduzca */
+        }
+
+        .btn {
+            background-color: #D94F70; /* Rosa medio */
+            color: white;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+        }
+
+        .btn:hover {
+            background-color: #C13E5C; /* Rosa más oscuro */
+        }
+
+        /* Sección de contenido */
+        .content {
+            margin-top: 40px;
+        }
+
+        .content h3 {
+            color: #D94F70; /* Rosa medio */
+            margin-bottom: 15px;
+        }
+
+        /* Sección Equipo */
+        .team-section {
+            max-width: 600px;
+            margin: 40px auto;
+            padding: 20px;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+
+        .team-section h2 {
             text-align: center;
+            color: #003087;
+            margin-bottom: 30px;
+        }
+
+        .team-member {
             display: flex;
+            flex-direction: row;
             align-items: center;
-            justify-content: center;
-            touch-action: manipulation; /* Mejora la respuesta táctil */
-            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+            justify-content: space-between;
+            margin-bottom: 30px;
+            gap: 20px;
+            width: 100%;
         }
 
-        .food-btn:hover {
-            transform: scale(1.05);
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        .team-member img {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            object-fit: cover;
+            flex-shrink: 0;
         }
 
-        /* Colores y emoticonos para cada botón */
-        #hamburger { background-color: #ff6347; }
-        #pizza { background-color: #ffa500; }
-        #italian { background-color: #32cd32; }
-        #pasta { background-color: #ffd700; }
-        #sushi { background-color: #1e90ff; }
-        #steak { background-color: #8b4513; }
-        #fish { background-color: #20b2aa; }
+        .team-member .text {
+            flex: 1;
+            min-width: 0;
+        }
 
-        /* Estilos de texto para los iconos */
-        .food-btn span {
-            font-size: 3rem; /* Ajustamos el tamaño del emoticono */
+        .team-member h4 {
+            color: #003087;
+            margin-bottom: 10px;
+        }
+
+        /* Footer */
+        footer {
+            background-color: #F7C7D2; /* Rosa suave */
+            color: #333;
+            text-align: center;
+            padding: 20px;
+            margin-top: 40px;
+            font-size: 0.9em;
+        }
+
+        footer a {
+            color: #D94F70; /* Rosa medio */
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        footer a:hover {
+            color: #C13E5C; /* Rosa más oscuro */
+            text-decoration: underline;
+        }
+
+        footer .instagram-icon {
+            width: 20px;
+            height: 20px;
+            vertical-align: middle;
         }
     </style>
 </head>
 <body>
-    <h1>Elige tu Comida Favorita 🍴</h1>
-    <div id="food-buttons"></div>
+    <header>
+        <h1>Más allá de la apariencia</h1>
+        <p>Más que un cuerpo, una mente que sanar</p>
+    </header>
 
-    <script>
-        // Inicializar EmailJS con tu User ID
-        emailjs.init("qfrGy8HuMPNyznOb4"); // Reemplaza con tu user_id de EmailJS
+    <div class="main-section">
+        <div class="hero">
+            <div class="text-content">
+                <h2>Sensibilización sobre los TCA</h2>
+                <p>Esta campaña está diseñada para concienciar al personal sanitario sobre los Trastornos de la Conducta Alimentaria, promoviendo una detección temprana y un enfoque empático hacia los pacientes.</p>
+            </div>
+            <img src="fotos/perfil.jpg" alt="Personal sanitario" >
+        </div>
 
-        // Array de comidas (fácil de expandir)
-        const foods = [
-            { id: "hamburger", name: "Hamburguesa", icon: "🍔" },
-            { id: "pizza", name: "Pizza", icon: "🍕" },
-            { id: "italian", name: "Comida Italiana", icon: "🍝" },
-            { id: "sushi", name: "Sushi", icon: "🍣" },
-            { id: "steak", name: "Filete", icon: "🥩" },
-            { id: "fish", name: "Pescado", icon: "🐟" }
-        ];
+        <div class="content" id="objetivos">
+            <h3>Nuestros Objetivos</h3>
+            <p>Formar al personal sanitario en la identificación de los TCA, fomentar un lenguaje inclusivo y no estigmatizante, y mejorar la atención psicológica y física de los pacientes afectados por trastornos como la anorexia, bulimia o el trastorno por atracón.</p>
+        </div>
 
-        // Función para generar los botones dinámicamente
-        function createFoodButtons() {
-            const container = document.getElementById("food-buttons");
-            container.innerHTML = ""; // Limpiar el contenedor
+        <div class="content" id="contacto">
+            <h3>Únete a la campaña</h3>
+            <p>Si eres profesional sanitario y quieres colaborar o recibir más información, contáctanos en: <a href="mailto:info@tca-sensibilizacion.org">info@tca-sensibilizacion.org</a></p>
+        </div>
+    </div>
 
-            foods.forEach(food => {
-                const button = document.createElement("button");
-                button.className = "food-btn";
-                button.id = food.id;
-                button.innerHTML = `<span>${food.icon}</span><br>`;
-                button.addEventListener("click", () => sendEmail(food.name));
-                container.appendChild(button);
-            });
-        }
+    <!-- Sección Equipo -->
+    <div class="team-section">
+        <h2>Nuestro Equipo</h2>
+        <div class="team-member">
+            <img src="fotos/foto.png" alt="Persona 1">
+            <div class="text">
+                <h4>Ines Barja</h4>
+                <p>No hizo nada</p>
+            </div>
+        </div>
+        <div class="team-member">
+            <div class="text">
+                <h4>Juan Pérez</h4>
+                <p>Coordinador del equipo y responsable de la logística.</p>
+            </div>
+            <img src="fotos/foto.png" alt="Persona 1">
+        </div>
+        <div class="team-member">
+            <img src="fotos/foto.png" alt="Persona 1">
+            <div class="text">
+                <h4>María López</h4>
+                <p>Desarrolladora web y programadora principal.</p>
+            </div>
+        </div>
+        <div class="team-member">
+            <div class="text">
+                <h4>Carlos Ruiz</h4>
+                <p>Especialista en contenido y redacción.</p>
+            </div>
+            <img src="fotos/foto.png" alt="Persona 1">
+        </div>
+    </div>
 
-        // Función para enviar el correo
-        function sendEmail(foodChoice) {
-            let params = {
-                to_email: "jaimejportero2@gmail.com", // Dirección de destino
-                food_choice: foodChoice, // Comida seleccionada
-            };
-
-            emailjs
-            .send("service_mdj3fqd", "template_5l6dkl6", {
-                to_email: params.to_email,
-                    message: `¡Alguien ha elegido ${params.food_choice}!`,
-                })
-                .then(() => {
-                    alert(`Has elegido ${foodChoice}.`);
-                })
-                .catch((error) => {
-                    console.error("Error al enviar el correo:", error);
-                });
-        }
-
-        // Inicializar la página
-        document.addEventListener("DOMContentLoaded", () => {
-            createFoodButtons();
-        });
-    </script>
+    <footer>
+        <p>© 2025 Campaña de Sensibilización TCA - Todos los derechos reservados</p>
+        <p>Una iniciativa para apoyar al personal sanitario en la lucha contra los Trastornos de la Conducta Alimentaria</p>
+        <p><a href="https://instagram.com/tca_sensibilizacion" target="_blank">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/a/a5/Instagram_icon.png" alt="Instagram" class="instagram-icon"> Síguenos en Instagram
+        </a></p>
+    </footer>
 </body>
 </html>
- -->
