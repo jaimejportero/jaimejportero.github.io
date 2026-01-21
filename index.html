@@ -1,1 +1,120 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Feliz Santo, Inés 🌸</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap');
 
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(to bottom, #ffe6f0, #fff0f5);
+      overflow: hidden;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      color: #a83279;
+      text-align: center;
+    }
+
+    .card {
+      background: rgba(255, 255, 255, 0.95);
+      border-radius: 25px;
+      padding: 40px 25px;
+      box-shadow: 0 15px 30px rgba(0,0,0,0.2);
+      max-width: 480px;
+      width: 90%;
+      position: relative;
+      z-index: 10;
+    }
+
+    h1 {
+      font-family: 'Great Vibes', cursive;
+      font-size: 2.8em;
+      margin-bottom: 0.2em;
+      animation: glow 2s infinite alternate;
+    }
+
+    @keyframes glow {
+      from { text-shadow: 0 0 5px #ffb3d9, 0 0 10px #ff80c1; }
+      to { text-shadow: 0 0 20px #ffb3d9, 0 0 40px #ff4da6; }
+    }
+
+    p {
+      font-size: 1.1em;
+      margin: 18px 0;
+      line-height: 1.5;
+    }
+
+    .icon {
+      font-size: 5.5em;
+      animation: bounce 2s infinite;
+    }
+
+    @keyframes bounce {
+      0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+      40% { transform: translateY(-18px); }
+      60% { transform: translateY(-10px); }
+    }
+
+    .flowers {
+      position: absolute;
+      top: -50px;
+      width: 100%;
+      pointer-events: none;
+      z-index: 5;
+    }
+
+    .flower {
+      position: absolute;
+      font-size: 2em;
+      animation: fall linear infinite;
+    }
+
+    @keyframes fall {
+      0% { transform: translateY(-50px) rotate(0deg); opacity: 1; }
+      100% { transform: translateY(110vh) rotate(360deg); opacity: 0; }
+    }
+
+    /* Responsive */
+    @media (max-width: 480px) {
+      h1 { font-size: 2.2em; }
+      p { font-size: 1em; }
+      .icon { font-size: 4.5em; }
+    }
+
+  </style>
+</head>
+<body>
+  <div class="flowers" id="flowers"></div>
+
+  <div class="card">
+    <div class="icon">🐑</div>
+    <h1>¡Feliz Santo, mi Inés! 💖</h1>
+    <p>Hoy celebramos a la maravillosa San Inés, <br>y sobre todo, a ti, que llenas mi vida de amor y alegría 🌸</p>
+    <p>Gracias por ser tan especial y hacer que cada día juntos sea mágico 🥰</p>
+    <p>Te quiero mucho 💕</p>
+  </div>
+
+  <script>
+    // Crear flores que caen
+    const flowersContainer = document.getElementById('flowers');
+    const flowerEmojis = ['🌸','🌷','💐','🌺','🌹'];
+    const numFlowers = 30;
+
+    for(let i = 0; i < numFlowers; i++) {
+      const flower = document.createElement('div');
+      flower.classList.add('flower');
+      flower.textContent = flowerEmojis[Math.floor(Math.random() * flowerEmojis.length)];
+      flower.style.left = Math.random() * 100 + 'vw';
+      flower.style.fontSize = (20 + Math.random() * 30) + 'px';
+      flower.style.animationDuration = (5 + Math.random() * 5) + 's';
+      flower.style.animationDelay = Math.random() * 5 + 's';
+      flowersContainer.appendChild(flower);
+    }
+  </script>
+</body>
+</html>
