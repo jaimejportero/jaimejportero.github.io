@@ -134,7 +134,6 @@
     padding: 2rem 1rem;
   }
 
-  /* Barra de progreso de puntos */
   .dot-progress {
     display: flex;
     gap: 6px;
@@ -162,7 +161,6 @@
   .dot.done-fail { background: var(--wrong-border); border-color: var(--wrong-border); color: white; }
   .dot.done-skip { background: #adb5bd; border-color: #adb5bd; color: white; }
 
-  /* Tarjeta única grande */
   .single-card {
     background: white;
     border-radius: 20px;
@@ -176,7 +174,6 @@
     to   { opacity: 1; transform: translateX(0); }
   }
 
-  /* Countdown circular */
   .countdown-wrap {
     display: flex;
     justify-content: center;
@@ -218,7 +215,6 @@
   .single-q-num { font-size: 0.8rem; color: var(--muted); margin-bottom: 0.4rem; font-weight: 500; }
   .single-q-text { font-size: 1.1rem; line-height: 1.65; font-weight: 500; margin-bottom: 1.4rem; }
 
-  /* Botón siguiente */
   .btn-next {
     display: none;
     background: linear-gradient(135deg, #1a5f7a, #0d3d4f);
@@ -236,7 +232,6 @@
   .btn-next:hover { transform: translateY(-2px); box-shadow: 0 8px 25px rgba(26,95,122,0.35); }
   .btn-next.visible { display: inline-block; }
 
-  /* Resultado modo uno a uno */
   #singleResultBox { display: none; text-align: center; padding: 2rem; background: white; border-radius: 20px; border: 1px solid var(--border); box-shadow: 0 4px 24px rgba(0,0,0,0.06); animation: slideIn 0.35s ease; }
 </style>
 </head>
@@ -252,7 +247,7 @@
 
 <header>
   <h1>🏥 Test de Enfermería</h1>
-  <p>Quirófano · Urgencias · Planta · Medicación</p>
+  <p>Cuidados · Farmacología · Urgencias · Procedimientos</p>
   <span class="badge">20 preguntas · Tipo test · Con temporizador</span>
 </header>
 
@@ -339,35 +334,155 @@ const TIEMPO_TOTAL    = 30 * 60;
 const TIEMPO_PREGUNTA = 90;
 
 /* ─────────────────────────────────────────────────────────────
-   CONSTANTES MODO UNO A UNO (AÑADIDAS)
+   CONSTANTES MODO UNO A UNO
 ───────────────────────────────────────────────────────────── */
-const S_TIEMPO_TOTAL    = 10 * 60;  // 10 minutos
-const S_TIEMPO_PREGUNTA = 30;       // 30 segundos por pregunta
+const S_TIEMPO_TOTAL    = 10 * 60;
+const S_TIEMPO_PREGUNTA = 30;
 
 /* ─────────────────────────────────────────────────────────────
-   BASE DE PREGUNTAS
+   BASE DE PREGUNTAS — 20 NUEVAS
 ───────────────────────────────────────────────────────────── */
 const BASE = [
-  {cat:"Quirófano",q:"¿Cuál es el tiempo mínimo de lavado de manos quirúrgico según la OMS?",ops:["1 minuto con cepillo","2-3 minutos con solución antiséptica","5 minutos con cepillo y esponja","30 segundos con gel hidroalcohólico"],ok:1,exp:"El lavado quirúrgico debe durar 2-3 minutos con antiséptico (clorhexidina al 4% o povidona yodada), friccionando hasta codos."},
-  {cat:"Quirófano",q:"¿Qué posición se utiliza para cirugía de cadera en decúbito lateral?",ops:["Posición de Fowler","Posición de Trendelenburg","Posición de Sims","Posición de Lloyd-Davies"],ok:2,exp:"La posición de Sims (decúbito lateral) es la utilizada para cirugías de cadera, con el paciente sobre el lado no operado."},
-  {cat:"Quirófano",q:"El conteo de instrumental y compresas en quirófano se realiza:",ops:["Solo al inicio","Solo al cierre","Al inicio, antes del cierre y al final","Solo si el cirujano lo solicita"],ok:2,exp:"El conteo debe realizarse al inicio, antes del cierre de cavidades y al finalizar la cirugía."},
-  {cat:"Urgencias",q:"En el triaje de Manchester, ¿qué color se asigna a una hemorragia arterial activa?",ops:["Verde","Amarillo","Naranja","Rojo"],ok:3,exp:"El color ROJO (nivel 1, inmediato) corresponde a riesgo vital inmediato como hemorragia arterial activa."},
-  {cat:"Urgencias",q:"¿Cuál es la dosis estándar de adrenalina en PCR en adultos?",ops:["0,5 mg IV cada 3-5 min","1 mg IV cada 3-5 min","2 mg IV cada 10 min","0,1 mg IV en bolo único"],ok:1,exp:"La dosis estándar de adrenalina en PCR es 1 mg IV/IO cada 3-5 minutos según protocolo ACLS/SVA."},
-  {cat:"Urgencias",q:"Glasgow 8, SpO₂ 85%, FR 28. ¿Cuál es la prioridad inmediata?",ops:["Canalizar vía y extraer analítica","Manejo de vía aérea y oxigenoterapia","ECG de 12 derivaciones","Suero fisiológico en bolo"],ok:1,exp:"El ABC prioriza la vía aérea. Con Glasgow 8 y saturación crítica, el manejo de la vía aérea es lo primero."},
-  {cat:"Farmacología",q:"¿Cuál es el antídoto específico de la heparina no fraccionada?",ops:["Vitamina K","Protamina","Fitomenadiona","Plasma fresco congelado"],ok:1,exp:"La protamina es el antídoto de la heparina no fraccionada. 1 mg de protamina neutraliza 100 UI de heparina."},
-  {cat:"Farmacología",q:"La morfina está contraindicada en:",ops:["Dolor postoperatorio severo","EPOC grave con hipercapnia","Infarto agudo de miocardio","Pancreatitis aguda"],ok:1,exp:"La morfina está contraindicada en EPOC grave con hipercapnia porque deprime el centro respiratorio."},
-  {cat:"Farmacología",q:"¿Qué fármaco NO puede mezclarse con ningún otro en la misma jeringa?",ops:["Amoxicilina","Metamizol","Propofol","Furosemida"],ok:2,exp:"El propofol es una emulsión lipídica que no debe mezclarse con otros fármacos. Siempre se administra solo."},
-  {cat:"Planta",q:"¿Con qué frecuencia se cambia el apósito de una herida quirúrgica limpia?",ops:["Cada 24h","Cada 48-72h o si está mojado/sucio","Cada semana","Solo si hay infección"],ok:1,exp:"Se recomienda cambio cada 48-72h en heridas limpias, o antes si está mojado o con signos de infección."},
-  {cat:"Planta",q:"La escala de Braden evalúa el riesgo de:",ops:["Caídas","Úlceras por presión","Desnutrición","Dolor postoperatorio"],ok:1,exp:"La escala de Braden evalúa riesgo de úlceras por presión: percepción sensorial, humedad, actividad, movilidad, nutrición y fricción."},
-  {cat:"Planta",q:"¿Qué signo es indicativo de flebitis en una vía periférica?",ops:["Piel fría alrededor del catéter","Eritema, calor y dolor en el trayecto venoso","Sangrado en el punto de inserción","Presión de infusión disminuida"],ok:1,exp:"Los signos de flebitis son eritema, calor, dolor y cordón venoso palpable. Se debe retirar la vía inmediatamente."},
-  {cat:"Fisiología",q:"¿Cuál es el valor normal de SpO₂ en un adulto sano?",ops:["85-90%","90-94%","95-100%","Superior al 100%"],ok:2,exp:"La SpO₂ normal en adulto sano es 95-100%. Por debajo del 95% hay hipoxemia."},
-  {cat:"Fisiología",q:"¿Qué arteria se palpa al tomar el pulso radial?",ops:["Arteria cubital","Arteria radial","Arteria braquial","Arteria humeral"],ok:1,exp:"El pulso radial se palpa sobre la arteria radial, en la cara anterolateral de la muñeca."},
-  {cat:"Urgencias",q:"Hipoglucemia grave con paciente inconsciente. Primera actuación:",ops:["Azúcar oral","Glucagón IM o glucosa hipertónica IV","Insulina rápida subcutánea","Suero glucosado al 5%"],ok:1,exp:"Con inconsciencia no se puede dar nada oral. Se administra glucagón 1 mg IM o glucosa 50% IV."},
-  {cat:"Quirófano",q:"¿Qué es el campo estéril en quirófano?",ops:["Zona de preparación preanestésica","Área libre de microorganismos alrededor del campo operatorio","Pasillo de acceso al quirófano","Zona de esterilización del instrumental"],ok:1,exp:"El campo estéril es el área libre de microorganismos establecida con paños estériles alrededor del sitio quirúrgico."},
-  {cat:"Farmacología",q:"¿Cuántos parámetros incluyen los '5 correctos' en la administración de medicación?",ops:["3: paciente, fármaco, dosis","5: paciente, fármaco, dosis, vía, hora","7: incluye caducidad y alergias","10 según JCI"],ok:1,exp:"Los 5 correctos son: paciente correcto, medicamento correcto, dosis correcta, vía correcta y hora correcta."},
-  {cat:"Planta",q:"La sonda nasogástrica Salem (doble luz) se usa principalmente para:",ops:["Nutrición enteral a largo plazo","Descompresión gástrica y drenaje","Medición de pH gástrico","Administración de medicación"],ok:1,exp:"La sonda Salem tiene una luz de aspiración y otra de ventilación. Se usa para descompresión y drenaje gástrico."},
-  {cat:"Urgencias",q:"La regla de los 9 de Wallace se aplica para calcular:",ops:["IMC en urgencias","Extensión de quemaduras en adultos","Nivel de consciencia en politraumatizados","Riesgo trombótico"],ok:1,exp:"La regla de los 9 divide la superficie corporal en múltiplos del 9% para estimar la extensión de quemaduras."},
-  {cat:"Planta",q:"¿Qué letra del ABCDE NO corresponde a su descripción habitual?",ops:["A = Airway (vía aérea)","B = Breathing (respiración)","C = Consciousness (consciencia)","D = Disability (neurológico)"],ok:2,exp:"La C del ABCDE es Circulation (circulación), no Consciousness. El orden es: Airway, Breathing, Circulation, Disability, Exposure."}
+  {
+    cat: "Cuidados Básicos",
+    q: "¿Cuál es la temperatura corporal normal en un adulto medida de forma axilar?",
+    ops: ["35,5 – 36,0 °C", "36,1 – 37,2 °C", "37,5 – 38,0 °C", "38,1 – 38,5 °C"],
+    ok: 1,
+    exp: "La temperatura axilar normal en adultos oscila entre 36,1 y 37,2 °C. Por encima de 37,5 °C se considera febrícula y por encima de 38 °C, fiebre."
+  },
+  {
+    cat: "Cuidados Básicos",
+    q: "¿En qué posición se coloca al paciente para realizar una sonda vesical femenina?",
+    ops: ["Decúbito prono", "Decúbito lateral izquierdo", "Decúbito supino con piernas en posición ginecológica", "Posición de Trendelenburg"],
+    ok: 2,
+    exp: "Para sondaje vesical en mujeres se usa el decúbito supino con las piernas en posición ginecológica (rodillas flexionadas y separadas) para exponer el meato uretral."
+  },
+  {
+    cat: "Farmacología",
+    q: "¿Cuál es el efecto adverso más frecuente de los AINE (antiinflamatorios no esteroideos)?",
+    ops: ["Hepatotoxicidad grave", "Nefrotoxicidad aguda", "Irritación y úlcera gastrointestinal", "Agranulocitosis"],
+    ok: 2,
+    exp: "Los AINE inhiben la COX-1, reduciendo la producción de prostaglandinas protectoras de la mucosa gástrica, lo que causa irritación, gastritis y úlcera gastrointestinal."
+  },
+  {
+    cat: "Farmacología",
+    q: "Un paciente recibe warfarina. ¿Qué parámetro analítico se monitoriza para ajustar la dosis?",
+    ops: ["Tiempo de hemorragia (TH)", "INR (International Normalized Ratio)", "Recuento de plaquetas", "Tiempo de trombina (TT)"],
+    ok: 1,
+    exp: "El INR es el parámetro estándar para monitorizar la anticoagulación con warfarina. El rango terapéutico habitual es 2–3 (o 2,5–3,5 en prótesis valvulares)."
+  },
+  {
+    cat: "Urgencias",
+    q: "¿Qué relación compresiones/ventilaciones se aplica en RCP básica para adultos con 2 reanimadores según las guías ERC 2021?",
+    ops: ["15:2", "30:2", "5:1", "10:2"],
+    ok: 1,
+    exp: "Las guías ERC 2021 mantienen la relación 30:2 tanto con uno como con dos reanimadores en RCP básica de adultos, hasta disponer de vía aérea avanzada."
+  },
+  {
+    cat: "Urgencias",
+    q: "En la escala de Glasgow, ¿cuál es la puntuación total mínima posible?",
+    ops: ["0", "1", "3", "6"],
+    ok: 2,
+    exp: "La escala de Glasgow tiene tres componentes (ocular, verbal, motor) con puntuaciones mínimas de 1 cada uno, por lo que la puntuación mínima total es 3."
+  },
+  {
+    cat: "Procedimientos",
+    q: "¿Con qué ángulo aproximado se introduce la aguja al realizar una inyección intramuscular en el deltoides?",
+    ops: ["15°", "45°", "90°", "30°"],
+    ok: 2,
+    exp: "Las inyecciones intramusculares se administran con la aguja en ángulo de 90° respecto a la piel para depositar el medicamento en el tejido muscular."
+  },
+  {
+    cat: "Procedimientos",
+    q: "Al retirar una vía venosa periférica, ¿qué acción es prioritaria?",
+    ops: ["Extraer el catéter rápidamente sin comprimir", "Comprimir el punto de punción entre 2 y 5 minutos con gasa estéril", "Aplicar antiséptico y dejar sin cubrir", "Poner hielo sobre la zona inmediatamente"],
+    ok: 1,
+    exp: "Tras retirar el catéter se debe comprimir con gasa estéril de 2 a 5 minutos para favorecer la hemostasia y prevenir hematomas."
+  },
+  {
+    cat: "Planta",
+    q: "La diuresis mínima aceptable en un adulto en reposo es aproximadamente:",
+    ops: ["0,1 ml/kg/h", "0,5 ml/kg/h", "2 ml/kg/h", "5 ml/kg/h"],
+    ok: 1,
+    exp: "El umbral mínimo de diuresis adecuada en adultos es 0,5 ml/kg/h. Por debajo de este valor se considera oliguria y puede indicar hipoperfusión renal."
+  },
+  {
+    cat: "Planta",
+    q: "¿Qué escala se utiliza habitualmente para valorar el dolor en pacientes que no pueden comunicarse verbalmente?",
+    ops: ["Escala Visual Analógica (EVA)", "Escala de Ramsey", "Escala CPOT (Critical-Care Pain Observation Tool)", "Escala de Norton"],
+    ok: 2,
+    exp: "La escala CPOT evalúa expresión facial, movimientos corporales, tensión muscular y adaptación al ventilador, siendo válida para pacientes que no pueden expresar verbalmente el dolor."
+  },
+  {
+    cat: "Infecciones y EPIS",
+    q: "Según las precauciones estándar de la OMS, ¿cuándo es obligatorio el lavado de manos con agua y jabón en lugar de fricción con solución alcohólica?",
+    ops: ["Antes de cualquier procedimiento invasivo", "Cuando las manos están visiblemente sucias o contaminadas con sangre/fluidos", "Solo después del contacto con pacientes en aislamiento", "Únicamente antes de comer"],
+    ok: 1,
+    exp: "La OMS indica que el lavado con agua y jabón es obligatorio cuando las manos están visiblemente sucias o contaminadas. En el resto de situaciones, la fricción alcohólica es suficiente y más eficaz."
+  },
+  {
+    cat: "Infecciones y EPIS",
+    q: "¿Qué tipo de aislamiento requiere un paciente diagnosticado de tuberculosis pulmonar activa?",
+    ops: ["Aislamiento de contacto", "Aislamiento por gotas", "Aislamiento por vía aérea (aerosoles)", "No requiere aislamiento con tratamiento iniciado"],
+    ok: 2,
+    exp: "La tuberculosis pulmonar se transmite por aerosoles (partículas <5 µm). Requiere aislamiento por vía aérea: habitación con presión negativa y mascarilla FFP2/N95 para el personal."
+  },
+  {
+    cat: "Farmacología",
+    q: "Un paciente alérgico a la penicilina necesita antibioterapia. ¿Cuál de los siguientes grupos presenta mayor riesgo de alergia cruzada?",
+    ops: ["Macrólidos (azitromicina)", "Cefalosporinas de 1ª generación", "Quinolonas (ciprofloxacino)", "Aminoglucósidos (gentamicina)"],
+    ok: 1,
+    exp: "Las cefalosporinas, especialmente las de 1ª generación, comparten el anillo betalactámico con las penicilinas. Existe un riesgo de alergia cruzada estimado en un 1-2%."
+  },
+  {
+    cat: "Urgencias",
+    q: "¿Cuál es el signo de Cushing en hipertensión intracraneal?",
+    ops: ["Hipotensión + taquicardia + taquipnea", "Hipertensión + bradicardia + bradipnea", "Hipotensión + bradicardia + midriasis", "Hipertensión + taquicardia + fiebre"],
+    ok: 1,
+    exp: "La tríada de Cushing indica hipertensión intracraneal grave: hipertensión arterial sistémica, bradicardia refleja y bradipnea irregular. Es un signo de herniación inminente."
+  },
+  {
+    cat: "Cuidados Básicos",
+    q: "¿Con qué frecuencia se recomienda cambiar los sistemas de perfusión intravenosa (sueros) en pacientes hospitalizados?",
+    ops: ["Cada 24 horas", "Cada 72-96 horas (o según protocolo del centro)", "Cada semana", "Solo si hay signos de flebitis"],
+    ok: 1,
+    exp: "Las guías CDC y los protocolos hospitalarios recomiendan el cambio de sistemas de sueros cada 72-96 horas para reducir el riesgo de infección asociada a catéter."
+  },
+  {
+    cat: "Procedimientos",
+    q: "Antes de administrar una medicación por sonda nasogástrica, ¿cómo se comprueba la correcta colocación de la sonda?",
+    ops: ["Introduciendo aire y auscultando el epigastrio exclusivamente", "Aspirando contenido gástrico y confirmando pH ≤ 5,5, y/o radiografía de tórax/abdomen", "Sumergiendo el extremo en agua para observar burbujas", "Midiendo la cantidad de sonda exteriorizada"],
+    ok: 1,
+    exp: "El método más seguro es la confirmación radiológica. Si no es posible, se aspira contenido y se mide el pH: ≤5,5 indica posición gástrica. La auscultación sola no es fiable."
+  },
+  {
+    cat: "Planta",
+    q: "¿Qué indica un balance hídrico positivo de +3000 ml en 24 horas en un paciente postquirúrgico?",
+    ops: ["Deshidratación moderada", "Retención de líquidos que puede indicar sobrecarga de volumen", "Situación completamente normal en postoperatorio", "Poliuria fisiológica"],
+    ok: 1,
+    exp: "Un balance hídrico muy positivo indica que el paciente retiene más líquido del que elimina. Puede causar edema pulmonar, anasarca o insuficiencia cardíaca, especialmente en cardiopatías."
+  },
+  {
+    cat: "Cuidados Básicos",
+    q: "¿Cuál es la presión de inflado recomendada del neumotaponamiento (cuff) de un tubo endotraqueal para evitar daño traqueal y broncoaspiración?",
+    ops: ["< 10 cmH₂O", "20-30 cmH₂O", "40-50 cmH₂O", "> 60 cmH₂O"],
+    ok: 1,
+    exp: "La presión del cuff debe mantenerse entre 20 y 30 cmH₂O (15-22 mmHg). Por debajo hay riesgo de broncoaspiración; por encima, isquemia y necrosis traqueal."
+  },
+  {
+    cat: "Farmacología",
+    q: "¿Cuál es el mecanismo de acción del paracetamol (acetaminofén)?",
+    ops: ["Inhibición periférica de COX-1 y COX-2", "Inhibición central de la síntesis de prostaglandinas y modulación del sistema endocannabinoide", "Antagonismo de receptores opioides µ", "Bloqueo de canales de sodio en terminaciones nerviosas"],
+    ok: 1,
+    exp: "El paracetamol actúa principalmente a nivel central inhibiendo la síntesis de prostaglandinas en el SNC. Su acción antiinflamatoria periférica es mínima, lo que explica que no cause gastropatía."
+  },
+  {
+    cat: "Urgencias",
+    q: "Un paciente presenta PAS 80 mmHg, FC 130 lpm, piel fría y sudorosa, y relleno capilar > 3 segundos. ¿Qué tipo de shock describe este cuadro?",
+    ops: ["Shock distributivo (séptico)", "Shock hipovolémico", "Shock obstructivo (TEP masivo)", "Shock cardiogénico"],
+    ok: 1,
+    exp: "La triada de hipotensión, taquicardia y signos de hipoperfusión periférica (piel fría, relleno capilar enlentecido) sin foco infeccioso ni cardiopatía conocida orienta a shock hipovolémico por pérdida de volumen."
+  }
 ];
 
 /* ─────────────────────────────────────────────────────────────
@@ -388,10 +503,10 @@ let cardTimerInts = [];
 let cardSecs = [];
 
 /* ─────────────────────────────────────────────────────────────
-   VARIABLES MODO UNO A UNO (NUEVAS)
+   VARIABLES MODO UNO A UNO
 ───────────────────────────────────────────────────────────── */
 let sCurrentIdx   = 0;
-let sAnswers      = [];      // {sel: índice elegido o -1, ok: boolean}
+let sAnswers      = [];
 let sEnviado      = false;
 let sGlobalInt    = null;
 let sGlobalSec    = S_TIEMPO_TOTAL;
@@ -439,13 +554,11 @@ function startMode(mode) {
 }
 
 function resetToMenu() {
-  // Limpiar timers
   clearInterval(timerGlobalInt);
   clearInterval(sGlobalInt);
   clearInterval(sCardInt);
   cardTimerInts.forEach(t=>clearInterval(t));
 
-  // Ocultar todo
   document.getElementById('allContainer').style.display = 'none';
   document.getElementById('singleContainer').style.display = 'none';
   document.getElementById('result-box').style.display = 'none';
@@ -455,18 +568,16 @@ function resetToMenu() {
   document.getElementById('singleCard').style.display = 'block';
   document.getElementById('btnNext').className = 'btn-next';
 
-  // Resetear barra
   document.getElementById('progressBar').style.width = '0%';
   document.getElementById('progressLabel').textContent = '0 / 20';
   document.getElementById('timerGlobal').className = 'timer-global';
 
-  // Mostrar selector
   document.getElementById('modeSelector').style.display = 'flex';
   window.scrollTo({top:0,behavior:'smooth'});
 }
 
 /* ═══════════════════════════════════════════════════════════
-   MODO ORIGINAL (sin cambios en lógica interna)
+   MODO ORIGINAL
 ═══════════════════════════════════════════════════════════ */
 function buildQuiz() {
   preprar();
@@ -630,7 +741,7 @@ function submitQuiz(auto) {
 }
 
 /* ═══════════════════════════════════════════════════════════
-   MODO UNO A UNO — NUEVO
+   MODO UNO A UNO
 ═══════════════════════════════════════════════════════════ */
 
 function buildSingle() {
@@ -641,7 +752,6 @@ function buildSingle() {
   sAnsweredCurrent = false;
   sGlobalSec = S_TIEMPO_TOTAL;
 
-  // Inicializar puntos
   const dp = document.getElementById('dotProgress');
   dp.innerHTML = '';
   PREGUNTAS.forEach((_,i)=>{
@@ -698,7 +808,6 @@ function pickSingle(oi) {
   const p = PREGUNTAS[sCurrentIdx];
   const acierto = (oi === p.ok);
 
-  // Colorear opciones
   document.querySelectorAll('[id^="sop-"]').forEach((o,j)=>{
     o.classList.add('locked');
     o.onclick = null;
@@ -706,19 +815,15 @@ function pickSingle(oi) {
     if (j === oi && !acierto) o.classList.add('wrong-answer');
   });
 
-  // Feedback
   const fb = document.getElementById('sFb');
   fb.className = 'feedback ' + (acierto ? 'correct' : 'wrong');
   fb.textContent = (acierto ? '✅ Correcto — ' : '❌ Incorrecto — ') + p.exp;
 
-  // Guardar respuesta
   sAnswers.push({ sel: oi, ok: acierto });
 
-  // Punto de progreso
   const dot = document.getElementById('dot-'+sCurrentIdx);
   if (dot) dot.className = 'dot ' + (acierto ? 'done-ok' : 'done-fail');
 
-  // Mostrar botón siguiente
   const isLast = (sCurrentIdx === PREGUNTAS.length - 1);
   const btn = document.getElementById('btnNext');
   btn.className = 'btn-next visible';
@@ -726,7 +831,6 @@ function pickSingle(oi) {
 }
 
 function nextSingle() {
-  // Si no respondió (timeout ya guardó) avanzar igual
   if (!sAnsweredCurrent) {
     sAnswers.push({ sel: -1, ok: false });
     const dot = document.getElementById('dot-'+sCurrentIdx);
@@ -740,7 +844,6 @@ function nextSingle() {
     return;
   }
 
-  // Actualizar dot activo
   const prevDot = document.getElementById('dot-'+(sCurrentIdx-1));
   if (prevDot && !prevDot.className.includes('done')) prevDot.className = 'dot done-skip';
   const newDot = document.getElementById('dot-'+sCurrentIdx);
@@ -768,13 +871,12 @@ function startSingleGlobal() {
 function startSingleCard() {
   clearInterval(sCardInt);
   sCardSec = S_TIEMPO_PREGUNTA;
-  const circumference = 2 * Math.PI * 25; // ~157
+  const circumference = 2 * Math.PI * 25;
 
   sCardInt = setInterval(()=>{
     if (sEnviado) { clearInterval(sCardInt); return; }
     sCardSec--;
 
-    // Número
     const num = document.getElementById('sCountNum');
     const ring = document.getElementById('sRing');
     if (!num || !ring) { clearInterval(sCardInt); return; }
@@ -783,7 +885,6 @@ function startSingleCard() {
     const offset = circumference * (1 - sCardSec / S_TIEMPO_PREGUNTA);
     ring.style.strokeDashoffset = offset;
 
-    // Colores
     if (sCardSec <= 10 && sCardSec > 5) {
       ring.className = 'countdown-ring warning';
       num.className = 'countdown-num warning';
@@ -792,11 +893,9 @@ function startSingleCard() {
       num.className = 'countdown-num danger';
     }
 
-    // Tiempo agotado
     if (sCardSec <= 0) {
       clearInterval(sCardInt);
       if (!sAnsweredCurrent) {
-        // Tiempo agotado sin responder: mostrar respuesta correcta y avanzar auto
         sAnsweredCurrent = true;
         const p = PREGUNTAS[sCurrentIdx];
         document.querySelectorAll('[id^="sop-"]').forEach((o,j)=>{
@@ -827,7 +926,6 @@ function finalizeSingle() {
   clearInterval(sGlobalInt);
   clearInterval(sCardInt);
 
-  // Rellenar respuestas que falten (si se acabó el tiempo global)
   while (sAnswers.length < PREGUNTAS.length) {
     sAnswers.push({ sel: -1, ok: false });
   }
@@ -837,7 +935,6 @@ function finalizeSingle() {
   const nota   = ((ok / PREGUNTAS.length) * 10).toFixed(1);
   const pct    = Math.round((ok / PREGUNTAS.length) * 100);
 
-  // Construir resumen de fallos
   const resumen = [];
   sAnswers.forEach((a,i)=>{
     if (!a.ok) {
@@ -847,7 +944,6 @@ function finalizeSingle() {
     }
   });
 
-  // Ocultar tarjeta, mostrar resultado
   document.getElementById('singleCard').style.display = 'none';
   document.getElementById('btnNext').className = 'btn-next';
 
@@ -876,7 +972,6 @@ function finalizeSingle() {
   rb.scrollIntoView({behavior:'smooth', block:'center'});
   enviarEmail(nota, ok, fallos, pct, resumen, 'one');
 
-  // Barra progreso al 100%
   document.getElementById('progressBar').style.width = '100%';
   document.getElementById('progressLabel').textContent = PREGUNTAS.length + ' / ' + PREGUNTAS.length;
 }
@@ -902,15 +997,14 @@ function enviarEmail(nota,ok,fallos,pct,resumen,modo) {
 }
 
 /* ─────────────────────────────────────────────────────────────
-   ANTI-TRAMPA — OPTIMIZADO PARA MÓVIL Y ESCRITORIO
+   ANTI-TRAMPA
 ───────────────────────────────────────────────────────────── */
 function cerrarAviso(){ document.getElementById('warnOverlay').classList.remove('show'); }
 
 function testActivo() {
-  // Solo activo si hay un modo en marcha y no se ha enviado
   if (currentMode === 'all') return !enviado;
   if (currentMode === 'one') return !sEnviado;
-  return false; // en el selector de modo, no disparar
+  return false;
 }
 
 function aviso(titulo, msg) {
@@ -923,12 +1017,10 @@ function aviso(titulo, msg) {
   document.getElementById('warnOverlay').classList.add('show');
 }
 
-// ── Copiar / cortar (escritorio) ──
 document.addEventListener('copy',  e=>{ if(!testActivo()) return; e.preventDefault(); aviso('🚫 Copia bloqueada','Copiar texto no está permitido durante el test.'); });
 document.addEventListener('cut',   e=>{ if(!testActivo()) return; e.preventDefault(); aviso('🚫 Cortar bloqueado','Cortar texto no está permitido durante el test.'); });
 document.addEventListener('paste', e=>{ if(!testActivo()) return; e.preventDefault(); });
 
-// ── Menú contextual — bloqueado solo en móvil táctil para no molestar en escritorio ──
 const isMobile = /Mobi|Android|iPhone|iPad/i.test(navigator.userAgent);
 if (isMobile) {
   document.addEventListener('contextmenu', e=>{ if(!testActivo()) return; e.preventDefault(); });
@@ -936,7 +1028,6 @@ if (isMobile) {
   document.addEventListener('contextmenu', e=>{ if(!testActivo()) return; e.preventDefault(); aviso('🚫 Menú bloqueado','El menú contextual está desactivado durante el test.'); });
 }
 
-// ── Atajos de teclado (solo escritorio, en móvil no aplica) ──
 if (!isMobile) {
   document.addEventListener('keydown', e=>{
     if (!testActivo()) return;
@@ -952,12 +1043,10 @@ if (!isMobile) {
   });
 }
 
-// ── Cambio de pestaña / app en segundo plano — funciona en móvil y escritorio ──
 let visibilityWarningTimeout = null;
 document.addEventListener('visibilitychange', ()=>{
   if (!testActivo()) return;
   if (document.hidden) {
-    // Pequeño delay para evitar falsos positivos en móvil (ej. teclado virtual)
     visibilityWarningTimeout = setTimeout(()=>{
       aviso('👀 ¿Buscando en Google?','Has salido del test. Esto quedará registrado en el informe.');
     }, 800);
@@ -966,7 +1055,6 @@ document.addEventListener('visibilitychange', ()=>{
   }
 });
 
-// ── Pérdida de foco en escritorio (en móvil se omite, ya lo cubre visibilitychange) ──
 if (!isMobile) {
   let blurTimeout = null;
   window.addEventListener('blur', ()=>{
@@ -978,15 +1066,12 @@ if (!isMobile) {
   window.addEventListener('focus', ()=>{ clearTimeout(blurTimeout); });
 }
 
-// ── Detección de pantallazos en iOS (experimental) ──
-// En iOS, hacer captura de pantalla dispara un breve flash del sistema; no detectable directamente.
-// En su lugar, detectamos selección de texto en móvil táctil ──
 if (isMobile) {
   document.addEventListener('selectionchange', ()=>{
     if (!testActivo()) return;
     const sel = window.getSelection();
     if (sel && sel.toString().length > 0) {
-      sel.removeAllRanges(); // limpiar selección
+      sel.removeAllRanges();
     }
   });
 }
