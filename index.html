@@ -344,144 +344,174 @@ const S_TIEMPO_PREGUNTA = 30;
 ───────────────────────────────────────────────────────────── */
 const BASE = [
   {
-    cat: "Cuidados Básicos",
-    q: "¿Cuál es la temperatura corporal normal en un adulto medida de forma axilar?",
-    ops: ["35,5 – 36,0 °C", "36,1 – 37,2 °C", "37,5 – 38,0 °C", "38,1 – 38,5 °C"],
-    ok: 1,
-    exp: "La temperatura axilar normal en adultos oscila entre 36,1 y 37,2 °C. Por encima de 37,5 °C se considera febrícula y por encima de 38 °C, fiebre."
+    cat: "Anatomía y Fisiología",
+    q: "¿Qué válvula cardíaca separa el ventrículo izquierdo de la aorta?",
+    ops: ["Válvula mitral", "Válvula tricúspide", "Válvula aórtica", "Válvula pulmonar"],
+    ok: 2,
+    exp: "La válvula aórtica (semilunar aórtica) se encuentra entre el ventrículo izquierdo y la aorta. Impide el reflujo de sangre hacia el ventrículo durante la diástole."
   },
   {
     cat: "Cuidados Básicos",
-    q: "¿En qué posición se coloca al paciente para realizar una sonda vesical femenina?",
-    ops: ["Decúbito prono", "Decúbito lateral izquierdo", "Decúbito supino con piernas en posición ginecológica", "Posición de Trendelenburg"],
+    q: "¿Cuál es la vía de administración correcta de la insulina de acción rápida en un paciente diabético hospitalizado?",
+    ops: ["Vía oral", "Vía intramuscular profunda", "Vía subcutánea", "Vía intravenosa exclusivamente"],
     ok: 2,
-    exp: "Para sondaje vesical en mujeres se usa el decúbito supino con las piernas en posición ginecológica (rodillas flexionadas y separadas) para exponer el meato uretral."
+    exp: "La insulina de acción rápida se administra habitualmente por vía subcutánea. La vía IV se reserva para situaciones especiales (cetoacidosis, cirugía mayor) bajo estricto protocolo."
   },
   {
     cat: "Farmacología",
-    q: "¿Cuál es el efecto adverso más frecuente de los AINE (antiinflamatorios no esteroideos)?",
-    ops: ["Hepatotoxicidad grave", "Nefrotoxicidad aguda", "Irritación y úlcera gastrointestinal", "Agranulocitosis"],
-    ok: 2,
-    exp: "Los AINE inhiben la COX-1, reduciendo la producción de prostaglandinas protectoras de la mucosa gástrica, lo que causa irritación, gastritis y úlcera gastrointestinal."
-  },
-  {
-    cat: "Farmacología",
-    q: "Un paciente recibe warfarina. ¿Qué parámetro analítico se monitoriza para ajustar la dosis?",
-    ops: ["Tiempo de hemorragia (TH)", "INR (International Normalized Ratio)", "Recuento de plaquetas", "Tiempo de trombina (TT)"],
+    q: "Un paciente recibe digoxina. ¿Cuál de los siguientes signos es indicativo de toxicidad digitálica?",
+    ops: ["Taquicardia sinusal > 120 lpm", "Bradicardia, náuseas, visión con halos amarillos/verdes", "Hipertensión arterial severa", "Fiebre elevada con escalofríos"],
     ok: 1,
-    exp: "El INR es el parámetro estándar para monitorizar la anticoagulación con warfarina. El rango terapéutico habitual es 2–3 (o 2,5–3,5 en prótesis valvulares)."
+    exp: "La toxicidad digitálica se manifiesta con bradicardia, arritmias, náuseas, vómitos y alteraciones visuales características (halos amarillos o verdes). El rango terapéutico es 0,5–2 ng/mL."
   },
   {
     cat: "Urgencias",
-    q: "¿Qué relación compresiones/ventilaciones se aplica en RCP básica para adultos con 2 reanimadores según las guías ERC 2021?",
-    ops: ["15:2", "30:2", "5:1", "10:2"],
+    q: "Un paciente adulto presenta una quemadura que afecta toda la extremidad superior derecha. Aplicando la regla de los 9 de Wallace, ¿qué porcentaje de superficie corporal quemada representa?",
+    ops: ["4,5%", "9%", "18%", "1%"],
     ok: 1,
-    exp: "Las guías ERC 2021 mantienen la relación 30:2 tanto con uno como con dos reanimadores en RCP básica de adultos, hasta disponer de vía aérea avanzada."
-  },
-  {
-    cat: "Urgencias",
-    q: "En la escala de Glasgow, ¿cuál es la puntuación total mínima posible?",
-    ops: ["0", "1", "3", "6"],
-    ok: 2,
-    exp: "La escala de Glasgow tiene tres componentes (ocular, verbal, motor) con puntuaciones mínimas de 1 cada uno, por lo que la puntuación mínima total es 3."
-  },
-  {
-    cat: "Procedimientos",
-    q: "¿Con qué ángulo aproximado se introduce la aguja al realizar una inyección intramuscular en el deltoides?",
-    ops: ["15°", "45°", "90°", "30°"],
-    ok: 2,
-    exp: "Las inyecciones intramusculares se administran con la aguja en ángulo de 90° respecto a la piel para depositar el medicamento en el tejido muscular."
-  },
-  {
-    cat: "Procedimientos",
-    q: "Al retirar una vía venosa periférica, ¿qué acción es prioritaria?",
-    ops: ["Extraer el catéter rápidamente sin comprimir", "Comprimir el punto de punción entre 2 y 5 minutos con gasa estéril", "Aplicar antiséptico y dejar sin cubrir", "Poner hielo sobre la zona inmediatamente"],
-    ok: 1,
-    exp: "Tras retirar el catéter se debe comprimir con gasa estéril de 2 a 5 minutos para favorecer la hemostasia y prevenir hematomas."
-  },
-  {
-    cat: "Planta",
-    q: "La diuresis mínima aceptable en un adulto en reposo es aproximadamente:",
-    ops: ["0,1 ml/kg/h", "0,5 ml/kg/h", "2 ml/kg/h", "5 ml/kg/h"],
-    ok: 1,
-    exp: "El umbral mínimo de diuresis adecuada en adultos es 0,5 ml/kg/h. Por debajo de este valor se considera oliguria y puede indicar hipoperfusión renal."
-  },
-  {
-    cat: "Planta",
-    q: "¿Qué escala se utiliza habitualmente para valorar el dolor en pacientes que no pueden comunicarse verbalmente?",
-    ops: ["Escala Visual Analógica (EVA)", "Escala de Ramsey", "Escala CPOT (Critical-Care Pain Observation Tool)", "Escala de Norton"],
-    ok: 2,
-    exp: "La escala CPOT evalúa expresión facial, movimientos corporales, tensión muscular y adaptación al ventilador, siendo válida para pacientes que no pueden expresar verbalmente el dolor."
+    exp: "Según la regla de los 9 de Wallace, cada extremidad superior equivale al 9% de la superficie corporal total (4,5% la cara anterior y 4,5% la posterior)."
   },
   {
     cat: "Infecciones y EPIS",
-    q: "Según las precauciones estándar de la OMS, ¿cuándo es obligatorio el lavado de manos con agua y jabón en lugar de fricción con solución alcohólica?",
-    ops: ["Antes de cualquier procedimiento invasivo", "Cuando las manos están visiblemente sucias o contaminadas con sangre/fluidos", "Solo después del contacto con pacientes en aislamiento", "Únicamente antes de comer"],
+    q: "¿Cuál es el orden correcto para quitarse el EPI tras atender a un paciente en aislamiento de contacto?",
+    ops: [
+      "Mascarilla → guantes → bata → higiene de manos",
+      "Guantes → bata → higiene de manos → mascarilla",
+      "Bata → mascarilla → guantes → higiene de manos",
+      "Higiene de manos → guantes → bata → mascarilla"
+    ],
     ok: 1,
-    exp: "La OMS indica que el lavado con agua y jabón es obligatorio cuando las manos están visiblemente sucias o contaminadas. En el resto de situaciones, la fricción alcohólica es suficiente y más eficaz."
-  },
-  {
-    cat: "Infecciones y EPIS",
-    q: "¿Qué tipo de aislamiento requiere un paciente diagnosticado de tuberculosis pulmonar activa?",
-    ops: ["Aislamiento de contacto", "Aislamiento por gotas", "Aislamiento por vía aérea (aerosoles)", "No requiere aislamiento con tratamiento iniciado"],
-    ok: 2,
-    exp: "La tuberculosis pulmonar se transmite por aerosoles (partículas <5 µm). Requiere aislamiento por vía aérea: habitación con presión negativa y mascarilla FFP2/N95 para el personal."
-  },
-  {
-    cat: "Farmacología",
-    q: "Un paciente alérgico a la penicilina necesita antibioterapia. ¿Cuál de los siguientes grupos presenta mayor riesgo de alergia cruzada?",
-    ops: ["Macrólidos (azitromicina)", "Cefalosporinas de 1ª generación", "Quinolonas (ciprofloxacino)", "Aminoglucósidos (gentamicina)"],
-    ok: 1,
-    exp: "Las cefalosporinas, especialmente las de 1ª generación, comparten el anillo betalactámico con las penicilinas. Existe un riesgo de alergia cruzada estimado en un 1-2%."
-  },
-  {
-    cat: "Urgencias",
-    q: "¿Cuál es el signo de Cushing en hipertensión intracraneal?",
-    ops: ["Hipotensión + taquicardia + taquipnea", "Hipertensión + bradicardia + bradipnea", "Hipotensión + bradicardia + midriasis", "Hipertensión + taquicardia + fiebre"],
-    ok: 1,
-    exp: "La tríada de Cushing indica hipertensión intracraneal grave: hipertensión arterial sistémica, bradicardia refleja y bradipnea irregular. Es un signo de herniación inminente."
-  },
-  {
-    cat: "Cuidados Básicos",
-    q: "¿Con qué frecuencia se recomienda cambiar los sistemas de perfusión intravenosa (sueros) en pacientes hospitalizados?",
-    ops: ["Cada 24 horas", "Cada 72-96 horas (o según protocolo del centro)", "Cada semana", "Solo si hay signos de flebitis"],
-    ok: 1,
-    exp: "Las guías CDC y los protocolos hospitalarios recomiendan el cambio de sistemas de sueros cada 72-96 horas para reducir el riesgo de infección asociada a catéter."
+    exp: "El orden de retirada del EPI según la OMS es: guantes (parte más contaminada) → bata → higiene de manos → mascarilla/protección ocular → higiene de manos final."
   },
   {
     cat: "Procedimientos",
-    q: "Antes de administrar una medicación por sonda nasogástrica, ¿cómo se comprueba la correcta colocación de la sonda?",
-    ops: ["Introduciendo aire y auscultando el epigastrio exclusivamente", "Aspirando contenido gástrico y confirmando pH ≤ 5,5, y/o radiografía de tórax/abdomen", "Sumergiendo el extremo en agua para observar burbujas", "Midiendo la cantidad de sonda exteriorizada"],
-    ok: 1,
-    exp: "El método más seguro es la confirmación radiológica. Si no es posible, se aspira contenido y se mide el pH: ≤5,5 indica posición gástrica. La auscultación sola no es fiable."
+    q: "¿Cuál es la zona de punción preferente para la extracción de sangre venosa periférica en adultos?",
+    ops: ["Vena femoral", "Vena cefálica del dorso de la mano", "Fosa antecubital (vena mediana cubital)", "Vena yugular externa"],
+    ok: 2,
+    exp: "La vena mediana cubital, ubicada en la fosa antecubital, es la de elección para extracción venosa por su calibre, accesibilidad y menor movilidad. La cefálica del dorso de la mano es segunda opción."
   },
   {
-    cat: "Planta",
-    q: "¿Qué indica un balance hídrico positivo de +3000 ml en 24 horas en un paciente postquirúrgico?",
-    ops: ["Deshidratación moderada", "Retención de líquidos que puede indicar sobrecarga de volumen", "Situación completamente normal en postoperatorio", "Poliuria fisiológica"],
+    cat: "Planta / Monitorización",
+    q: "Un paciente en ventilación mecánica presenta una saturación de O₂ del 88% con FiO₂ al 40%. ¿Cuál es la primera acción de enfermería?",
+    ops: [
+      "Administrar broncodilatadores de inmediato sin avisar al médico",
+      "Comprobar la correcta colocación del pulsioxímetro y la permeabilidad de la vía aérea, y avisar al médico",
+      "Aumentar la FiO₂ al 100% de forma autónoma",
+      "Retirar el ventilador y conectar ambú"
+    ],
     ok: 1,
-    exp: "Un balance hídrico muy positivo indica que el paciente retiene más líquido del que elimina. Puede causar edema pulmonar, anasarca o insuficiencia cardíaca, especialmente en cardiopatías."
+    exp: "Ante una desaturación, primero se verifica la fiabilidad del sensor y la permeabilidad de la vía aérea. Después se notifica al médico para ajustar parámetros ventilatorios. Actuar sin valoración puede ser perjudicial."
   },
   {
     cat: "Cuidados Básicos",
-    q: "¿Cuál es la presión de inflado recomendada del neumotaponamiento (cuff) de un tubo endotraqueal para evitar daño traqueal y broncoaspiración?",
-    ops: ["< 10 cmH₂O", "20-30 cmH₂O", "40-50 cmH₂O", "> 60 cmH₂O"],
+    q: "¿Qué escala se utiliza para valorar el riesgo de úlceras por presión (UPP) en pacientes hospitalizados?",
+    ops: ["Escala de Glasgow", "Escala de Braden", "Escala de Barthel", "Escala de Morse"],
     ok: 1,
-    exp: "La presión del cuff debe mantenerse entre 20 y 30 cmH₂O (15-22 mmHg). Por debajo hay riesgo de broncoaspiración; por encima, isquemia y necrosis traqueal."
+    exp: "La escala de Braden evalúa 6 subescalas (percepción sensorial, humedad, actividad, movilidad, nutrición y fricción/cizalla). Una puntuación ≤ 18 indica riesgo de UPP."
   },
   {
     cat: "Farmacología",
-    q: "¿Cuál es el mecanismo de acción del paracetamol (acetaminofén)?",
-    ops: ["Inhibición periférica de COX-1 y COX-2", "Inhibición central de la síntesis de prostaglandinas y modulación del sistema endocannabinoide", "Antagonismo de receptores opioides µ", "Bloqueo de canales de sodio en terminaciones nerviosas"],
+    q: "¿Cuál es el antídoto específico para la sobredosis de benzodiazepinas?",
+    ops: ["Naloxona", "Flumazenil", "N-acetilcisteína", "Atropina"],
     ok: 1,
-    exp: "El paracetamol actúa principalmente a nivel central inhibiendo la síntesis de prostaglandinas en el SNC. Su acción antiinflamatoria periférica es mínima, lo que explica que no cause gastropatía."
+    exp: "El flumazenil es el antagonista competitivo de los receptores GABA-A que revierte la sedación por benzodiazepinas. Tiene una vida media corta (1 h), por lo que puede ser necesario repetir la dosis."
   },
   {
     cat: "Urgencias",
-    q: "Un paciente presenta PAS 80 mmHg, FC 130 lpm, piel fría y sudorosa, y relleno capilar > 3 segundos. ¿Qué tipo de shock describe este cuadro?",
-    ops: ["Shock distributivo (séptico)", "Shock hipovolémico", "Shock obstructivo (TEP masivo)", "Shock cardiogénico"],
+    q: "¿Cuál es la posición lateral de seguridad y en qué situación se emplea?",
+    ops: [
+      "Decúbito supino con cabeza hiperextendida; en parada cardiorrespiratoria",
+      "Decúbito lateral con cabeza ligeramente hacia atrás; en paciente inconsciente que respira para evitar aspiración",
+      "Posición de Fowler a 45°; en insuficiencia respiratoria",
+      "Trendelenburg; en shock hemorrágico"
+    ],
     ok: 1,
-    exp: "La triada de hipotensión, taquicardia y signos de hipoperfusión periférica (piel fría, relleno capilar enlentecido) sin foco infeccioso ni cardiopatía conocida orienta a shock hipovolémico por pérdida de volumen."
+    exp: "La posición lateral de seguridad (PLS) se usa en pacientes inconscientes que respiran espontáneamente. Mantiene la vía aérea permeable y previene la broncoaspiración al favorecer el drenaje de secreciones."
+  },
+  {
+    cat: "Anatomía y Fisiología",
+    q: "¿Qué hormona produce la médula suprarrenal en respuesta al estrés agudo?",
+    ops: ["Cortisol", "Aldosterona", "Adrenalina (epinefrina)", "Insulina"],
+    ok: 2,
+    exp: "La médula suprarrenal secreta adrenalina (80%) y noradrenalina (20%) ante el estrés agudo, preparando al organismo para la respuesta de 'lucha o huida': taquicardia, broncodilatación y glucogenólisis."
+  },
+  {
+    cat: "Procedimientos",
+    q: "Al realizar una gasometría arterial en la arteria radial, ¿qué prueba previa es obligatoria?",
+    ops: ["Prueba de Allen", "Prueba de Trendelenburg", "Test de glucemia capilar", "Prueba de Mantoux"],
+    ok: 0,
+    exp: "El test de Allen valora la circulación colateral cubital antes de puncionar la arteria radial. Si es negativo (mala circulación colateral), debe elegirse otra arteria para evitar isquemia distal."
+  },
+  {
+    cat: "Planta / Monitorización",
+    q: "En un electrocardiograma de 12 derivaciones, ¿qué representa el intervalo PR?",
+    ops: [
+      "La despolarización ventricular",
+      "El tiempo de conducción desde el nodo sinusal hasta los ventrículos, incluyendo el nodo AV",
+      "La repolarización ventricular",
+      "La sístole auricular únicamente"
+    ],
+    ok: 1,
+    exp: "El intervalo PR (0,12–0,20 s) representa el tiempo que tarda el impulso eléctrico en ir desde el nodo SA, pasar por las aurículas y el nodo AV, hasta alcanzar el haz de His. Un PR > 0,20 s indica bloqueo AV."
+  },
+  {
+    cat: "Infecciones y EPIS",
+    q: "¿Cuál es el antiséptico de elección para la preparación de la piel antes de una punción vascular central?",
+    ops: ["Agua oxigenada al 3%", "Povidona yodada al 10%", "Clorhexidina alcohólica al 2%", "Suero fisiológico estéril"],
+    ok: 2,
+    exp: "Las guías CDC y SHEA recomiendan la clorhexidina alcohólica al 2% como primera opción para la antisepsia cutánea en catéteres vasculares centrales, por su actividad bactericida rápida y efecto residual prolongado."
+  },
+  {
+    cat: "Psiquiatría / Salud Mental",
+    q: "¿Qué fármaco se considera de primera línea en el tratamiento agudo de un episodio maníaco severo?",
+    ops: ["Fluoxetina (ISRS)", "Carbonato de litio o valproato + antipsicótico atípico", "Alprazolam en dosis altas", "Amitriptilina (antidepresivo tricíclico)"],
+    ok: 1,
+    exp: "En la manía severa se combinan estabilizadores del ánimo (litio o valproato) con antipsicóticos atípicos (olanzapina, quetiapina). Los antidepresivos están contraindicados ya que pueden desencadenar ciclación rápida."
+  },
+  {
+    cat: "Cuidados Básicos",
+    q: "¿Cada cuánto tiempo se recomienda cambiar el apósito transparente semipermeable de un catéter venoso central (CVC) cuando está íntegro y sin signos de infección?",
+    ops: ["Cada 24 horas", "Cada 48 horas", "Cada 5–7 días", "Solo cuando se desprenda o manche"],
+    ok: 2,
+    exp: "Las guías CDC recomiendan cambiar los apósitos transparentes de los CVC cada 5–7 días, o antes si están despegados, húmedos o sucios. Los apósitos de gasa estéril se cambian cada 48 h."
+  },
+  {
+    cat: "Farmacología",
+    q: "Un paciente con insuficiencia renal crónica estadio 4 precisa analgesia moderada. ¿Cuál de estos fármacos debe evitarse preferentemente?",
+    ops: ["Paracetamol a dosis estándar", "Tramadol ajustado", "Morfina oral", "Ibuprofeno"],
+    ok: 3,
+    exp: "Los AINE como el ibuprofeno están contraindicados en insuficiencia renal avanzada porque inhiben las prostaglandinas renales vasodilatatoras, reducen el filtrado glomerular y pueden precipitar insuficiencia renal aguda."
+  },
+  {
+    cat: "Urgencias",
+    q: "En la clasificación START de triage en catástrofes, ¿qué color se asigna a una víctima que no respira tras reposicionar la vía aérea?",
+    ops: ["Rojo (inmediato)", "Amarillo (diferido)", "Verde (menor)", "Negro (expectante/fallecido)"],
+    ok: 3,
+    exp: "En el triage START, si la víctima no respira espontáneamente tras abrir la vía aérea, se clasifica como negro (expectante o fallecida). Los recursos se dedican a quienes tienen mayor probabilidad de sobrevivir."
+  },
+  {
+    cat: "Anatomía y Fisiología",
+    q: "¿Cuál es la función principal de la válvula ileocecal?",
+    ops: [
+      "Segregar bilis hacia el duodeno",
+      "Impedir el reflujo del contenido del colon al intestino delgado",
+      "Absorber vitamina B12",
+      "Regular la secreción de insulina pancreática"
+    ],
+    ok: 1,
+    exp: "La válvula ileocecal (de Bauhin) actúa como esfínter entre el íleon terminal y el ciego, previniendo el reflujo del contenido colónico (con alta carga bacteriana) hacia el intestino delgado."
+  },
+  {
+    cat: "Psiquiatría / Salud Mental",
+    q: "¿Cuál es la técnica de comunicación terapéutica más adecuada cuando un paciente en crisis expresa pensamientos suicidas?",
+    ops: [
+      "Cambiar de tema para distraerle y evitar que se centre en esos pensamientos",
+      "Escucha activa, validación emocional, preguntar directamente sobre el plan e ideación, y activar el protocolo de seguridad",
+      "Decirle que hay muchas razones para vivir e intentar razonar para convencerle",
+      "Dejarle solo para que reflexione sin presión externa"
+    ],
+    ok: 1,
+    exp: "Ante ideación suicida se debe mantener escucha activa y empática, preguntar directamente (no aumenta el riesgo), valorar el plan e intención, y activar inmediatamente el protocolo de seguridad del centro."
   }
 ];
 
