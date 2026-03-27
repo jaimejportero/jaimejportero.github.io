@@ -344,174 +344,214 @@ const S_TIEMPO_PREGUNTA = 30;
 ───────────────────────────────────────────────────────────── */
 const BASE = [
   {
-    cat: "Anatomía y Fisiología",
-    q: "¿Qué válvula cardíaca separa el ventrículo izquierdo de la aorta?",
-    ops: ["Válvula mitral", "Válvula tricúspide", "Válvula aórtica", "Válvula pulmonar"],
-    ok: 2,
-    exp: "La válvula aórtica (semilunar aórtica) se encuentra entre el ventrículo izquierdo y la aorta. Impide el reflujo de sangre hacia el ventrículo durante la diástole."
+    cat: "Cuidados Básicos",
+    q: "¿Cuántas veces al día se recomienda, como mínimo, realizar el cambio postural en un paciente encamado para prevenir úlceras por presión?",
+    ops: ["Cada 8 horas", "Cada 2-3 horas", "Una vez al día", "Solo cuando el paciente lo pida"],
+    ok: 1,
+    exp: "Los cambios posturales deben realizarse cada 2-3 horas en pacientes encamados para aliviar la presión sobre las prominencias óseas y prevenir la aparición de úlceras por presión."
   },
   {
     cat: "Cuidados Básicos",
-    q: "¿Cuál es la vía de administración correcta de la insulina de acción rápida en un paciente diabético hospitalizado?",
-    ops: ["Vía oral", "Vía intramuscular profunda", "Vía subcutánea", "Vía intravenosa exclusivamente"],
-    ok: 2,
-    exp: "La insulina de acción rápida se administra habitualmente por vía subcutánea. La vía IV se reserva para situaciones especiales (cetoacidosis, cirugía mayor) bajo estricto protocolo."
-  },
-  {
-    cat: "Farmacología",
-    q: "Un paciente recibe digoxina. ¿Cuál de los siguientes signos es indicativo de toxicidad digitálica?",
-    ops: ["Taquicardia sinusal > 120 lpm", "Bradicardia, náuseas, visión con halos amarillos/verdes", "Hipertensión arterial severa", "Fiebre elevada con escalofríos"],
-    ok: 1,
-    exp: "La toxicidad digitálica se manifiesta con bradicardia, arritmias, náuseas, vómitos y alteraciones visuales características (halos amarillos o verdes). El rango terapéutico es 0,5–2 ng/mL."
-  },
-  {
-    cat: "Urgencias",
-    q: "Un paciente adulto presenta una quemadura que afecta toda la extremidad superior derecha. Aplicando la regla de los 9 de Wallace, ¿qué porcentaje de superficie corporal quemada representa?",
-    ops: ["4,5%", "9%", "18%", "1%"],
-    ok: 1,
-    exp: "Según la regla de los 9 de Wallace, cada extremidad superior equivale al 9% de la superficie corporal total (4,5% la cara anterior y 4,5% la posterior)."
-  },
-  {
-    cat: "Infecciones y EPIS",
-    q: "¿Cuál es el orden correcto para quitarse el EPI tras atender a un paciente en aislamiento de contacto?",
+    q: "¿Qué significa el acrónimo 'SAMPLE' utilizado en la valoración inicial de un paciente?",
     ops: [
-      "Mascarilla → guantes → bata → higiene de manos",
-      "Guantes → bata → higiene de manos → mascarilla",
-      "Bata → mascarilla → guantes → higiene de manos",
-      "Higiene de manos → guantes → bata → mascarilla"
+      "Síntomas, Alergias, Medicación, Patología previa, Última ingesta, Eventos previos",
+      "Saturación, Altura, Masa, Presión, Líquidos, Electrocardiograma",
+      "Signos vitales, Análisis, Movilidad, Peso, Laboratorio, Exploración",
+      "Síncope, Accidente, Medicación, Pulso, Lesión, Exploración"
     ],
-    ok: 1,
-    exp: "El orden de retirada del EPI según la OMS es: guantes (parte más contaminada) → bata → higiene de manos → mascarilla/protección ocular → higiene de manos final."
-  },
-  {
-    cat: "Procedimientos",
-    q: "¿Cuál es la zona de punción preferente para la extracción de sangre venosa periférica en adultos?",
-    ops: ["Vena femoral", "Vena cefálica del dorso de la mano", "Fosa antecubital (vena mediana cubital)", "Vena yugular externa"],
-    ok: 2,
-    exp: "La vena mediana cubital, ubicada en la fosa antecubital, es la de elección para extracción venosa por su calibre, accesibilidad y menor movilidad. La cefálica del dorso de la mano es segunda opción."
-  },
-  {
-    cat: "Planta / Monitorización",
-    q: "Un paciente en ventilación mecánica presenta una saturación de O₂ del 88% con FiO₂ al 40%. ¿Cuál es la primera acción de enfermería?",
-    ops: [
-      "Administrar broncodilatadores de inmediato sin avisar al médico",
-      "Comprobar la correcta colocación del pulsioxímetro y la permeabilidad de la vía aérea, y avisar al médico",
-      "Aumentar la FiO₂ al 100% de forma autónoma",
-      "Retirar el ventilador y conectar ambú"
-    ],
-    ok: 1,
-    exp: "Ante una desaturación, primero se verifica la fiabilidad del sensor y la permeabilidad de la vía aérea. Después se notifica al médico para ajustar parámetros ventilatorios. Actuar sin valoración puede ser perjudicial."
-  },
-  {
-    cat: "Cuidados Básicos",
-    q: "¿Qué escala se utiliza para valorar el riesgo de úlceras por presión (UPP) en pacientes hospitalizados?",
-    ops: ["Escala de Glasgow", "Escala de Braden", "Escala de Barthel", "Escala de Morse"],
-    ok: 1,
-    exp: "La escala de Braden evalúa 6 subescalas (percepción sensorial, humedad, actividad, movilidad, nutrición y fricción/cizalla). Una puntuación ≤ 18 indica riesgo de UPP."
-  },
-  {
-    cat: "Farmacología",
-    q: "¿Cuál es el antídoto específico para la sobredosis de benzodiazepinas?",
-    ops: ["Naloxona", "Flumazenil", "N-acetilcisteína", "Atropina"],
-    ok: 1,
-    exp: "El flumazenil es el antagonista competitivo de los receptores GABA-A que revierte la sedación por benzodiazepinas. Tiene una vida media corta (1 h), por lo que puede ser necesario repetir la dosis."
-  },
-  {
-    cat: "Urgencias",
-    q: "¿Cuál es la posición lateral de seguridad y en qué situación se emplea?",
-    ops: [
-      "Decúbito supino con cabeza hiperextendida; en parada cardiorrespiratoria",
-      "Decúbito lateral con cabeza ligeramente hacia atrás; en paciente inconsciente que respira para evitar aspiración",
-      "Posición de Fowler a 45°; en insuficiencia respiratoria",
-      "Trendelenburg; en shock hemorrágico"
-    ],
-    ok: 1,
-    exp: "La posición lateral de seguridad (PLS) se usa en pacientes inconscientes que respiran espontáneamente. Mantiene la vía aérea permeable y previene la broncoaspiración al favorecer el drenaje de secreciones."
-  },
-  {
-    cat: "Anatomía y Fisiología",
-    q: "¿Qué hormona produce la médula suprarrenal en respuesta al estrés agudo?",
-    ops: ["Cortisol", "Aldosterona", "Adrenalina (epinefrina)", "Insulina"],
-    ok: 2,
-    exp: "La médula suprarrenal secreta adrenalina (80%) y noradrenalina (20%) ante el estrés agudo, preparando al organismo para la respuesta de 'lucha o huida': taquicardia, broncodilatación y glucogenólisis."
-  },
-  {
-    cat: "Procedimientos",
-    q: "Al realizar una gasometría arterial en la arteria radial, ¿qué prueba previa es obligatoria?",
-    ops: ["Prueba de Allen", "Prueba de Trendelenburg", "Test de glucemia capilar", "Prueba de Mantoux"],
     ok: 0,
-    exp: "El test de Allen valora la circulación colateral cubital antes de puncionar la arteria radial. Si es negativo (mala circulación colateral), debe elegirse otra arteria para evitar isquemia distal."
-  },
-  {
-    cat: "Planta / Monitorización",
-    q: "En un electrocardiograma de 12 derivaciones, ¿qué representa el intervalo PR?",
-    ops: [
-      "La despolarización ventricular",
-      "El tiempo de conducción desde el nodo sinusal hasta los ventrículos, incluyendo el nodo AV",
-      "La repolarización ventricular",
-      "La sístole auricular únicamente"
-    ],
-    ok: 1,
-    exp: "El intervalo PR (0,12–0,20 s) representa el tiempo que tarda el impulso eléctrico en ir desde el nodo SA, pasar por las aurículas y el nodo AV, hasta alcanzar el haz de His. Un PR > 0,20 s indica bloqueo AV."
-  },
-  {
-    cat: "Infecciones y EPIS",
-    q: "¿Cuál es el antiséptico de elección para la preparación de la piel antes de una punción vascular central?",
-    ops: ["Agua oxigenada al 3%", "Povidona yodada al 10%", "Clorhexidina alcohólica al 2%", "Suero fisiológico estéril"],
-    ok: 2,
-    exp: "Las guías CDC y SHEA recomiendan la clorhexidina alcohólica al 2% como primera opción para la antisepsia cutánea en catéteres vasculares centrales, por su actividad bactericida rápida y efecto residual prolongado."
-  },
-  {
-    cat: "Psiquiatría / Salud Mental",
-    q: "¿Qué fármaco se considera de primera línea en el tratamiento agudo de un episodio maníaco severo?",
-    ops: ["Fluoxetina (ISRS)", "Carbonato de litio o valproato + antipsicótico atípico", "Alprazolam en dosis altas", "Amitriptilina (antidepresivo tricíclico)"],
-    ok: 1,
-    exp: "En la manía severa se combinan estabilizadores del ánimo (litio o valproato) con antipsicóticos atípicos (olanzapina, quetiapina). Los antidepresivos están contraindicados ya que pueden desencadenar ciclación rápida."
-  },
-  {
-    cat: "Cuidados Básicos",
-    q: "¿Cada cuánto tiempo se recomienda cambiar el apósito transparente semipermeable de un catéter venoso central (CVC) cuando está íntegro y sin signos de infección?",
-    ops: ["Cada 24 horas", "Cada 48 horas", "Cada 5–7 días", "Solo cuando se desprenda o manche"],
-    ok: 2,
-    exp: "Las guías CDC recomiendan cambiar los apósitos transparentes de los CVC cada 5–7 días, o antes si están despegados, húmedos o sucios. Los apósitos de gasa estéril se cambian cada 48 h."
+    exp: "SAMPLE es una nemotecnia para la anamnesis rápida: Síntomas actuales, Alergias, Medicación habitual, Patología previa, Última ingesta y Eventos que desencadenaron el cuadro."
   },
   {
     cat: "Farmacología",
-    q: "Un paciente con insuficiencia renal crónica estadio 4 precisa analgesia moderada. ¿Cuál de estos fármacos debe evitarse preferentemente?",
-    ops: ["Paracetamol a dosis estándar", "Tramadol ajustado", "Morfina oral", "Ibuprofeno"],
-    ok: 3,
-    exp: "Los AINE como el ibuprofeno están contraindicados en insuficiencia renal avanzada porque inhiben las prostaglandinas renales vasodilatatoras, reducen el filtrado glomerular y pueden precipitar insuficiencia renal aguda."
+    q: "¿Por qué vía se administra el paracetamol cuando el paciente no puede tomar nada por boca?",
+    ops: ["Vía intramuscular", "Vía intravenosa o rectal", "Vía sublingual", "Vía inhalatoria"],
+    ok: 1,
+    exp: "Cuando no es posible la vía oral, el paracetamol puede administrarse por vía intravenosa (solución en perfusión) o por vía rectal (supositorios), manteniendo el mismo efecto analgésico y antipirético."
+  },
+  {
+    cat: "Farmacología",
+    q: "¿Qué se debe comprobar siempre antes de administrar cualquier medicamento a un paciente?",
+    ops: [
+      "Que el médico esté presente en la habitación",
+      "Los 5 correctos: paciente, medicamento, dosis, vía y hora correctos",
+      "Que el paciente haya comido previamente",
+      "El color y olor del medicamento únicamente"
+    ],
+    ok: 1,
+    exp: "La regla de los 5 correctos (o 10 correctos en versiones ampliadas) es la verificación básica de seguridad en la administración de medicamentos: paciente correcto, fármaco correcto, dosis correcta, vía correcta y hora correcta."
   },
   {
     cat: "Urgencias",
-    q: "En la clasificación START de triage en catástrofes, ¿qué color se asigna a una víctima que no respira tras reposicionar la vía aérea?",
-    ops: ["Rojo (inmediato)", "Amarillo (diferido)", "Verde (menor)", "Negro (expectante/fallecido)"],
-    ok: 3,
-    exp: "En el triage START, si la víctima no respira espontáneamente tras abrir la vía aérea, se clasifica como negro (expectante o fallecida). Los recursos se dedican a quienes tienen mayor probabilidad de sobrevivir."
-  },
-  {
-    cat: "Anatomía y Fisiología",
-    q: "¿Cuál es la función principal de la válvula ileocecal?",
+    q: "¿Cuál es el primer paso al encontrar a una persona inconsciente en la calle?",
     ops: [
-      "Segregar bilis hacia el duodeno",
-      "Impedir el reflujo del contenido del colon al intestino delgado",
-      "Absorber vitamina B12",
-      "Regular la secreción de insulina pancreática"
+      "Iniciar compresiones torácicas inmediatamente",
+      "Asegurarse de que la escena es segura y comprobar si responde",
+      "Llamar al médico de cabecera",
+      "Colocarle en posición de Trendelenburg"
     ],
     ok: 1,
-    exp: "La válvula ileocecal (de Bauhin) actúa como esfínter entre el íleon terminal y el ciego, previniendo el reflujo del contenido colónico (con alta carga bacteriana) hacia el intestino delgado."
+    exp: "Antes de actuar siempre hay que garantizar la seguridad del entorno. Luego se estimula al paciente (sacudida suave en hombros, voz alta) para comprobar si responde. Si no responde, se activa el sistema de emergencias."
   },
   {
-    cat: "Psiquiatría / Salud Mental",
-    q: "¿Cuál es la técnica de comunicación terapéutica más adecuada cuando un paciente en crisis expresa pensamientos suicidas?",
+    cat: "Urgencias",
+    q: "¿En qué zona del tórax se colocan las manos para realizar las compresiones en la RCP de un adulto?",
     ops: [
-      "Cambiar de tema para distraerle y evitar que se centre en esos pensamientos",
-      "Escucha activa, validación emocional, preguntar directamente sobre el plan e ideación, y activar el protocolo de seguridad",
-      "Decirle que hay muchas razones para vivir e intentar razonar para convencerle",
-      "Dejarle solo para que reflexione sin presión externa"
+      "En el costado izquierdo, sobre el corazón",
+      "En el centro del pecho, sobre el esternón",
+      "En la parte superior del esternón, bajo la clavícula",
+      "En el abdomen, por encima del ombligo"
     ],
     ok: 1,
-    exp: "Ante ideación suicida se debe mantener escucha activa y empática, preguntar directamente (no aumenta el riesgo), valorar el plan e intención, y activar inmediatamente el protocolo de seguridad del centro."
+    exp: "Las compresiones torácicas en adultos se realizan en el centro del pecho (mitad inferior del esternón), con el talón de la mano, deprimiendo el tórax al menos 5 cm a un ritmo de 100-120 compresiones por minuto."
+  },
+  {
+    cat: "Procedimientos",
+    q: "¿Qué técnica de higiene de manos es más eficaz para eliminar esporas de Clostridium difficile?",
+    ops: [
+      "Fricción con solución alcohólica durante 20 segundos",
+      "Lavado con agua y jabón durante al menos 40-60 segundos",
+      "Uso de guantes sin lavado previo",
+      "Limpieza con toallita desinfectante"
+    ],
+    ok: 1,
+    exp: "El alcohol no elimina las esporas de C. difficile. El lavado con agua y jabón es obligatorio en estos casos, ya que la fricción mecánica arrastra físicamente las esporas de las manos."
+  },
+  {
+    cat: "Procedimientos",
+    q: "¿Qué temperatura aproximada debe tener el agua para el baño de un paciente encamado?",
+    ops: ["20-25 °C (fría)", "36-37 °C (templada/tibia)", "42-45 °C (muy caliente)", "Temperatura de grifo sin controlar"],
+    ok: 1,
+    exp: "El agua para el baño en cama debe estar a unos 36-37 °C, similar a la temperatura corporal, para proporcionar confort al paciente y evitar quemaduras o escalofríos."
+  },
+  {
+    cat: "Planta / Monitorización",
+    q: "¿Qué valor de saturación de oxígeno (SpO₂) se considera normal en un adulto sano?",
+    ops: ["Por encima del 95%", "Entre el 85% y el 90%", "Entre el 70% y el 80%", "Por encima del 99% exclusivamente"],
+    ok: 0,
+    exp: "La saturación de oxígeno normal en un adulto sano es ≥ 95%. Entre 91-94% se considera hipoxemia leve; por debajo del 90% es hipoxemia significativa que requiere intervención."
+  },
+  {
+    cat: "Planta / Monitorización",
+    q: "¿Con qué frecuencia se deben registrar los signos vitales en un paciente hospitalizado estable?",
+    ops: [
+      "Solo al ingreso y al alta",
+      "Según la prescripción médica y el protocolo del centro, habitualmente cada 8 horas",
+      "Únicamente cuando el paciente refiere malestar",
+      "Una vez a la semana"
+    ],
+    ok: 1,
+    exp: "La frecuencia de registro de signos vitales la determina el médico y el protocolo de la unidad. En pacientes estables suele ser cada 8 horas (por turno), pero puede ser más frecuente según la situación clínica."
+  },
+  {
+    cat: "Cuidados Básicos",
+    q: "¿Cuál es la posición correcta para administrar alimentación por sonda nasogástrica?",
+    ops: [
+      "Decúbito supino completamente horizontal",
+      "Posición de Fowler (cabecera elevada 30-45°)",
+      "Decúbito lateral derecho con cabeza baja",
+      "Posición de Trendelenburg invertido a 90°"
+    ],
+    ok: 1,
+    exp: "La cabecera debe elevarse 30-45° durante la alimentación enteral y al menos 30 minutos después, para reducir el riesgo de reflujo y broncoaspiración."
+  },
+  {
+    cat: "Infecciones y EPIS",
+    q: "¿En cuál de estos momentos es obligatorio realizar higiene de manos según la OMS (los '5 momentos')?",
+    ops: [
+      "Solo antes de entrar a la habitación del paciente",
+      "Antes del contacto con el paciente, antes de una tarea aséptica, después de exposición a fluidos, después del contacto con el paciente y después del contacto con el entorno",
+      "Únicamente al iniciar y finalizar el turno",
+      "Solo cuando las manos están visiblemente sucias"
+    ],
+    ok: 1,
+    exp: "La OMS establece 5 momentos clave para la higiene de manos que cubren todo el proceso de atención: antes y después del contacto con el paciente, antes de procedimientos asépticos, tras exposición a fluidos y tras contacto con el entorno del paciente."
+  },
+  {
+    cat: "Farmacología",
+    q: "¿Qué significa que un medicamento tiene prescripción 'PRN' (pro re nata)?",
+    ops: [
+      "Que se administra a hora fija todos los días",
+      "Que se administra solo si es necesario, cuando el paciente presenta el síntoma indicado",
+      "Que está contraindicado en menores de edad",
+      "Que requiere doble firma de enfermería"
+    ],
+    ok: 1,
+    exp: "PRN (pro re nata, 'según sea necesario') indica que el fármaco se administra solo cuando aparece el síntoma para el que está prescrito (dolor, fiebre, náuseas...), no de forma programada."
+  },
+  {
+    cat: "Urgencias",
+    q: "¿Cuál es la frecuencia respiratoria normal en un adulto en reposo?",
+    ops: ["5-8 respiraciones por minuto", "12-20 respiraciones por minuto", "25-30 respiraciones por minuto", "35-40 respiraciones por minuto"],
+    ok: 1,
+    exp: "La frecuencia respiratoria normal en adultos en reposo es de 12-20 respiraciones por minuto. Por debajo de 12 se llama bradipnea; por encima de 20, taquipnea."
+  },
+  {
+    cat: "Procedimientos",
+    q: "Al preparar una inyección intramuscular, ¿qué tamaño de aguja es habitualmente el adecuado para un adulto de peso normal?",
+    ops: ["Aguja de 16G (muy gruesa, naranja)", "Aguja de 21-23G, 40 mm de longitud (verde o azul)", "Aguja de 26G (muy fina, marrón)", "Aguja de 14G (para transfusiones)"],
+    ok: 1,
+    exp: "Para inyecciones intramusculares en adultos se usan agujas de calibre 21-23G y 38-40 mm de longitud, suficiente para atravesar el tejido subcutáneo y alcanzar el músculo."
+  },
+  {
+    cat: "Cuidados Básicos",
+    q: "¿Qué es la diuresis y cómo se mide habitualmente en planta?",
+    ops: [
+      "El número de deposiciones al día; se anota en la gráfica de heces",
+      "La cantidad de orina producida; se mide en mililitros recogidos en una bolsa o recipiente graduado en 24 horas",
+      "El peso del paciente en ayunas cada mañana",
+      "La cantidad de líquido intravenoso administrado"
+    ],
+    ok: 1,
+    exp: "La diuresis es el volumen de orina producido. Se mide recogiendo toda la orina en un recipiente graduado durante 24 horas (o por turno) y anotando el resultado para calcular el balance hídrico."
+  },
+  {
+    cat: "Planta / Monitorización",
+    q: "¿Qué significa una frecuencia cardíaca de 48 lpm en un adulto en reposo?",
+    ops: [
+      "Taquicardia leve",
+      "Bradicardia (frecuencia por debajo de 60 lpm)",
+      "Frecuencia completamente normal",
+      "Fibrilación ventricular"
+    ],
+    ok: 1,
+    exp: "La bradicardia se define como una frecuencia cardíaca inferior a 60 lpm. No siempre es patológica (deportistas entrenados pueden tenerla), pero debe comunicarse al médico para valorar si requiere actuación."
+  },
+  {
+    cat: "Infecciones y EPIS",
+    q: "¿Qué EPI básico debe ponerse la enfermera antes de realizar una cura de herida limpia?",
+    ops: [
+      "Traje de protección completo nivel 4",
+      "Guantes estériles o de procedimiento según el tipo de cura",
+      "Mascarilla FFP3 obligatoria siempre",
+      "Ninguno, con higiene de manos es suficiente"
+    ],
+    ok: 1,
+    exp: "Para una cura limpia se usan guantes (estériles si la técnica lo requiere, de procedimiento para curas simples), además de la higiene de manos antes y después. La mascarilla y bata se añaden según el riesgo de salpicaduras."
+  },
+  {
+    cat: "Cuidados Básicos",
+    q: "¿Qué se entiende por 'balance hídrico positivo'?",
+    ops: [
+      "Que el paciente ha eliminado más líquido del que ha recibido",
+      "Que el paciente ha recibido más líquido del que ha eliminado",
+      "Que el paciente está bien hidratado y en equilibrio",
+      "Que el paciente no ha orinado en 24 horas"
+    ],
+    ok: 1,
+    exp: "El balance hídrico se calcula restando las pérdidas (orina, heces, sudor, drenajes) a las entradas (líquidos IV, ingesta oral). Un balance positivo indica que se retiene más líquido del que se elimina, lo que puede indicar retención hídrica."
+  },
+  {
+    cat: "Procedimientos",
+    q: "¿Qué se debe hacer antes de tomar la tensión arterial con un esfigmomanómetro para garantizar una medición fiable?",
+    ops: [
+      "Pedir al paciente que haga ejercicio 5 minutos para activar la circulación",
+      "Que el paciente esté sentado o tumbado en reposo al menos 5 minutos, sin haber fumado ni tomado café en los 30 minutos previos",
+      "Inflar el manguito lo más rápido posible para no molestar al paciente",
+      "Medir siempre en el brazo izquierdo con el paciente de pie"
+    ],
+    ok: 1,
+    exp: "Para una medición fiable de la tensión arterial, el paciente debe estar en reposo al menos 5 minutos, sentado con la espalda apoyada y el brazo a la altura del corazón, y sin haber fumado, consumido cafeína ni hecho ejercicio en los 30 minutos previos."
   }
 ];
 
